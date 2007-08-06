@@ -16,7 +16,7 @@ RFCs enhancements:
  * ~~understand also TYPE AN and TYPE L8 commands~~
  * ~~accept HELP command arguments~~
  * ~~be compliant with STOU format output as defined into [http://www.faqs.org/rfcs/rfc1123.html RFC 1123]~~
- * return directory listing over the command channel when LIST is provided with an argument
+ * return directory listing over the command channel when STAT is provided with an argument
  * change account when USER is provided twice
 
 Security enhancements:
