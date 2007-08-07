@@ -45,7 +45,7 @@ General:
  * provide a way to specify / configure a certain range of ports on which data channel should bind on when PASV is received.
  * assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
 
-== FUTURE ==
+== Future ==
 
  * SSL / TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined into [http://www.faqs.org/rfcs/rfc2228.html RFC 2228]
  * IPv6 support including _EPRT & EPSV_ commands as defined into [http://www.faqs.org/rfcs/rfc2428.html RFC 2428]
