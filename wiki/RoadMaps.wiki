@@ -17,8 +17,8 @@ RFCs enhancements:
  * ~~understand also TYPE AN and TYPE L8 commands~~
  * ~~accept HELP command arguments~~
  * ~~be compliant with STOU format output as defined into [http://www.faqs.org/rfcs/rfc1123.html RFC 1123]~~
- * return directory listing over the command channel when STAT is provided with an argument
- * change account when USER is provided twice
+ * return directory listing over the command channel when STAT is called with an argument
+ * change account when USER is provided a second time after authenticating
 
 Security enhancements:
  * ~~provide a way to configure / limit the number of maximum acceptable connections~~
@@ -34,18 +34,18 @@ Usability enhancements:
 
 General:
  * ~~remove memory leaks occurring on application exit and on data channel resetting~~
- * correct all bugs / enhancements listed into issues reporting system
+ * resolve all bugs reported against release 0.1.1
  * improve the quality of docstrings and source code comments
- * improve test suite cases
+ * improve test suite cases to cover additional test cases
  * write module documentation
 
 == 0.2.1 ==
 
- * support for FTP servers behind NAT as defined into [http://www.faqs.org/rfcs/rfc2428.html RFC 2428]
+ * support for FTP servers behind NAT as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428]
  * provide a way to specify / configure a certain range of ports on which data channel should bind on when PASV is received.
  * assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
 
-== 0.x.x ==
+== FUTURE ==
 
  * SSL / TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined into [http://www.faqs.org/rfcs/rfc2228.html RFC 2228]
  * IPv6 support including _EPRT & EPSV_ commands as defined into [http://www.faqs.org/rfcs/rfc2428.html RFC 2428]
@@ -59,21 +59,21 @@ General:
  * ~~provide a mailing list / discussion forum for pyftpdlib users~~
  * ~~provide a mailing list for subversion commits~~
  * ~~provide a mailing list for Issue changes~~
- * provide external links related to pyftpdlib (e.g. pyftpdlib port for Free BSD) into the home page
- * provide a _"News"_ section into home page where adding news about the project
+ * add external links related to pyftpdlib (e.g. pyftpdlib port for Free BSD) to the home page
+ * provide a _"News"_ section into home page, updated with news about the project
 
 = Wiki roadmap =
 
  * ~~provide a _"RoadMaps"_ wiki including _"Release", "Hosting"_ and _"Wiki"_ roadmap sub-sections~~
  * provide a _"Documentation"_ wiki documenting module itself
- * provide an _"AdvancedUsage"_ wiki describing several advanced usages. In details:
-  * system-dependent authorizers
+ * provide an _"AdvancedUsage"_ wiki describing several advanced use cases:
+  * platform-specific authorizers
   * logging management
   * adding bandwidth throttling capabilities to asyncore
   * adding asynchronous "sleeps" capabilities to asyncore
-  * adding IDLE / Timeout capabilities to pyftpdlib
+  * adding Idle / Timeout capabilities to pyftpdlib
   * implement a directory listing cache for LIST and NLST commands
- * provide a _"FAQ"_ wiki
- * provide a _"FTPDocs"_ wiki reporting a list of useful protocol-related documents that has been used for pyftpdlib developing.
+ * provide an _"FAQ"_ wiki
+ * provide an _"FTPDocs"_ wiki listing useful protocol-related documents used during development of pyftpdlib.
  * provide a _"BecomeDeveloper"_ wiki explaining pyftpdlib code in depth, showing examples about how to use SVN, how to submit issues and so on...)
- * provide a _"SupportedSystems"_ wiki where show result of test on several systems and python version.
+ * provide a _"SupportedSystems"_ wiki with a list of tested and supported platforms and Python versions.
