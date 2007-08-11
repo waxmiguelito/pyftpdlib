@@ -35,7 +35,7 @@ Usability enhancements:
 General:
  * ~~remove memory leaks occurring on application exit and on data channel resetting~~
  * resolve all bugs reported against release 0.1.1
- * improve the quality of docstrings and source code comments
+ * ~~improve the quality of docstrings and source code comments~~
  * improve test suite cases to cover additional test cases
  * write module documentation
 
