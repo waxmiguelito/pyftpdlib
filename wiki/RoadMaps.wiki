@@ -29,7 +29,7 @@ Security enhancements:
 
 Usability enhancements:
  * ~~provide an overridable attribute to easily set number of maximum login attempts before disconnecting~~
- * ~~provide an overridable attribute to easily enable/disable FTP proxying feature~~
+ * ~~provide an overridable attribute to easily enable/disable site-to-site transfers~~
  * ~~provide a detailed error messages on connection and file system errors~~
 
 General:
