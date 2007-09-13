@@ -15,26 +15,21 @@
 
 RFCs enhancements:
  * ~~understand also TYPE AN and TYPE L8 commands~~
- * ~~accept HELP command arguments~~
- * ~~be compliant with STOU format output as defined into [http://www.faqs.org/rfcs/rfc1123.html RFC 1123]~~
- * ~~return directory listing over the command channel when STAT is called with an argument~~
  * ~~change account when USER is provided a second time after authenticating~~
+ * ~~be compliant with STOU format output as defined into [http://www.faqs.org/rfcs/rfc1123.html RFC 1123]~~
+ * ~~accept HELP command arguments~~
+ * ~~return directory listing over the command channel when STAT is called with an argument~~
+ * ~~implement site-to-site FXP to allow transfers between FTP servers~~
 
 Security enhancements:
+ * ~~stop buffering when extremely long lines are received~~
  * ~~provide a way to configure / limit the number of maximum acceptable connections~~
  * ~~provide a way to configure / limit the maximum number of clients which may be connected from the same source internet address~~
- * ~~stop buffering when extremely long lines are received~~
  * ~~rejecting data connection when a privileged port is specified on PORT command~~
  * ~~use a limited number of tries for finding unique filename on STOU~~
-
-Usability enhancements:
  * ~~provide an overridable attribute to easily set number of maximum login attempts before disconnecting~~
  * ~~provide an overridable attribute to easily enable/disable site-to-site transfers~~
- * ~~provide a detailed error messages on connection and file system errors~~
 
-General:
- * ~~resolve all bugs reported against release 0.1.1~~
- * ~~write module documentation~~
 
 == 0.2.1 ==
 
