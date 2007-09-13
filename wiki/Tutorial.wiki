@@ -10,14 +10,14 @@ If you have written a customized configuration you think could be useful to the 
 
 === 2.1 - class AuthorizerError ===
 
-AuthorizerError*()*
+*AuthorizerError*()
     Base class for authorizers exceptions.
 
 = =
 
 === 2.2 - class DummyAuthorizer ===
 
-DummyAuthorizer*()*
+*DummyAuthorizer*()
 
     Basic "dummy" authorizer class, suitable for subclassing to create your own custom authorizers.  An "authorizer" is a class handling authentications and permissions of the FTP server.  It is used inside `FTPHandler` class for verifying user's password, getting users home directory and checking user permissions when a filesystem read/write event occurs.  `DummyAuthorizer` is the base authorizer, providing a platform independent interface for managing "virtual" FTP users.  Typically the first thing you have to do is create an instance of this class and start adding ftp users: 
 
@@ -30,20 +30,20 @@ DummyAuthorizer*()*
 
 Relevant methods defined in this class:
 
-|| add_user*(*_username_, _password_, _homedir_*[*, _perm=("r")_*[*, _msg_login="Login successful."_*[*, _msg_quit="Goodbye."_*]]]**)* || Add a user to the virtual users table.  `AuthorizerError` exceptions raised on error conditions such as insufficient permissions or duplicate usernames.  Optional _perm_ argument is a tuple defaulting to ("r") referencing user's permissions.  Valid values are  "r" (read access), "w" (write access) or none at all (no access).  Optional msg_login and msg_quit arguments can be specified to provide customized response strings when user log-in and quit. ||
-|| add_anonymous*(*_homedir_*[*, _perm=("r")_*[*, _msg_login="Login successful."_*[*, _msg_quit="Goodbye."_*]]]**)* || Add an anonymous user to the virtual users table.  `AuthorizerError` exception raised on error conditions such as insufficient permissions, missing home directory, or duplicate anonymous users.  Optional _perm_ argument is a tuple defaulting to ("r") referencing 'read-only' anonymous user's permission.  Using a "w" (write access) value results in a warning message printed to stderr.  Optional msg_login and msg_quit arguments can be specified to provide customized response strings when anonymous user log-in and quit. ||
-|| remove_user*(*_username_*)* || Remove a user from the virtual user table. ||
-|| validate_authentication*(*_username_, _password_*)* || Return True if the supplied _username_ and _password_ match the stored credentials. ||
-|| has_user*(*_username_*)* || Whether the _username_ exists in the virtual users table. ||
-|| get_home_dir*(*_username_*)* || Return the user's home directory. ||
-|| r_perm*(*_username_*[*, _obj=None_*]*) || Whether the user has read permissions for _obj_ (an absolute pathname of a file or a directory). ||
-|| w_perm*(*_username_, *[*_obj=None_*]*) || Whether the user has write permissions for _obj_ (an absolute pathname of a file or a directory). ||
+|| *add_user*(_username_, _password_, _homedir_[, _perm=("r")_[, _msg_login="Login successful."_[, _msg_quit="Goodbye."_]]]) || Add a user to the virtual users table.  `AuthorizerError` exceptions raised on error conditions such as insufficient permissions or duplicate usernames.  Optional _perm_ argument is a tuple defaulting to ("r") referencing user's permissions.  Valid values are  "r" (read access), "w" (write access) or an empty string, "" (no access).  Optional _msg_login_ and _msg_quit_ arguments can be specified to provide customized response strings when user log-in and quit. ||
+|| *add_anonymous*(_homedir_[, _perm=("r")_[, _msg_login="Login successful."_[, _msg_quit="Goodbye."_]]]) || Add an anonymous user to the virtual users table.  `AuthorizerError` exception raised on error conditions such as insufficient permissions, missing home directory, or duplicate anonymous users.  Optional _perm_ argument is a tuple defaulting to ("r") referencing 'read-only' anonymous user's permission.  Using a "w" (write access) value results in a warning message printed to stderr.  Optional _msg_login_ and _msg_quit_ arguments can be specified to provide customized response strings when anonymous user log-in and quit. ||
+|| *remove_user*(_username_) || Remove a user from the virtual user table. ||
+|| *validate_authentication*(_username_, _password_) || Return True if the supplied _username_ and _password_ match the stored credentials. ||
+|| *has_user*(_username_) || Whether the _username_ exists in the virtual users table. ||
+|| *get_home_dir*(_username_) || Return the user's home directory. ||
+|| *r_perm*(_username_[, _obj=None_]) || Whether the user has read permissions for _obj_ (an absolute pathname of a file or a directory). ||
+|| *w_perm*(_username_, [_obj=None_]) || Whether the user has write permissions for _obj_ (an absolute pathname of a file or a directory). ||
 
 = =
 
 === 2.3 - class FTPHandler ===
 
-FTPHandler*(*_conn, ftpd_instance_*)*
+*FTPHandler*(_conn, ftpd_instance_)
 
     This class implements the FTP server Protocol Interpreter (see [http://www.faqs.org/rfcs/rfc959.html RFC 959]), handling commands received from the client on the control channel by calling the command's corresponding method (e.g. for received command "MKD pathname", `ftp_MKD()` method is called with "pathname" as the argument).  All relevant session information such as the message to send when client connects/logs-in/quits or the number of maximum login attempts before disconnecting it are stored in instance variables. _conn_ and _ftpd_instance_ parameters are automatically passed by `FTPServer` class instance.  Basic usage simply requires creating an instance of `FTPHandler` class and specify which authorizer it will going to use:
 
@@ -54,16 +54,16 @@ FTPHandler*(*_conn, ftpd_instance_*)*
 
 Relevant methods and attributes defined in this class:
 
-|| banner || String returned when client connects. ||
-|| max_login_attempts || Maximum number of wrong authentications before disconnecting (defaulting to _3_). ||
-|| permit_foreign_addresses || Wether enable [http://www.proftpd.org/docs/howto/FXP.html FXP] feature (defaulting to _False_). ||
-|| close*()* || Close the current channel disconnecting the client. ||
+|| *banner* || String returned when client connects. ||
+|| *max_login_attempts* || Maximum number of wrong authentications before disconnecting (defaulting to _3_). ||
+|| *permit_foreign_addresses* || Wether enable [http://www.proftpd.org/docs/howto/FXP.html FXP] feature (defaulting to _False_). ||
+|| *close*() || Close the current channel disconnecting the client. ||
 
 = =
 
 === 2.4 - class FTPServer ===
 
-FTPServer*(*_address, handler_*)*
+*FTPServer*(_address, handler_)
 
     This class is an `asyncore.dispatcher` subclass.  It creates a FTP socket listening on _address_, dispatching the requests to a _handler_ (typically `FTPHandler` class instance).  It is typically used for starting *asyncore* polling loop:
 
@@ -75,68 +75,68 @@ FTPServer*(*_address, handler_*)*
 
 Relevant methods and attributes defined in this class:
 
-|| max_cons || Number of maximum simultaneous connections accepted (defaulting to _0_ == _no limit_). ||
-|| max_cons_per_ip || Number of maximum connections accepted for the same IP address (defaulting to _0_ == _no limit_). ||
-|| serve_forever*()* || Starts the asyncore polling loop. ||
-|| close_all*(**[*_map=None_*[*, _ignore_all=False_*]]**)* || Stop serving; close all existent connections disconnecting clients. ||
+|| *max_cons* || Number of maximum simultaneous connections accepted (defaulting to _0_ == _no limit_). ||
+|| *max_cons_per_ip* || Number of maximum connections accepted for the same IP address (defaulting to _0_ == _no limit_). ||
+|| *serve_forever*() || Starts the asyncore polling loop. ||
+|| *close_all*([_map=None_[, _ignore_all=False_]]) || Stop serving; close all existent connections disconnecting clients. ||
 
 = =
 
 === 2.5 - class FTPHandler ===
 
-DTPHandler*(*_sock_obj, cmd_channel_*)*
+*DTPHandler*(_sock_obj, cmd_channel_)
 
     This class handles the server-data-transfer-process (server-DTP, see [http://www.faqs.org/rfcs/rfc959.html RFC 959]) managing all transfer operations regarding the data channel.  _sock_obj_ is the underlying socket used for the connection, _cmd_channel_ is the `FTPHandler` class instance.  Unless you want to add extra functionalities like bandwidth throttling you shouldn't be interested in putting hands on this class.
 
 Relevant methods defined in this class:
 
-|| get_transmitted_bytes*()* || Return the number of transmitted bytes. ||
-|| transfer_in_progress*()* || Return True if a transfer is in progress, else False. ||
-|| enable_receiving*(*_type_*)* || Enable receiving of data over the channel.  Depending on the _type_ currently in use it creates an appropriate wrapper for the incoming data. ||
-|| push*(*_data_*)* || Push a bufferable _data_ object (e.g. a string) onto the deque and initiate send. ||
-|| push_with_producer*(*_producer_*)* || Push data using a _producer_ and initiate send. ||
-|| close*()* || Close the data channel, first attempting to close any remaining file handles. ||
+|| *get_transmitted_bytes*() || Return the number of transmitted bytes. ||
+|| *transfer_in_progress*() || Return True if a transfer is in progress, else False. ||
+|| *enable_receiving*(_type_) || Enable receiving of data over the channel.  Depending on the _type_ currently in use it creates an appropriate wrapper for the incoming data. ||
+|| *push*(_data_) || Push a bufferable _data_ object (e.g. a string) onto the deque and initiate send. ||
+|| *push_with_producer*(_producer_) || Push data using a _producer_ and initiate send. ||
+|| *close*() || Close the data channel, first attempting to close any remaining file handles. ||
 
 = =
 
 === 2.6 - class AbstractedFS ===
 
-AbstractedFS*()* 
+*AbstractedFS*()
     A class used to interact with the file system, providing a high level, cross-platform interface compatible with both Windows and UNIX style filesystems.  It provides some utility methods and some wraps around operations involved in file object creation and file system operations like moving files or removing directories.
 
 Relevant methods and attributes defined in this class:
 
-|| root || User's absolute home directory. ||
-|| cwd || User's relative current working directory. ||
-|| normalize*(*_path_*)* || Translate a relative FTP _path_ into an absolute virtual FTP path. ||
-|| translate*(*_path_*)* || Translate a FTP _path_ into equivalent filesystem absolute path. ||
-|| format_list*(*_basedir_, _listing_*)* || Return a directory listing emulating "/bin/ls -lgA" UNIX command output. _basedir_ is the absolute dirname, _listing_ is a list of files contained in that directory.  For portability reasons permissions, hard links numbers, owners and groups listed are static and unreliable but it shouldn't represent a         problem for most ftp clients around. If you want reliable values on unix systems override this method and use other attributes provided by os.stat(). ||
+|| *root* || User's absolute home directory. ||
+|| *cwd* || User's relative current working directory. ||
+|| *normalize*(_path_) || Translate a relative FTP _path_ into an absolute virtual FTP path. ||
+|| *translate*(_path_) || Translate a FTP _path_ into equivalent filesystem absolute path. ||
+|| *format_list*(_basedir_, _listing_) || Return a directory listing emulating "/bin/ls -lgA" UNIX command output. _basedir_ is the absolute dirname, _listing_ is a list of files contained in that directory.  For portability reasons permissions, hard links numbers, owners and groups listed are static and unreliable but it shouldn't represent a         problem for most ftp clients around. If you want reliable values on unix systems override this method and use other attributes provided by os.stat(). ||
 
 = =
 
 === 2.7 - class FileProducer ===
 
-FileProducer*(*_file_, _type_*)*
+*FileProducer*(_file_, _type_)
     Producer wrapper for _file_[-like] objects. Depending on the _type_ it creates an appropriate wrapper for the incoming data.
 
 Relevant methods and attributes defined in this class:
 
-|| out_buffer_size || Number of bytes to read from file (defaulting to 65536). ||
+|| *out_buffer_size* || Number of bytes to read from file (defaulting to 65536). ||
 
 = =
 
 === 2.8 - Functions ===
 
-log*(*_msg_*)*
+*log*(_msg_)
     Log messages intended for the end user.
 
-logline*(*_msg_*)*
+*logline*(_msg_)
     Log commands and responses passing through the command channel.
 
-logerror*(*_msg_*)*
+*logerror*(_msg_)
     Log traceback outputs occurring in case of errors.
 
-debug*(*_msg_*)*
+*debug*(_msg_)
     Log function/method calls (disabled by default).
 
 
@@ -147,7 +147,7 @@ Below is a set of example scripts showing some of the possible customizations th
 
 === 3.1 - Building a Base FTP server ===
 
-The script below is a basic configuration, and it's probably the best starting point for understanding how things work. It uses the base `Dummy Authorizer` for adding a bunch of "virtual" users.
+The script below is a basic configuration, and it's probably the best starting point for understanding how things work. It uses the base `DummyAuthorizer` for adding a bunch of "virtual" users.
 
 It also sets a limit for connections by overriding `FTPServer` `max_cons` and `max_cons_per_ip` attributes which are intended to set limits for maximum connections to handle simultaneously and maximum connections from the same IP address.
 Overriding these variables is always a good idea (they default to 0, or "no limit") since they are a good workaround for avoiding *DoS attacks*.
@@ -197,7 +197,7 @@ if __name__ == "__main__":
 As mentioned, ftpserver.py comes with 4 different functions intended for a separate logging system: `log()`, `logline()`, `logerror()` and `debug()`.
 Let's suppose you don't want to print FTPd messages on screen but you want to write them into different files: _"/var/log/ftpd.log"_ will be main log file, _"/var/log/ftpd.lines.log"_ the one where you'll want to store commands and responses passing through the control connection. 
 
-Here's how you can do that:
+Here's one method this could be implemented:
 
 {{{
 #!/usr/bin/env python
@@ -282,8 +282,7 @@ if __name__ == "__main__":
 
 If you're running a Unix system you may want to configure your ftpd to include support for 'real' users existing on the system. 
 
-The example below shows how to use *pwd* and *spwd* modules available since _Python 2.5_ to interact with UNIX user account and shadow password database.
-This basic authorizer also gets the user's home directory.
+The example below shows how to use *pwd* and *spwd* modules available in _Python 2.5_ or greater (UNIX systems only) to interact with UNIX user account and shadow password database. This basic authorizer also gets the user's home directory.
 
 Note that users must already exist on the system.
 
@@ -331,7 +330,7 @@ if __name__ == "__main__":
 
 === 3.5 - Windows NT FTP Server ===
 
-This next code shows how to implement a basic authorizer for a *Windows NT* workstation (windows NT, 2000, XP, 2003 server and so on...) by using Mark Hammond's [http://starship.python.net/crew/mhammond/win32/ pywin32] extension.
+This next code shows how to implement a basic authorizer for a *Windows NT* workstation (windows NT, 2000, XP, 2003 server and so on...) to authenticate against existing Windows user accounts. This code uses Mark Hammond's [http://starship.python.net/crew/mhammond/win32/ pywin32] extension so the PyWin32 extensions must also be installed.
 
 Note that, as for unix authorizer, users must be already created on the system.
 
@@ -535,6 +534,16 @@ if __name__ == '__main__':
 === 3.5 - Be able to running ftpd behind a NAT ===
 
 ...
+
+
+
+
+
+
+
+
+
+
 
 
 
