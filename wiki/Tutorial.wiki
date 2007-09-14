@@ -31,7 +31,7 @@ If you have written a customized configuration you think could be useful to the 
 Relevant methods defined in this class:
 
 || *add_user*(_username_, _password_, _homedir_[, _perm=("r")_[, _msg_login="Login successful."_[, _msg_quit="Goodbye."_]]]) || Add a user to the virtual users table.  `AuthorizerError` exceptions raised on error conditions such as insufficient permissions or duplicate usernames.  Optional _perm_ argument is a tuple defaulting to ("r") referencing user's permissions.  Valid values are  "r" (read access), "w" (write access) or an empty string, "" (no access).  Optional _msg_login_ and _msg_quit_ arguments can be specified to provide customized response strings when user log-in and quit. ||
-|| *add_anonymous*(_homedir_[, _perm=("r")_[, _msg_login="Login successful."_[, _msg_quit="Goodbye."_]]]) || Add an anonymous user to the virtual users table.  `AuthorizerError` exception raised on error conditions such as insufficient permissions, missing home directory, or duplicate anonymous users.  Optional _perm_ argument is a tuple defaulting to ("r") referencing 'read-only' anonymous user's permission.  Using a "w" (write access) value results in a warning message printed to stderr.  Optional _msg_login_ and _msg_quit_ arguments can be specified to provide customized response strings when anonymous user log-in and quit. ||
+|| *add_anonymous*(_homedir_[, `**`_kwargs_]) || Add an anonymous user to the virtual users table.  `AuthorizerError` exception raised on error conditions such as insufficient permissions, missing home directory, or duplicate anonymous users.  The keyword arguments in _kwargs_ are the same expected by add_user method: _perm_, _msg_login_ and _msg_quit_.  The optional _perm_ keyword argument is a tuple defaulting to ("r") referencing "read-only" anonymous user's permission.  Using a "w" (write access) value results in a warning message printed to stderr. ||
 || *remove_user*(_username_) || Remove a user from the virtual user table. ||
 || *validate_authentication*(_username_, _password_) || Return True if the supplied _username_ and _password_ match the stored credentials. ||
 || *has_user*(_username_) || Whether the _username_ exists in the virtual users table. ||
@@ -290,8 +290,8 @@ Note that users must already exist on the system.
 #!/usr/bin/env python
 # unix_ftpd.py
 
-"""A ftpd using local unix account database to authenticate users and get
-their home directories (users must already exist).
+"""A ftpd using local unix account database to authenticate users
+(users must already exist).
 """
 
 import os
@@ -302,13 +302,20 @@ from pyftpdlib import ftpserver
 
 class UnixAuthorizer(ftpserver.DummyAuthorizer):
 
-    def add_user(self, username, home='', perm=('r')):
+    def add_user(self, username, home=None, **kwargs):
+        """Add a 'real' system user to the virtual users table.
+        If no home argument is specified the user's home directory will be used.
+        The keyword arguments in kwargs are the same expected by add_user
+        method: 'perm', 'msg_login' and 'msg_quit'.
+        """
         # get the list of all available users on the system and check if
         # username provided exists
         users = [entry.pw_name for entry in pwd.getpwall()]
         if not username in users:
-             raise ftpserver.AuthorizerError('No such user "%s".' %username)
-        ftpserver.DummyAuthorizer.add_user(self, username, '', home, perm)
+            raise ftpserver.AuthorizerError('No such user "%s".' %username)
+        if not home:
+            home = pwd.getpwnam(username).pw_dir
+        ftpserver.DummyAuthorizer.add_user(self, username, '', home, **kwargs)
 
     def validate_authentication(self, username, password):
         pw1 = spwd.getspnam(username).sp_pwd
@@ -350,13 +357,20 @@ from pyftpdlib import ftpserver
 
 class WinNtAuthorizer(ftpserver.DummyAuthorizer):
 
-    def add_user(self, username, home, perm=('r')):
+    def add_user(self, username, home=None, **kwargs):
+        """Add a 'real' system user to the virtual users table.
+        If no home argument is specified the user's home directory will be used.
+        The keyword arguments in kwargs are the same expected by add_user
+        method: 'perm', 'msg_login' and 'msg_quit'.
+        """
         # get the list of all available users on the system and check if
         # username provided exists
         users = [entry['name'] for entry in win32net.NetUserEnum(None, 0)[0]]
         if not username in users:
             raise ftpserver.AuthorizerError('No such user "%s".' %username)
-        ftpserver.DummyAuthorizer.add_user(self, username, '', home, perm)
+        if not home:
+            home = os.environ['USERPROFILE']
+        ftpserver.DummyAuthorizer.add_user(self, username, '', home, **kwargs)
 
     def validate_authentication(self, username, password):
         try:
@@ -370,7 +384,7 @@ class WinNtAuthorizer(ftpserver.DummyAuthorizer):
 if __name__ == "__main__":
     authorizer = WinNtAuthorizer()
     # add a user (note: user must already exists)
-    authorizer.add_user('user', os.getcwd(), perm=('r', 'w'))
+    authorizer.add_user('user', perm=('r', 'w'))
     authorizer.add_anonymous(os.getcwd())
     ftp_handler = ftpserver.FTPHandler
     ftp_handler.authorizer = authorizer
@@ -552,3 +566,11 @@ if __name__ == '__main__':
 
 
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
