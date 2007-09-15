@@ -60,6 +60,9 @@ Relevant methods and attributes defined in this class:
 || *banner* || String returned when client connects. ||
 || *max_login_attempts* || Maximum number of wrong authentications before disconnecting (defaulting to _3_). ||
 || *permit_foreign_addresses* || Wether enable [http://www.proftpd.org/docs/howto/FXP.html FXP] feature (defaulting to _False_). ||
+|| *permit_privileged_ports* || Set to True if you want to permit PORTing over privileged ports (not recommended, defaulting to _False_). ||
+|| *masquerade_address* || The "masqueraded" IP address to provide along PASV reply when pyftpdlib is running behind a NAT or other types of gateways.  When configured pyftpdlib will hide its local address and instead use the public address of your NAT (defaulting to _None_). ||
+|| *passive_ports* || What ports ftpd will use for its passive data transfers.  Value expected is a list of integers (e.g. range(60000, 65535)).  When configured pyftpdlib will no longer use kernel-assigned random ports (defaulting to _None_). ||
 || *close*() || Close the current channel disconnecting the client. ||
 
 = =
@@ -569,6 +572,10 @@ if __name__ == '__main__':
 
 
 
+ 
+ 
+ 
+ 
  
  
  
