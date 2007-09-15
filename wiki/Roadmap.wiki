@@ -35,7 +35,6 @@ Security enhancements:
 
  * support for FTP servers behind NAT as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428]
  * provide a way to specify / configure a certain range of ports on which data channel should bind on when PASV is received.
- * assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
 
 == Future ==
 
@@ -44,6 +43,7 @@ Security enhancements:
  * support for _LANG_ command as defined into [http://www.faqs.org/rfcs/rfc2640.html RFC 2640]
  * implement _MDTM, MLSD, MLST_ commands as defined into [http://www.faqs.org/rfcs/rfc3659.html RFC 3659]
  * implement _FEAT_ and _OPTS_ commands as defined into [http://www.faqs.org/rfcs/rfc2389.html RFC 2389]
+ * assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
 
 = Hosting roadmap =
 

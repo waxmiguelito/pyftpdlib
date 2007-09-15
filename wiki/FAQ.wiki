@@ -1,5 +1,8 @@
 #summary Frequently Asked Questions
 #labels Featured
+
+= Warning: such paper references to 0.2.0 version, upcoming soon. =
+
 = 1.0 - Introduction =
 
 === 1.1 - What is pyftpdlib? ===

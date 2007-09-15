@@ -1,5 +1,8 @@
 #summary Tutorial containing a small API reference and example usages
 #labels Featured
+
+= Warning: such paper references to 0.2.0 version, upcoming soon. =
+
 = 1.0 - Introduction =
 
 pyftpdlib implements the server side of the FTP protocol as defined in [http://www.faqs.org/rfcs/rfc959.html RFC 959].  pyftpdlib consist of a single file, *ftpserver.py*, which contains a hierarchy of classes, functions and variables which implement the backend functionality for the ftpd.  This document is intended to serve as a simple *API reference* of most important classes and functions.  Also included is an introduction to *customization* through the use of some example scripts.
