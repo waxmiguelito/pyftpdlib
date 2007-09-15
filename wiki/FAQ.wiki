@@ -91,7 +91,8 @@ Overriding these variables is always recommended to avoid DoS attacks.
 
 === 3.5 - I'm behind a NAT / gateway ===
 
-Support for FTP servers behind NAT is a feature described in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428] and it is scheduled for inclusion into the future 0.2.1 release. The current pyftpdlib release still does not support this feature.
+When behind a NAT a ftp server needs to replace the IP local address displayed in PASV replies and instead use the public address of the NAT to allow client to connect.  By overriding `masquerade_address` attribute of `FTPHandler` class you will force pyftpdlib to do such replacement.
+However, one big problem still exists.  The passive FTP connections will use ports from 1024 and up, which means that you must forward all ports 1024-65535 from the NAT to the FTP server!  And you have to allow many (possibly) dangerous ports in your firewalling rules!  To resolve this, simply override `passive_ports` attribute of `FTPHandler` class to control what ports proftpd will use for its passive data transfers.  Value expected by `passive_ports` attribute is a list of integers (e.g. range(60000, 65535)) indicating which ports will be used for initializing the passive data channel.
 
 === 3.6.1 - What is FXP? ===
 
@@ -122,3 +123,4 @@ There is currently no official support for IPv6 within the 0.2.x code tree.
 SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
 There is currently no official support for SSL/TLS within the 0.2.x code tree.
 Contributors willing to help add support for these protocols are greatly appreciated.
+ 
