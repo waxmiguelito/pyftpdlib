@@ -84,7 +84,7 @@ Relevant methods and attributes defined in this class:
 || *max_cons* || Number of maximum simultaneous connections accepted (defaulting to _0_ == _no limit_). ||
 || *max_cons_per_ip* || Number of maximum connections accepted for the same IP address (defaulting to _0_ == _no limit_). ||
 || *serve_forever*([, `**`_kwargs_]) || Starts the asyncore polling loop. The keyword arguments in _kwargs_ are the same expected by asyncore.loop() function: _timeout_, _use_poll_, _map_ and _count_. ||
-|| *close_all*([_map=None_[, _ignore_all=False_]]) || Stop serving; close all existent connections disconnecting clients.  The _map_ parameter is a dictionary whose items are the channels to close.  If _map_ is omitted, the default asyncore.socket_map is used.  Having _ignore_all_ parameter set to False results in raising error in case of unexpected exceptions. ||
+|| *close_all*([_map=None_[, _ignore_all=False_]]) || Stop serving; close all existent connections disconnecting clients.  The _map_ parameter is a dictionary whose items are the channels to close.  If _map_ is omitted, the default asyncore.socket_map is used.  Having _ignore_all_ parameter set to False results in raising exception in case of unexpected errors. ||
 
 = =
 
@@ -572,6 +572,7 @@ if __name__ == '__main__':
 
 
 
+ 
  
  
  
