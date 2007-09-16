@@ -33,7 +33,7 @@ If you have written a customized configuration you think could be useful to the 
 
 Relevant methods defined in this class:
 
-|| *add_user*(_username_, _password_, _homedir_[, _perm=("r")_[, _msg_login="Login successful."_[, _msg_quit="Goodbye."_]]]) || Add a user to the virtual users table.  `AuthorizerError` exceptions raised on error conditions such as insufficient permissions or duplicate usernames.  Optional _perm_ argument is a tuple defaulting to ("r") referencing user's permissions.  Valid values are  "r" (read access), "w" (write access) or an empty string, "" (no access).  Optional _msg_login_ and _msg_quit_ arguments can be specified to provide customized response strings when user log-in and quit. ||
+|| *add_user*(_username_, _password_, _homedir_[, _perm=("r")_[, _msg_login="Login successful."_[, _msg_quit="Goodbye."_]]]) || Add a user to the virtual users table.  `AuthorizerError` exceptions raised on error conditions such as insufficient permissions or duplicate usernames.  Optional _perm_ argument is a tuple defaulting to ("r") referencing user's permissions.  Valid values are  "r" (read access), "w" (write access) or an empty string "" (no access).  Optional _msg_login_ and _msg_quit_ arguments can be specified to provide customized response strings when user log-in and quit. ||
 || *add_anonymous*(_homedir_[, `**`_kwargs_]) || Add an anonymous user to the virtual users table.  `AuthorizerError` exception raised on error conditions such as insufficient permissions, missing home directory, or duplicate anonymous users.  The keyword arguments in _kwargs_ are the same expected by add_user method: _perm_, _msg_login_ and _msg_quit_.  The optional _perm_ keyword argument is a tuple defaulting to ("r") referencing "read-only" anonymous user's permission.  Using a "w" (write access) value results in a warning message printed to stderr. ||
 || *remove_user*(_username_) || Remove a user from the virtual user table. ||
 || *validate_authentication*(_username_, _password_) || Return True if the supplied _username_ and _password_ match the stored credentials. ||
@@ -48,7 +48,7 @@ Relevant methods defined in this class:
 
 *FTPHandler*(_conn, ftpd_instance_)
 
-    This class implements the FTP server Protocol Interpreter (see [http://www.faqs.org/rfcs/rfc959.html RFC 959]), handling commands received from the client on the control channel by calling the command's corresponding method (e.g. for received command "MKD pathname", `ftp_MKD()` method is called with "pathname" as the argument).  All relevant session information such as the message to send when client connects/logs-in/quits or the number of maximum login attempts before disconnecting it are stored in instance variables. _conn_ and _ftpd_instance_ parameters are automatically passed by `FTPServer` class instance.  Basic usage simply requires creating an instance of `FTPHandler` class and specify which authorizer it will going to use:
+    This class implements the FTP server Protocol Interpreter (see [http://www.faqs.org/rfcs/rfc959.html RFC 959]), handling commands received from the client on the control channel by calling the command's corresponding method (e.g. for received command "MKD pathname", `ftp_MKD()` method is called with "pathname" as the argument).  All relevant session information are stored in instance variables. _conn_ and _ftpd_instance_ parameters are automatically passed by `FTPServer` class instance.  Basic usage simply requires creating an instance of `FTPHandler` class and specify which authorizer it will going to use:
 
 {{{
 >>> ftp_handler = ftpserver.FTPHandler
@@ -71,7 +71,7 @@ Relevant methods and attributes defined in this class:
 
 *FTPServer*(_address, handler_)
 
-    This class is an `asyncore.dispatcher` subclass.  It creates a FTP socket listening on _address_, dispatching the requests to a _handler_ (typically `FTPHandler` class instance).  It is typically used for starting *asyncore* polling loop:
+    This class is an `asyncore.dispatcher` subclass.  It creates a FTP socket listening on _address_, dispatching the requests to a _handler_ (typically `FTPHandler` class).  It is typically used for starting *asyncore* polling loop:
 
 {{{
 >>> address = ('127.0.0.1', 21)
@@ -84,7 +84,7 @@ Relevant methods and attributes defined in this class:
 || *max_cons* || Number of maximum simultaneous connections accepted (defaulting to _0_ == _no limit_). ||
 || *max_cons_per_ip* || Number of maximum connections accepted for the same IP address (defaulting to _0_ == _no limit_). ||
 || *serve_forever*() || Starts the asyncore polling loop. ||
-|| *close_all*([_map=None_[, _ignore_all=False_]]) || Stop serving; close all existent connections disconnecting clients. ||
+|| *close_all*([_map=None_[, _ignore_all=False_]]) || Stop serving; close all existent connections disconnecting clients.  The _map_ parameter is a dictionary whose items are the channels to close.  If _map_ is omitted, the default asyncore.socket_map is used.  Having _ignore_all_ parameter set to False results in raising error in case of unexpected exceptions. ||
 
 = =
 
@@ -572,6 +572,9 @@ if __name__ == '__main__':
 
 
 
+ 
+ 
+ 
  
  
  
