@@ -88,7 +88,7 @@ Relevant methods and attributes defined in this class:
 
 = =
 
-=== 2.5 - class FTPHandler ===
+=== 2.5 - class DTPHandler ===
 
 *DTPHandler*(_sock_obj, cmd_channel_)
 
@@ -572,6 +572,7 @@ if __name__ == '__main__':
 
 
 
+ 
  
  
  
