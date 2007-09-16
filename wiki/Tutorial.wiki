@@ -123,7 +123,7 @@ Relevant methods and attributes defined in this class:
 === 2.7 - class FileProducer ===
 
 *FileProducer*(_file_, _type_)
-    Producer wrapper for _file_[-like] objects. Depending on the _type_ it creates an appropriate wrapper for the incoming data.
+    Producer wrapper for _file_[-like] objects. Depending on the _type_ it creates an appropriate wrapper for the outgoing data.
 
 Relevant methods and attributes defined in this class:
 
@@ -572,6 +572,7 @@ if __name__ == '__main__':
 
 
 
+ 
  
  
  
