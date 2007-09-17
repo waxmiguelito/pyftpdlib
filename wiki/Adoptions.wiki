@@ -14,7 +14,7 @@ Far Manager recently included pyftpdlib as [http://enforum.farmanager.com/viewto
 
 http://farmanager.com/
 
-== FreeBSD ==
+== FreeBSD == 
 
 http://www.websdotcom.net/images/beastie.gif
 
@@ -25,6 +25,4 @@ FreeBSD Ports team modified pyftpdlib to make the original application source co
 
 http://www.freshports.org/ftp/py-pyftpdlib/
  
- 
-
  
