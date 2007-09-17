@@ -15,16 +15,5 @@ Far Manager recently included pyftpdlib as [http://enforum.farmanager.com/viewto
 
 http://farmanager.com/
 
-== FreeBSD == 
 
-http://www.websdotcom.net/images/beastie.gif
-
-[http://www.freebsd.org/ FreeBSD] is an advanced operating system for x86 compatible architectures. It is derived from BSD, the version of UNIX developed at the University of California, Berkeley.
-The [http://www.freebsd.org/ports/ FreeBSD Ports Collection] offers a simple way for users and administrators to install applications.
-
-FreeBSD Ports team modified pyftpdlib to make the original application source code compile and run on FreeBSD systems. [http://www.freshports.org Freshports] is a news site about FreeBSD's ports. Latest news about "py-pyftpdlib" port can be found here: 
-
-http://www.freshports.org/ftp/py-pyftpdlib/
- 
- 
  
