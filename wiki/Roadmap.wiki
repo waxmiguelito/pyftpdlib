@@ -4,56 +4,65 @@
 
 == 0.1.0 _(released)_ ==
 
- * ~~create an asynchronous Python FTP server library compliant with [http://www.faqs.org/rfcs/rfc959.html RFC 959]~~
+ * ~~Create an asynchronous FTP server library compliant with [http://www.faqs.org/rfcs/rfc959.html RFC 959].~~
  
 == 0.1.1 _(released)_==
 
- * ~~randomize PASV port selection~~
- * ~~release pyftpdlib under a license the most freely possible (MIT)~~ 
+ * ~~Randomize PASV port selection.~~
+ * ~~Release pyftpdlib under a license the most freely possible (MIT).~~ 
 
 == 0.2.0 _(the upcoming one)_ ==
 
+Major enhancements:
+ * ~~Support for FXP, site-to-site transfers.~~
+ * ~~NAT/Firewall support with PASV (passive) mode connections.~~
+ * ~~Configurable range of ports to use for passive data transfers.~~
+ * ~~Per-user messages configurability.~~
+ * ~~Maximum connections limit.~~
+ * ~~Per-source-IP limits.~~
+ * ~~Maximum login attempts limit.~~
+
 RFCs enhancements:
- * ~~understand also TYPE AN and TYPE L8 commands~~
- * ~~change account when USER is provided a second time after authenticating~~
- * ~~be compliant with STOU format output as defined into [http://www.faqs.org/rfcs/rfc1123.html RFC 1123]~~
- * ~~accept HELP command arguments~~
- * ~~return directory listing over the command channel when STAT is called with an argument~~
- * ~~implement site-to-site FXP to allow transfers between FTP servers~~
+ * ~~Understand also TYPE AN and TYPE L8 commands.~~
+ * ~~Change account when USER is provided a second time after authenticating.~~
+ * ~~Be compliant with STOU format output as defined into [http://www.faqs.org/rfcs/rfc1123.html RFC 1123].~~
+ * ~~Accept HELP command arguments.~~
+ * ~~Return directory listing over the command channel when STAT is called with an argument.~~
 
 Security enhancements:
- * ~~stop buffering when extremely long lines are received~~
- * ~~provide a way to configure / limit the number of maximum acceptable connections~~
- * ~~provide a way to configure / limit the maximum number of clients which may be connected from the same source internet address~~
- * ~~rejecting data connection when a privileged port is specified on PORT command~~
- * ~~use a limited number of tries for finding unique filename on STOU~~
- * ~~provide an overridable attribute to easily set number of maximum login attempts before disconnecting~~
- * ~~provide an overridable attribute to easily enable/disable site-to-site transfers~~
-
+ * ~~Stop buffering when extremely long lines are received.~~
+ * ~~Rejecting data connection when a privileged port is specified on PORT command.~~
 
 == 0.2.1 ==
 
- * support for FTP servers behind NAT as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428]
- * provide a way to specify / configure a certain range of ports on which data channel should bind on when PASV is received.
+ * Plan 0.2.1 roadmap.
 
 == Future ==
 
- * SSL / TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined into [http://www.faqs.org/rfcs/rfc2228.html RFC 2228]
- * IPv6 support including _EPRT & EPSV_ commands as defined into [http://www.faqs.org/rfcs/rfc2428.html RFC 2428]
- * support for _LANG_ command as defined into [http://www.faqs.org/rfcs/rfc2640.html RFC 2640]
- * implement _MDTM, MLSD, MLST_ commands as defined into [http://www.faqs.org/rfcs/rfc3659.html RFC 3659]
- * implement _FEAT_ and _OPTS_ commands as defined into [http://www.faqs.org/rfcs/rfc2389.html RFC 2389]
- * assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
+ * SSL / TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined into [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
+ * IPv6 support including _EPRT & EPSV_ commands as defined into [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
+ * Support for _LANG_ command as defined into [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
+ * Implement _MDTM, MLSD, MLST_ commands as defined into [http://www.faqs.org/rfcs/rfc3659.html RFC 3659].
+ * Implement _FEAT_ and _OPTS_ commands as defined into [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].
+ * Include a graphical Tk-based ftp server into demo directory.
+ * _(optional)_ Assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
 
 = Hosting roadmap =
 
- * ~~set up a subversion repository~~
- * ~~provide a mailing list for pyftpdlib users~~
- * ~~provide a mailing list for subversion commits~~
- * ~~provide a mailing list for issue changes~~
+ * ~~Set up a subversion repository.~~
+ * ~~Provide a mailing list for pyftpdlib users.~~
+ * ~~Provide a mailing list for subversion commits.~~
+ * ~~Provide a mailing list for issue changes.~~
 
 = Wiki roadmap =
 
- * ~~provide a _"RoadMaps"_ wiki defining project milestones~~
- * ~~provide a _"Tutorial"_ wiki documenting module itself~~
- * ~~provide a _"FAQ"_ wiki~~
+ * ~~Provide a _"Roadmap"_ wiki defining project milestones.~~
+ * ~~Provide a _"Tutorial"_ wiki documenting module itself.~~
+ * ~~Provide a _"FAQ"_ wiki.~~
+ 
+
+ 
+ 
+ 
+ 
+ 
