@@ -1,8 +1,6 @@
 #summary Frequently Asked Questions
 #labels Featured,SortOrder-2
 
-= Warning: such paper references to 0.2.0 version, upcoming soon. =
-
 = 1.0 - Introduction =
 
 === 1.1 - What is pyftpdlib? ===
@@ -129,6 +127,7 @@ There is currently no official support for IPv6 within the 0.2.x code tree.
 SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
 There is currently no official support for SSL/TLS within the 0.2.x code tree.
 Contributors willing to help add support for these protocols are greatly appreciated.
+ 
  
  
  
