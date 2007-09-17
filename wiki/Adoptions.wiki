@@ -1,0 +1,30 @@
+#summary A list of softwares and systems using pyftpdlib.
+
+= Introduction =
+
+Here comes a list of softwares and systems using pyftpdlib.
+In case you want to add your software to such list add a comment below.
+Please help us in keeping such list updated.
+
+== Far Manager ==
+
+[http://farmanager.com/ Far Manager] is a program for managing files and archives in Windows operating systems. 
+
+Far Manager recently included pyftpdlib as [http://enforum.farmanager.com/viewtopic.php?t=640 plug-in] for making the current directory accessible through FTP. Convenient for exchanging files with virtual machines. 
+
+http://farmanager.com/
+
+== FreeBSD ==
+
+http://www.websdotcom.net/images/beastie.gif
+
+[http://www.freebsd.org/ FreeBSD] is an advanced operating system for x86 compatible architectures. It is derived from BSD, the version of UNIX developed at the University of California, Berkeley.
+The [http://www.freebsd.org/ports/ FreeBSD Ports Collection] offers a simple way for users and administrators to install applications.
+
+FreeBSD Ports team modified pyftpdlib to make the original application source code compile and run on FreeBSD systems. [http://www.freshports.org Freshports] is a news site about FreeBSD's ports. Latest news about "py-pyftpdlib" port can be found here: 
+
+http://www.freshports.org/ftp/py-pyftpdlib/
+ 
+ 
+
+ 
