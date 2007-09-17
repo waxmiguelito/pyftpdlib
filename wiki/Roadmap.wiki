@@ -11,7 +11,7 @@
  * ~~Randomize PASV port selection.~~
  * ~~Release pyftpdlib under a license the most freely possible (MIT).~~ 
 
-== 0.2.0 _(the upcoming one)_ ==
+== 0.2.0 _(current release)_ ==
 
 Major enhancements:
  * ~~Support for FXP, site-to-site transfers.~~
@@ -61,6 +61,7 @@ Security enhancements:
  * ~~Provide a _"FAQ"_ wiki.~~
  
 
+ 
  
  
  
