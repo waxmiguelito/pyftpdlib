@@ -1,5 +1,5 @@
 #summary pyftpdlib 0.2.x serie release notes.
-#labels SortOrder-4
+#labels SortOrder-5
 
 = Version: 0.2.0 - Date: 2007-??-?? =
 
@@ -61,6 +61,7 @@
  * Issue 35: watch for APPE preceded by REST which makes no sense.
 
 
+ 
  
  
  
