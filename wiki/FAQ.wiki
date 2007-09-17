@@ -113,15 +113,24 @@ Globbing is a common Unix shell mechanism for expanding wildcard patterns to mat
 In order to search for and match the given globbing expression, the code has to search (possibly) many directories, examine each contained filename, and build a list of matching files in memory.
 Since this operation can be quite intensive, both CPU- and memory-wise, pyftpdlib limits the search to only one directory non-recursively, which is identical to the *LIST* command implementation in pyftpdlib.
 
-=== 4.2 - IPv6 support ===
+=== 4.2 - ASCII transfers / SIZE command implementation ===
+
+Properly handling the SIZE command when TYPE ASCII is used would require to scan the entire file to perform the ASCII translation logic (file.read().replace(os.linesep, '\r\n')) and then calculating the len of such data which may be different than the actual size of the file on the server.  
+Considering that calculating such result could be very resource-intensive it could be easy for a malicious client to try a DoS attack, thus pyftpdlib do not perform the ASCII translation.
+However, clients in general should not be resuming downloads in ASCII mode.  Resuming downloads in binary mode is the recommended way as specified in [http://www.faqs.org/rfcs/rfc3659.html RFC 3659].
+
+=== 4.3 - IPv6 support ===
 
 IPv6 support for FTP including _EPRT & EPSV_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
 There is currently no official support for IPv6 within the 0.2.x code tree.
 
-=== 4.3 - SSL/TLS support ===
+=== 4.4 - SSL/TLS support ===
 
 SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
 There is currently no official support for SSL/TLS within the 0.2.x code tree.
 Contributors willing to help add support for these protocols are greatly appreciated.
+ 
+ 
+ 
  
  
