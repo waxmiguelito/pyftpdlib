@@ -1,5 +1,5 @@
-#summary Tutorial containing a small API reference and example usages
-#labels Featured
+#summary Tutorial containing API reference and example usages
+#labels Featured,Documentation
 
 = Warning: such paper references to 0.2.0 version, upcoming soon. =
 
@@ -572,6 +572,7 @@ if __name__ == '__main__':
 
 
 
+ 
  
  
  
