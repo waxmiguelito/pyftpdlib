@@ -16,7 +16,7 @@ Python is an interpreted, interactive, object-oriented, easy-to-learn programmin
 Yes. pyftpdlib is a fully working FTP server implementation that can be run "as is".
 For example, (after having installed a [http://www.python.org/download/ Python interpreter]) you could run an anonymous ftp server from cmd-line by running:
 {{{
-python -m pyftpdlib.FTPServer
+python -m pyftpdlib.ftpserver
 }}}
 Customizing ftpd more deeply requires a python script which imports pyftpdlib to be written separately.
 Customizing ftpd for basic tasks like adding users or deciding where log file should be placed is mostly simply editing variables. This is basically like learning how to edit a common unix ftpd.conf file and doesn't really require Python knowledge.
