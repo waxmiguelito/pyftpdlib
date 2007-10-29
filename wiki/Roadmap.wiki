@@ -25,7 +25,7 @@ Major enhancements:
 RFCs enhancements:
  * ~~Understand also TYPE AN and TYPE L8 commands.~~
  * ~~Change account when USER is provided a second time after authenticating.~~
- * ~~Be compliant with STOU format output as defined into [http://www.faqs.org/rfcs/rfc1123.html RFC 1123].~~
+ * ~~Be compliant with STOU format output as defined in [http://www.faqs.org/rfcs/rfc1123.html RFC 1123].~~
  * ~~Accept HELP command arguments.~~
  * ~~Return directory listing over the command channel when STAT is called with an argument.~~
 
@@ -35,15 +35,16 @@ Security enhancements:
 
 == 0.2.1 ==
 
- * Plan 0.2.1 roadmap.
+ * ~~Implement FEAT command as defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~
+ * Add a new variable to easily modify server identifier.
 
 == Future ==
 
- * SSL / TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined into [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
- * IPv6 support including _EPRT & EPSV_ commands as defined into [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
- * Support for _LANG_ command as defined into [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
- * Implement _MDTM, MLSD, MLST_ commands as defined into [http://www.faqs.org/rfcs/rfc3659.html RFC 3659].
- * Implement _FEAT_ and _OPTS_ commands as defined into [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].
+ * SSL / TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
+ * IPv6 support including _EPRT & EPSV_ commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
+ * Support for _LANG_ command as defined in [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
+ * Implement MLSD, MLST_ commands as defined in [http://www.faqs.org/rfcs/rfc3659.html RFC 3659].
+ * Implement _OPTS_ command as defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].
  * Include a graphical Tk-based ftp server into demo directory.
  * _(optional)_ Assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
 
@@ -59,6 +60,8 @@ Security enhancements:
  * ~~Provide a _"Roadmap"_ wiki defining project milestones.~~
  * ~~Provide a _"Tutorial"_ wiki documenting module itself.~~
  * ~~Provide a _"FAQ"_ wiki.~~
+ * ~~Provide an _"Adoptions"_ wiki listing all products we're aware of
+that uses pyftpdlib.~~
  
 
  
