@@ -60,9 +60,7 @@ Security enhancements:
  * ~~Provide a _"Roadmap"_ wiki defining project milestones.~~
  * ~~Provide a _"Tutorial"_ wiki documenting module itself.~~
  * ~~Provide a _"FAQ"_ wiki.~~
- * ~~Provide an _"Adoptions"_ wiki listing all products we're aware of
-that uses pyftpdlib.~~
- 
+ * ~~Provide an _"Adoptions"_ wiki listing all products we're aware of that uses pyftpdlib.~~
 
  
  
