@@ -103,7 +103,7 @@ Introduces the new FEAT and OPTS commands.
 
 || *Command* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || FEAT || SHOULD || NO || 0.2.1 || List new supported commands subsequent [http://www.ietf.org/rfc/rfc959.txt RFC-959] || ||
-|| OPTS || SHOULD || NO || --- || Set option for certain commands. || ||
+|| OPTS || MAY || NO || --- || Set options for certain commands. || MLST is the only command which could be used with OPTS. ||
 
 = =
 
