@@ -41,7 +41,7 @@ Security enhancements:
 
  * ~~Create an asynchronous FTP server library compliant with [http://www.faqs.org/rfcs/rfc959.html RFC 959].~~
 
-== Proposals for future ==
+= Proposals for future =
 
  * SSL / TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
  * IPv6 support including _EPRT & EPSV_ commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
