@@ -1,16 +1,15 @@
-#summary pyftpdlib development roadmap
+#summary pyftpdlib development roadmap.
 #labels Featured,SortOrder-3
 = Releases roadmap =
 
-== 0.1.0 _(released)_ ==
+== 0.2.1 _(upcoming one)_ ==
 
- * ~~Create an asynchronous FTP server library compliant with [http://www.faqs.org/rfcs/rfc959.html RFC 959].~~
+ * Implement MLST and MLSD commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659]. *_NEW_*
+ * Implement OPTS command support for MLSX commands as defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659]. *_NEW_*
+ * ~~Implement FEAT command defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~ *_NEW_*
+ * ~~Resolve path traversal problems we have with symbolic links pointing outside the user home directory.~~
+ * ~~Provide real permissions, owner, and group for files on UNIX platforms processing the LIST command.~~
  
-== 0.1.1 _(released)_==
-
- * ~~Randomize PASV port selection.~~
- * ~~Release pyftpdlib under a license the most freely possible (MIT).~~ 
-
 == 0.2.0 _(current release)_ ==
 
 Major enhancements:
@@ -33,20 +32,26 @@ Security enhancements:
  * ~~Stop buffering when extremely long lines are received.~~
  * ~~Rejecting data connection when a privileged port is specified on PORT command.~~
 
-== 0.2.1 ==
+== 0.1.1 _(released)_==
 
- * ~~Implement FEAT command as defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~
- * Add a new variable to easily modify server identifier.
+ * ~~Randomize PASV port selection.~~
+ * ~~Release pyftpdlib under a license the most freely possible (MIT).~~ 
 
-== Future ==
+== 0.1.0 _(released)_ ==
+
+ * ~~Create an asynchronous FTP server library compliant with [http://www.faqs.org/rfcs/rfc959.html RFC 959].~~
+
+== Proposals for future ==
 
  * SSL / TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
  * IPv6 support including _EPRT & EPSV_ commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
  * Support for _LANG_ command as defined in [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
- * Implement MLSD, MLST_ commands as defined in [http://www.faqs.org/rfcs/rfc3659.html RFC 3659].
- * Implement _OPTS_ command as defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].
  * Include a graphical Tk-based ftp server into demo directory.
- * _(optional)_ Assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
+ * _(?)_ Assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
+ * _(?)_ Switch from asyncore to Twisted. *_NEW_*
+ * _(?)_ Include idle-timeout capabilities. *_NEW_*
+ * _(?)_ Include bandwidth throttling capabilities straight into the library instead of providing it via demo script. *_NEW_*
+ * _(?)_ Use Python generators when doing resource-intensive blocking operations like calculating LIST and MLSD outputs. *_NEW_*
 
 = Hosting roadmap =
 
@@ -57,16 +62,8 @@ Security enhancements:
 
 = Wiki roadmap =
 
- * ~~Provide a _"Roadmap"_ wiki defining project milestones.~~
- * ~~Provide a _"Tutorial"_ wiki documenting module itself.~~
- * ~~Provide a _"FAQ"_ wiki.~~
- * ~~Provide an _"Adoptions"_ wiki listing all products we're aware of that uses pyftpdlib.~~
-
- 
- 
- 
- 
- 
- 
- 
- 
+ * ~~Provide a [http://code.google.com/p/pyftpdlib/wiki/Roadmap Roadmap] wiki defining project milestones.~~
+ * ~~Provide a [http://code.google.com/p/pyftpdlib/wiki/Tutorial Tutorial] wiki documenting module itself.~~
+ * ~~Provide a [http://code.google.com/p/pyftpdlib/wiki/FAQ FAQ] wiki.~~
+ * ~~Provide an [http://code.google.com/p/pyftpdlib/wiki/Adoptions Adoptions] wiki listing all products we're aware of that uses pyftpdlib.~~
+ * ~~Provide a [http://code.google.com/p/pyftpdlib/wiki/RFCsCompliance RFCsCompliance] wiki showing pyftpdlib compliance against FTP protocol standard RFCs.~~ *_NEW_*
