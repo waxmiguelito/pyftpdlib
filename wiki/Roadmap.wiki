@@ -51,7 +51,7 @@ Security enhancements:
  * _(?)_ Switch from asyncore to Twisted. *_NEW_*
  * _(?)_ Include idle-timeout capabilities. *_NEW_*
  * _(?)_ Include bandwidth throttling capabilities straight into the library instead of providing it via demo script. *_NEW_*
- * _(?)_ Use Python generators when doing resource-intensive blocking operations like calculating LIST and MLSD outputs. *_NEW_*
+ * _(?)_ Use Python generators when doing resource-intensive blocking operations like calculating LIST and MLSD command outputs. *_NEW_*
 
 = Hosting roadmap =
 
