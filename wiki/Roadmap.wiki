@@ -4,10 +4,10 @@
 
 == 0.2.1 _(upcoming one)_ ==
 
- * Implement MLST and MLSD commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659]. *_NEW_*
  * Implement OPTS command support for MLSX commands as defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659]. *_NEW_*
+ * ~~Implement MLST and MLSD commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].~~ *_NEW_*
  * ~~Implement FEAT command defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~ *_NEW_*
- * ~~Resolve path traversal problems we have with symbolic links pointing outside the user home directory.~~
+ * ~~Resolve path traversal issues we have with symbolic links pointing outside the user home directory.~~
  * ~~Provide real permissions, owner, and group for files on UNIX platforms processing the LIST command.~~
  
 == 0.2.0 _(current release)_ ==
@@ -43,6 +43,8 @@ Security enhancements:
 
 = Proposals for future =
 
+_(?) == considering_
+
  * SSL / TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
  * IPv6 support including _EPRT & EPSV_ commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
  * Support for _LANG_ command as defined in [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
@@ -52,6 +54,7 @@ Security enhancements:
  * _(?)_ Include idle-timeout capabilities. *_NEW_*
  * _(?)_ Include bandwidth throttling capabilities straight into the library instead of providing it via demo script. *_NEW_*
  * _(?)_ Use Python generators when doing resource-intensive blocking operations like calculating LIST and MLSD command outputs. *_NEW_*
+ * _(?)_ Extend the current DummyAuthorizer for supporting more specific permissions aside from the generical "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...)
 
 = Hosting roadmap =
 
