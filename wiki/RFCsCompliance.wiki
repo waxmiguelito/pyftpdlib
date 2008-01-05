@@ -157,8 +157,11 @@ Four new commands are added: "SIZE", "MDTM", "MLST", and "MLSD".  The existing c
  * Updates: [http://www.ietf.org/rfc/rfc959.txt RFC-959]
 
 || *Command* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
-|| MDTM || MAY || YES || 0.1.0 || Get file's last modification time || ||
-|| MLSD || MAY || NO || --- || Get directory list in a standardized form. || ||
-|| MLST || MAY || NO || --- || Get file information in a standardized form. || ||
-|| SIZE || MAY || YES || 0.1.0 || Get file size. || In case of ASCII TYPE it does not perform the ASCII conversion to avoid DoS conditions (see FAQs for more details). ||
+|| MDTM || MUST || YES || 0.1.0 || Get file's last modification time || ||
+|| MLSD || MUST || NO || 0.3.0 || Get directory list in a standardized form. || ||
+|| MLST || MUST || NO || 0.3.0 || Get file information in a standardized form. || ||
+|| SIZE || MUST || YES || 0.1.0 || Get file size. || In case of ASCII TYPE it does not perform the ASCII conversion to avoid DoS conditions (see FAQs for more details). ||
+
+|| *Feature* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || TVSF mechanism || SHOULD || YES || 0.1.0 || Provide a file system naming conventions modeled loosely upon those of the unix file system supporting relative and absolute path names. || ||
+|| Minimum required set of MLST facts || SHOULD || YES || 0.3.0 || If conceivably possible, support at least the type, perm, size, unique, and modify MLSX command facts. || ||
