@@ -5,10 +5,11 @@
 
 This page lists current standard Internet RFCs that define the FTP protocol.
 
-pyftpdlib conforms to the FTP protocol standard as defined in [http://www.ietf.org/rfc/rfc959.txt RFC-959] and [http://www.ietf.org/rfc/rfc1123.txt RFC-1123] implementing all the fundamental commands and features described in them.
-Future plans for pyftpdlib include the gradual implementation of the recent standards track RFCs.
+pyftpdlib conforms to the FTP protocol standard as defined in [http://www.ietf.org/rfc/rfc959.txt RFC-959] and [http://www.ietf.org/rfc/rfc1123.txt RFC-1123] implementing all the fundamental commands and features described in them. It also implements some more recent features such as OPTS and FEAT commands defined in [http://www.ietf.org/rfc/rfc2389.txt RFC-2398] and all the new commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].
 
-Some of the features like ACCT, SMNT or OPTS commands will never be implemented deliberately. Other features described in more recent RFCs like MLSD and MLST commands or TLS/SSL support for securing FTP are taken in great consideration and should be implemented in future (Python 2.6 should grant a full SSL support).
+Future plans for pyftpdlib include the gradual implementation of other standards track RFCs.
+
+Some of the features like ACCT, SMNT or OPTS commands will never be implemented deliberately. Other features described in more recent RFCs like the TLS/SSL support for securing FTP are taken in great consideration and should be implemented in future (Python 2.6 should grant a full SSL support).
 
 = [http://www.ietf.org/rfc/rfc959.txt RFC-959] =
 
@@ -65,12 +66,12 @@ Extends and clarifies some aspects of [http://www.ietf.org/rfc/rfc959.txt RFC-95
  * Status: STANDARD
 
 || *Feature* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
-|| TYPE L 8 as synonym of TYPE I || SHOULD || YES || 0.2.0 || TYPE L8 command should be treated as synonym of TYPE I ("IMAGE" or binary type). || ||
+|| TYPE L 8 as synonym of TYPE I || SHOULD || YES || 0.2.0 || TYPE L 8 command should be treated as synonym of TYPE I ("IMAGE" or binary type). || ||
 || PASV is per-transfer || MUST || YES || 0.1.0 || PASV must be used for a unique transfer. || If PASV is issued twice data-channel is restarted. ||
 || Implied type for LIST and NLST || SHOULD || YES || 0.1.0 || The data returned by a LIST or NLST command SHOULD use an implied TYPE AN. || ||
 || STOU format output || MUST || YES || 0.2.0 || Defined the exact format output which STOU response must respect ("125/150 FILE <filename>"). || ||
 || Avoid 250 response type on STOU || MUST || YES || 0.2.0 || The 250 positive response indicated in [http://www.ietf.org/rfc/rfc959.txt RFC-959] has been declared incorrect in [http://www.ietf.org/rfc/rfc1123.txt RFC-1123] which requires 125/150 instead. || ||
-|| Handle "Experimental" directory cmds || SHOULD || YES || 0.1.0 || ftpd should support  XCUP, XCWD, XMKD, XPWD and XRMD obsoleted commands as synonyms for CDUP, CWD, MKD, LIST and RMD commands. || ||
+|| Handle "Experimental" directory cmds || SHOULD || YES || 0.1.0 || The server should support XCUP, XCWD, XMKD, XPWD and XRMD obsoleted commands and treat them as synonyms for CDUP, CWD, MKD, LIST and RMD commands. || ||
 || Idle timeout || SHOULD || NO || --- || A Server-FTP process SHOULD have a configurable  idle timeout of 5 minutes, which will terminate the process and close the control connection if the server is inactive (i.e., no command or data transfer in progress) for a long period of time. || Feature not implemented because asyncore does not provide such functionality natively. A switch to Twisted framework would solve this. ||
 || Concurrency of data and control || SHOULD || YES || 0.1.0 || Server-FTP should be able to process STAT or ABOR while a data transfer is in progress || Feature granted natively for ALL commands since we're in an asynchronous environment. ||
 || 554 response on wrong REST || MUST || YES || 0.2.0 || Return a 554 reply may for a command that follows a REST command.  The reply indicates that the existing file at the Server-FTP cannot be repositioned as specified in the REST. || ||
@@ -102,8 +103,8 @@ Introduces the new FEAT and OPTS commands.
  * Status: PROPOSED STANDARD
 
 || *Command* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
-|| FEAT || SHOULD || NO || 0.2.1 || List new supported commands subsequent [http://www.ietf.org/rfc/rfc959.txt RFC-959] || ||
-|| OPTS || MAY || NO || --- || Set options for certain commands. || MLST is the only command which could be used with OPTS. ||
+|| FEAT || SHOULD || YES || 0.3.0 || List new supported commands subsequent [http://www.ietf.org/rfc/rfc959.txt RFC-959] || ||
+|| OPTS || MAY || YES || 0.3.0 || Set options for certain commands. || MLST is the only command which could be used with OPTS. ||
 
 = =
 
@@ -158,8 +159,8 @@ Four new commands are added: "SIZE", "MDTM", "MLST", and "MLSD".  The existing c
 
 || *Feature* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || MDTM command || MUST || YES || 0.1.0 || Get file's last modification time || ||
-|| MLSD command || MUST || NO || 0.3.0 || Get directory list in a standardized form. || ||
-|| MLST command || MUST || NO || 0.3.0 || Get file information in a standardized form. || ||
+|| MLSD command || MUST || YES || 0.3.0 || Get directory list in a standardized form. || ||
+|| MLST command || MUST || YES || 0.3.0 || Get file information in a standardized form. || ||
 || SIZE command || MUST || YES || 0.1.0 || Get file size. || In case of ASCII TYPE it does not perform the ASCII conversion to avoid DoS conditions (see FAQs for more details). ||
 || TVSF mechanism || SHOULD || YES || 0.1.0 || Provide a file system naming conventions modeled loosely upon those of the unix file system supporting relative and absolute path names. || ||
 || Minimum required set of MLST facts || SHOULD || YES || 0.3.0 || If conceivably possible, support at least the type, perm, size, unique, and modify MLSX command facts. || ||
