@@ -15,6 +15,14 @@ Far Manager recently included pyftpdlib as [http://enforum.farmanager.com/viewto
 
 http://farmanager.com/
 
+== Aksy == 
+
+Aksy is a Python module to control S5000/S6000, Z4/Z8 and MPC4000 Akai sampler models with System Exclusive over USB.
+
+http://walco.n--tree.net/projects/aksy/
+
+
+
 = Packages =
 
 Following lists the packages of pyftpdlib from various platforms.
