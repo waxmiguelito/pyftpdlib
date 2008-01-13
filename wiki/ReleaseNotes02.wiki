@@ -1,5 +1,5 @@
 #summary pyftpdlib 0.2.x serie release notes.
-#labels SortOrder-5
+#labels SortOrder-6
 
 = Version: 0.2.0 - Date: 2007-09-17 =
 
