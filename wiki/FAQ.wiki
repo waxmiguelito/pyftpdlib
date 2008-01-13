@@ -45,7 +45,7 @@ Patches should be attached to the appropriate bug and not mailed directly to the
 
 === 2.1 - How do I install pyftpdlib? ===
 
-If you are not new to Python you probably don't need that, otherwise follow the [http://code.google.com/p/pyftpdlib/wiki/Installation instructions].
+If you are not new to Python you probably don't need that, otherwise follow the [http://code.google.com/p/pyftpdlib/wiki/Install instructions].
 
 === 2.2 - Which Python versions are compatible? ===
 
