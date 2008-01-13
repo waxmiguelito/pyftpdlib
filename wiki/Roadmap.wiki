@@ -1,5 +1,5 @@
 #summary pyftpdlib development roadmap.
-#labels Featured,SortOrder-5
+#labels Featured,SortOrder-6
 = Releases roadmap =
 
 == 0.3.0 _(upcoming one)_ ==
