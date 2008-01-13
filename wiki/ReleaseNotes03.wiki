@@ -12,9 +12,9 @@
 
 == RFC-related enhancements ==
 
- * Issue 42: implemented *FEAT* command defined in RFC-2389.
- * Issue 52: implemented *MLST* and *MLSD* commands defined in RFC-3659.
- * Issue 58: implemented *OPTS* command define in RFC-2389.
+ * Issue 42: implemented *FEAT* command defined in [http://www.faqs.org/rfcs/rfc2389.html RFC-2389].
+ * Issue 52: implemented *MLST* and *MLSD* commands defined in [http://www.faqs.org/rfcs/rfc3659.html RFC-3659].
+ * Issue 58: implemented *OPTS* command define in [http://www.faqs.org/rfcs/rfc2389.html RFC-2389].
 
 == Bugfixes ==
 
