@@ -23,14 +23,14 @@ Customizing ftpd for basic tasks like adding users or deciding where log file sh
 
 === 1.4 - Documentation ===
 
-http://code.google.com/p/pyftpdlib/ is the primary source for all information about the project including [http://code.google.com/p/pyftpdlib/wiki/Tutorial Tutorial], [http://code.google.com/p/pyftpdlib/w/list Wikis] and the [http://code.google.com/p/pyftpdlib/issues/list Bug Tracker].
+http://code.google.com/p/pyftpdlib/ is the primary source for all information about the project including [http://code.google.com/p/pyftpdlib/wiki/Tutorial Tutorial], [http://code.google.com/p/pyftpdlib/wiki/RFCsCompliance RFCs Compliance paper], [http://code.google.com/p/pyftpdlib/w/list Wikis] and the [http://code.google.com/p/pyftpdlib/issues/list Bug Tracker].
 
 === 1.5 - Mailing lists ===
 
 There are a number of mailing lists for pyftpdlib:
 
 || *Name* || *E-mail* || *Web Interface* || *Description* ||
-|| [http://groups.google.com/group/pyftpdlib pyftpdlib-users] ||  pyftpdlib@googlegroups.com || [http://groups.google.com/group/pyftpdlib/topics topics] ||  This is intended for end user support. ||
+|| [http://groups.google.com/group/pyftpdlib pyftpdlib] ||  pyftpdlib@googlegroups.com || [http://groups.google.com/group/pyftpdlib/topics topics] ||  This is intended for end user support. ||
 || [http://groups.google.com/group/pyftpdlib-commit pyftpdlib-commit] || pyftpdlib-commits@googlegroups.com || [http://groups.google.com/group/pyftpdlib-commit/topics topics] || This list receives all change notifications for code in the Subversion repository. Unless you're a pyftpdlib developer you will probably not be interested in it. ||
 || [http://groups.google.com/group/pyftpdlib-issues pyftpdlib-issues] || pyftpdlib-issues@googlegroups.com || [http://groups.google.com/group/pyftpdlib-issues/topics topics] || This list receives all change notifications from the [http://code.google.com/p/pyftpdlib/issues/list Bug Tracker]. Unless you are involved into pyftpdlib development you will probably not find this useful. ||
 
@@ -45,13 +45,32 @@ Patches should be attached to the appropriate bug and not mailed directly to the
 
 === 2.1 - How do I install pyftpdlib? ===
 
-First download latest package release release from the [http://code.google.com/p/pyftpdlib/downloads/list Download Page], then unpack it into a directory (on unix: _tar -zxf pyftpdlib_0.x.x.tar.gz_) and run:
+If you have [http://code.google.com/p/pyftpdlib/downloads/list downloaded] the pyftpdlib package, follow the following steps:
+
+Unpack it and change to the pyftpdlib directory:
+
+{{{
+tar zxf pyftpdlib-0.3.0.tar.gz
+cd pyftpdlib
+}}}
+
+
+Run setup.py to install pyftpdlib (this step need to be run as root):
+
 {{{
 python setup.py install
 }}}
+
 If you're on Windows it should be enough just running:
+
 {{{
 setup.py install
+}}}
+
+If you have [http://peak.telecommunity.com/DevCenter/EasyInstall easy_install] on your system, installing pyftpdlib is quite simple. Just run:
+
+{{{
+easy_install.py pyftpdlib
 }}}
 
 === 2.2 - Which Python versions are compatible? ===
@@ -60,13 +79,17 @@ setup.py install
 
 === 2.3 - Which one is recommended? ===
 
-*Python 2.4* or *2.5* because of the newer `collection.deque` object which provides better performances for file transfers.
+Python *2.4* or *2.5* because of the newer `collection.deque` object which provides better performances for file transfers.
 
-=== 2.4 - On which platforms can pyftpdlib be used? ===
+=== 2.4 - What about Python 3.x? ===
 
-pyftpdlib should work on any platform where _select( )_ or _poll( )_ are available.
-The development team has mainly tested it under various *Linux* and *Windows* systems and *OS X*.
-A *[http://www.freshports.org/ftp/py-pyftpdlib/ port for FreeBSD]* systems is also available and maintained by Li-Wen Hsu <lwhsu@freebsd.org>.
+Python 3.0 is still in beta version thus not yet covered.
+
+=== 2.5 - On which platforms can pyftpdlib be used? ===
+
+pyftpdlib should work on any platform where _select()_ or _poll()_ system calls are available.
+The development team has mainly tested it under various *Linux*, *Windows* and *OS X* systems. A [http://www.freshports.org/ftp/py-pyftpdlib/ port for FreeBSD] systems is also available and maintained by Li-Wen Hsu <lwhsu@freebsd.org>.
+Other Python implementation like [http://pythonce.sourceforge.net/ PythonCE] are known to work with pyftpdlib.
 
 = 3.0 - Usage =
 
@@ -80,7 +103,7 @@ Just override and modify `banner` attribute of `FTPHandler` class.
 
 === 3.3 - Can control upload/download ratios? ===
 
-Yes. There's an example of a hack around `asyncore` `socket_map` in the [http://code.google.com/p/pyftpdlib/wiki/Tutorial Tutorial] wiki.
+Yes. [http://pyftpdlib.googlecode.com/svn/trunk/demo/throttled_ftpd.py throttled_ftpd.py] script included in the demo directory provides an hack around asyncore to implement bandwidth throttling capabilities.
 
 === 3.4 - Are there ways to limit connections? ===
 
@@ -95,19 +118,19 @@ However, one big problem still exists.  The passive FTP connections will use por
 === 3.6.1 - What is FXP? ===
 
 FXP is part of the name of a popular Windows FTP client: [http://www.flashfxp.com http://www.flashfxp.com].
-This client has made the name "FXP" commonly used as a synonym for site-to-site FTP transfers, for transferring a file between two remote FTP servers without the transfer going through the client's host. Sometimes "FXP" is referred to as a protocol; in fact, it is not. The site-to-site transfer capability was deliberately designed into [http://www.faqs.org/rfcs/rfc959.html RFC 959].
+This client has made the name "FXP" commonly used as a synonym for site-to-site FTP transfers, for transferring a file between two remote FTP servers without the transfer going through the client's host. Sometimes "FXP" is referred to as a protocol; in fact, it is not. The site-to-site transfer capability was deliberately designed into [http://www.faqs.org/rfcs/rfc959.html RFC-959].
 More info can be found here: [http://www.proftpd.org/docs/howto/FXP.html http://www.proftpd.org/docs/howto/FXP.html].
 
 === 3.6.2 - Does pyftpdlib support FXP? ===
 
-Yes. It is disabled by default for security reasons (see [http://gim.org.pl/rfcs/rfc2577.html RFC 2257] and [http://www.cert.org/advisories/CA-1997-27.html FTP bounce attack description]) but in case you want to enable it just set to True the `permit_foreign_addresses` attribute of `FTPHandler` class.
+Yes. It is disabled by default for security reasons (see [http://gim.org.pl/rfcs/rfc2577.html RFC-2257] and [http://www.cert.org/advisories/CA-1997-27.html FTP bounce attack description]) but in case you want to enable it just set to True the `permit_foreign_addresses` attribute of `FTPHandler` class.
 
 = 4.0 - Implementation =
 
 === 4.1 - Globbing / STAT command implementation ===
 
 Globbing is a common Unix shell mechanism for expanding wildcard patterns to match multiple filenames. When an argument is provided to the *STAT* command, ftpd should return directory listing over the command channel. 
-[http://www.faqs.org/rfcs/rfc959.html RFC 959] does not explicitly mention globbing; this means that FTP servers are not required to support globbing in order to be compliant.  However, many FTP servers (including pyftpdlib) _do_ support globbing as a measure of convenience for FTP clients and users.
+[http://www.faqs.org/rfcs/rfc959.html RFC-959] does not explicitly mention globbing; this means that FTP servers are not required to support globbing in order to be compliant.  However, many FTP servers (including pyftpdlib) _do_ support globbing as a measure of convenience for FTP clients and users.
 In order to search for and match the given globbing expression, the code has to search (possibly) many directories, examine each contained filename, and build a list of matching files in memory.
 Since this operation can be quite intensive, both CPU- and memory-wise, pyftpdlib limits the search to only one directory non-recursively, which is identical to the *LIST* command implementation in pyftpdlib.
 
@@ -115,21 +138,16 @@ Since this operation can be quite intensive, both CPU- and memory-wise, pyftpdli
 
 Properly handling the SIZE command when TYPE ASCII is used would require to scan the entire file to perform the ASCII translation logic (file.read().replace(os.linesep, '\r\n')) and then calculating the len of such data which may be different than the actual size of the file on the server.  
 Considering that calculating such result could be very resource-intensive it could be easy for a malicious client to try a DoS attack, thus pyftpdlib do not perform the ASCII translation.
-However, clients in general should not be resuming downloads in ASCII mode.  Resuming downloads in binary mode is the recommended way as specified in [http://www.faqs.org/rfcs/rfc3659.html RFC 3659].
+However, clients in general should not be resuming downloads in ASCII mode.  Resuming downloads in binary mode is the recommended way as specified in [http://www.faqs.org/rfcs/rfc3659.html RFC-3659].
 
 === 4.3 - IPv6 support ===
 
-IPv6 support for FTP including _EPRT & EPSV_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
-There is currently no official support for IPv6 within the 0.2.x code tree.
+IPv6 support for FTP including _EPRT & EPSV_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2428.html RFC-2428].
+There is no official support for IPv6 within the current code tree.
 
 === 4.4 - SSL/TLS support ===
 
-SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
-There is currently no official support for SSL/TLS within the 0.2.x code tree.
+SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2228.html RFC-2228].
+There is no official support for SSL/TLS within the current code tree.
+Anyway future Python 2.6 release should grant full SSL support so we hope to implement the feature when 2.6 will be out.
 Contributors willing to help add support for these protocols are greatly appreciated.
- 
- 
- 
- 
- 
- 
