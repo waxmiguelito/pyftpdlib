@@ -45,33 +45,7 @@ Patches should be attached to the appropriate bug and not mailed directly to the
 
 === 2.1 - How do I install pyftpdlib? ===
 
-If you have [http://code.google.com/p/pyftpdlib/downloads/list downloaded] the pyftpdlib package, follow the following steps:
-
-Unpack it and change to the pyftpdlib directory:
-
-{{{
-tar zxf pyftpdlib-0.3.0.tar.gz
-cd pyftpdlib
-}}}
-
-
-Run setup.py to install pyftpdlib (this step need to be run as root):
-
-{{{
-python setup.py install
-}}}
-
-If you're on Windows it should be enough just running:
-
-{{{
-setup.py install
-}}}
-
-If you have [http://peak.telecommunity.com/DevCenter/EasyInstall easy_install] on your system, installing pyftpdlib is quite simple. Just run:
-
-{{{
-easy_install.py pyftpdlib
-}}}
+If you are not new to Python you probably don't need that, otherwise follow the [http://code.google.com/p/pyftpdlib/wiki/Installation instructions].
 
 === 2.2 - Which Python versions are compatible? ===
 
