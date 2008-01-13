@@ -4,7 +4,7 @@
 
 == 0.3.0 _(upcoming one)_ ==
 
- * ~~Extend the set of assignable user permissions.~~
+ * ~~Extend the set of assignable user permissions aside from the generical "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...).~~
  * ~~Implement MLST and MLSD commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].~~
  * ~~Implement FEAT and OPTS commands defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~
  * ~~Use iterators for calculating requests requiring long time to complete (LIST and MLSD commands).~~
@@ -52,21 +52,3 @@ _(?) == considering_
  * _(?)_ Assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
  * _(?)_ Switch from asyncore to Twisted. *_NEW_*
  * _(?)_ Include idle-timeout capabilities. *_NEW_*
- * _(?)_ Include bandwidth throttling capabilities straight into the library instead of providing it via demo script. *_NEW_*
- * _(?)_ Use Python generators when doing resource-intensive blocking operations like calculating LIST and MLSD command outputs. *_NEW_*
- * _(?)_ Extend the current DummyAuthorizer for supporting more specific permissions aside from the generical "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...)
-
-= Hosting roadmap =
-
- * ~~Set up a subversion repository.~~
- * ~~Provide a mailing list for pyftpdlib users.~~
- * ~~Provide a mailing list for subversion commits.~~
- * ~~Provide a mailing list for issue changes.~~
-
-= Wiki roadmap =
-
- * ~~Provide a [http://code.google.com/p/pyftpdlib/wiki/Roadmap Roadmap] wiki defining project milestones.~~
- * ~~Provide a [http://code.google.com/p/pyftpdlib/wiki/Tutorial Tutorial] wiki documenting module itself.~~
- * ~~Provide a [http://code.google.com/p/pyftpdlib/wiki/FAQ FAQ] wiki.~~
- * ~~Provide an [http://code.google.com/p/pyftpdlib/wiki/Adoptions Adoptions] wiki listing all products we're aware of that uses pyftpdlib.~~
- * ~~Provide a [http://code.google.com/p/pyftpdlib/wiki/RFCsCompliance RFCsCompliance] wiki showing pyftpdlib compliance against FTP protocol standard RFCs.~~ *_NEW_*
