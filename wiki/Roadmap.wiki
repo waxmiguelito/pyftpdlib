@@ -2,12 +2,12 @@
 #labels Featured,SortOrder-3
 = Releases roadmap =
 
-== 0.2.1 _(upcoming one)_ ==
+== 0.3.0 _(upcoming one)_ ==
 
- * Implement OPTS command support for MLSX commands as defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659]. *_NEW_*
- * ~~Implement MLST and MLSD commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].~~ *_NEW_*
- * ~~Implement FEAT command defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~ *_NEW_*
- * ~~Resolve path traversal issues we have with symbolic links pointing outside the user home directory.~~
+ * ~~Extend the set of assignable user permissions.~~
+ * ~~Implement MLST and MLSD commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].~~
+ * ~~Implement FEAT and OPTS commands defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~
+ * ~~Use iterators for calculating requests requiring long time to complete (LIST and MLSD commands).~~
  * ~~Provide real permissions, owner, and group for files on UNIX platforms processing the LIST command.~~
  
 == 0.2.0 _(current release)_ ==
