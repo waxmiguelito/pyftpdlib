@@ -37,16 +37,16 @@
  
  * New `IteratorProducer` and `BufferedIteratorProducer` classes have been added.
  * `DummyAuthorizer` class changes:
-   * The permissions management has been changed and the set of available permissions have been extended (see Issue #61). `add_user` method now accepts "eladfm" permissions beyond the old "r" and "w".
-   * `r_perm` and `w_perm` methods have been removed.
-   * New `has_perm` and `get_perms` methods have been added.
+   * The permissions management has been changed and the set of available permissions have been extended (see Issue #61). `add_user()` method now accepts "eladfm" permissions beyond the old "r" and "w".
+   * `r_perm()` and `w_perm()` methods have been removed.
+   * New `has_perm()` and `get_perms()` methods have been added.
  * AbstractedFS class changes:
-   * `normalize` method has been renamed in `ftpnorm`.
-   * `translate` method has been renamed in `ftp2fs`.
-   * New methods: `fs2ftp`, `stat`, `lstat`, `islink`, `realpath`, `lexists`, `validpath`.
-   * `get_list_dir`, `get_stat_dir` and `format_list` methods now return an iterator object instead of a string.
-   * `format_list` method has a new "ignore_err" keyword argument.
- * global `debug` function has been removed.
+   * `normalize()` method has been renamed in `ftpnorm()`.
+   * `translate()` method has been renamed in `ftp2fs()`.
+   * New methods: `fs2ftp()`, `stat()`, `lstat()`, `islink()`, `realpath()`, `lexists()`, `validpath()`.
+   * `get_list_dir()`, `get_stat_dir()` and `format_list()` methods now return an iterator object instead of a string.
+   * `format_list()` method has a new "ignore_err" keyword argument.
+ * global `debug()` function has been removed.
 
 == Porting to pyftpdlib 0.3.0 ==
 
