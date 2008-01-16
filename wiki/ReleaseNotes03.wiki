@@ -1,7 +1,7 @@
 #summary pyftpdlib 0.3.x serie release notes.
 #labels SortOrder-5
 
-= Version: 0.3.0 - Date: xxxx-xx-xx =
+= Version: 0.3.0 - Date: 2008-01-17 =
 
 == Major enhancements ==
 
@@ -37,7 +37,7 @@
  
  * New `IteratorProducer` and `BufferedIteratorProducer` classes have been added.
  * `DummyAuthorizer` class changes:
-   * The permissions management have been changed and the set of available permissions have been extended (see Issue #61). add_user method now accepts "eladfm" permissions beyond the old "r" and "w".
+   * The permissions management has been changed and the set of available permissions have been extended (see Issue #61). `add_user` method now accepts "eladfm" permissions beyond the old "r" and "w".
    * `r_perm` and `w_perm` methods have been removed.
    * New `has_perm` and `get_perms` methods have been added.
  * AbstractedFS class changes:
@@ -47,3 +47,30 @@
    * `get_list_dir`, `get_stat_dir` and `format_list` methods now return an iterator object instead of a string.
    * `format_list` method has a new "ignore_err" keyword argument.
  * global `debug` function has been removed.
+
+== Porting to pyftpdlib 0.3.0 ==
+
+This section lists previously described changes that may require changes to your existent 0.2.0-based code.
+
+The main news in 0.3.0 version is that the `DummyAuthorizer` class now provides an extended set of user permissions. For example: to create a user having full r/w permissions you no longer have to do:
+
+{{{
+authorizer.add_user("user", "12345", "/home/user", perm=("r","w"))
+}}}
+
+...or:
+
+{{{
+authorizer.add_user("user", "12345", "/home/user", perm="rw")
+}}}
+
+...but instead:
+
+{{{
+authorizer.add_user("user", "12345", "/home/user", perm="elradfmw")
+}}}
+
+
+Folks who sub-classed `DummyAuthorizer` class to create their own custom authorizer (e.g. I've seen some SQL-based authorizers around) must note that `r_perm()` and `w_perm()` methods have been removed and replaced by the new `has_perm()` method.
+
+Other changes are fundamentally related to `AbstractedFS` class which acquired some new methods and renamed others but this should interest only folks who sub-classed it (e.g. [http://walco.n--tree.net/projects/aksy/wiki Aksy library] which implemented a virtual file-system).
