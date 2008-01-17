@@ -36,7 +36,7 @@ ftpserver.*DummyAuthorizer()*
      * *"m"* = create directory (MKD command)
      * *"w"* = store a file to the server (STOR, STOU commands)
 
-    Typically the first thing you have to do is create an instance of this class and start adding ftp users:
+Typically the first thing you have to do is create an instance of this class and start adding ftp users:
 
 {{{
 >>> from pyftpdlib import ftpserver
