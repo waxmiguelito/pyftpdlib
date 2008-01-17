@@ -52,7 +52,7 @@
 
 This section lists previously described changes that may require changes to your existent 0.2.0-based code.
 
-The main news in 0.3.0 version is that the `DummyAuthorizer` class now provides an extended set of user permissions. For example: to create a user having full r/w permissions you no longer have to do:
+The main news in 0.3.0 version is that the `DummyAuthorizer` class now provides an extended set of assignable user permissions. For example: to create a user having full r/w permissions you no longer have to do:
 
 {{{
 authorizer.add_user("user", "12345", "/home/user", perm=("r","w"))
