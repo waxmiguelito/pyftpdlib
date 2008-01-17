@@ -2,7 +2,11 @@
 #labels Featured,SortOrder-6
 = Releases roadmap =
 
-== 0.3.0 _(upcoming one)_ ==
+== 0.3.1 _(unreleased)_ ==
+
+No plans yet.
+
+== 0.3.0 _(current release)_ ==
 
  * ~~Extend the set of assignable user permissions aside from the generical "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...).~~
  * ~~Implement MLST and MLSD commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].~~
@@ -10,7 +14,7 @@
  * ~~Use iterators for calculating requests requiring long time to complete (LIST and MLSD commands).~~
  * ~~Provide real permissions, owner, and group for files on UNIX platforms processing the LIST command.~~
  
-== 0.2.0 _(current release)_ ==
+== 0.2.0 _(released)_ ==
 
 Major enhancements:
  * ~~Support for FXP, site-to-site transfers.~~
