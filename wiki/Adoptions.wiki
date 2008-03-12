@@ -21,7 +21,11 @@ Aksy is a Python module to control S5000/S6000, Z4/Z8 and MPC4000 Akai sampler m
 
 http://walco.n--tree.net/projects/aksy/
 
+== EasyFTPd ==
 
+An end-user UNIX FTP server with focus on simplicity.  It basically provides a configuration file interface over pyftpdlib to easily set up an FTP daemon.
+
+http://code.google.com/p/easyftpd/
 
 = Packages =
 
