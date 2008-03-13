@@ -4,7 +4,7 @@
 
 == 0.3.1 _(unreleased)_ ==
 
-No plans yet.
+ * Assume the id of a particular user when using system-dependent authorizers.
 
 == 0.3.0 _(current release)_ ==
 
@@ -53,6 +53,6 @@ _(?) == considering_
  * IPv6 support including _EPRT & EPSV_ commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
  * Support for _LANG_ command as defined in [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
  * Include a graphical Tk-based ftp server into demo directory.
- * _(?)_ Assume the id of a particular user via os.fork, os.setuid or similar when using system-dependent authorizers.
  * _(?)_ Switch from asyncore to Twisted. *_NEW_*
  * _(?)_ Include idle-timeout capabilities. *_NEW_*
+ * _(?)_ Add bandwidth throttling capabilities. *_NEW_*
