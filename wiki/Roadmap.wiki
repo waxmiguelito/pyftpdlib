@@ -4,7 +4,7 @@
 
 == 0.3.1 _(unreleased)_ ==
 
- * Assume the id of a particular user when using system-dependent authorizers.
+ * ~~Assume the id of real users when using system dependent authorizers.~~
 
 == 0.3.0 _(current release)_ ==
 
