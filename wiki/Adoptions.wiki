@@ -9,6 +9,8 @@ Please help us in keeping such list updated.
 
 == Far Manager ==
 
+http://www.farmanager.com/img/title_light.png
+
 [http://farmanager.com/ Far Manager] is a program for managing files and archives in Windows operating systems. 
 
 Far Manager recently included pyftpdlib as [http://enforum.farmanager.com/viewtopic.php?t=640 plug-in] for making the current directory accessible through FTP. Convenient for exchanging files with virtual machines. 
