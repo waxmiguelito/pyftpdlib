@@ -15,6 +15,15 @@ Far Manager recently included pyftpdlib as [http://enforum.farmanager.com/viewto
 
 http://farmanager.com/
 
+== Google Pages FTPd ==
+
+http://pages.google.com/-/images/logo-labs.gif
+
+[http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html gpftpd] is a pyftpdlib based FTP server you can connect to using your Google e-mail account. 
+It redirects you to all files hosted on your [http://pages.google.com Google Pages] account giving you access to download them and upload new ones.
+
+http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html
+
 == Aksy == 
 
 Aksy is a Python module to control S5000/S6000, Z4/Z8 and MPC4000 Akai sampler models with System Exclusive over USB.
