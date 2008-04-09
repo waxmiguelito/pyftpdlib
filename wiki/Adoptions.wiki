@@ -28,7 +28,9 @@ http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html
 
 == Aksy == 
 
-Aksy is a Python module to control S5000/S6000, Z4/Z8 and MPC4000 Akai sampler models with System Exclusive over USB.
+http://walco.n--tree.net/projects/aksy
+
+Aksy is a Python module to control S5000/S6000, Z4/Z8 and MPC4000 Akai sampler models with System Exclusive over USB.  Aksy introduced the possibility to mount samplers as web folders and manage files on the sampler via FTP.
 
 http://walco.n--tree.net/projects/aksy/
 
