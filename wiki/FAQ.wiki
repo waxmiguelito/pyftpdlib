@@ -18,12 +18,13 @@ For example, (after having installed a [http://www.python.org/download/ Python i
 {{{
 python -m pyftpdlib.ftpserver
 }}}
-Customizing ftpd more deeply requires a python script which imports pyftpdlib to be written separately.
 Customizing ftpd for basic tasks like adding users or deciding where log file should be placed is mostly simply editing variables. This is basically like learning how to edit a common unix ftpd.conf file and doesn't really require Python knowledge.
+Customizing ftpd more deeply requires a python script which imports pyftpdlib to be written separately.
+An example about how this could be done are the scripts contained in the [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo demo directory]. 
 
 === 1.4 - Documentation ===
 
-http://code.google.com/p/pyftpdlib/ is the primary source for all information about the project including [http://code.google.com/p/pyftpdlib/wiki/Tutorial Tutorial], [http://code.google.com/p/pyftpdlib/wiki/RFCsCompliance RFCs Compliance paper], [http://code.google.com/p/pyftpdlib/w/list Wikis] and the [http://code.google.com/p/pyftpdlib/issues/list Bug Tracker].
+http://code.google.com/p/pyftpdlib/ is the primary source for all information about the project including [http://code.google.com/p/pyftpdlib/wiki/Install Install instructions], [http://code.google.com/p/pyftpdlib/wiki/Tutorial Tutorial], [http://code.google.com/p/pyftpdlib/wiki/RFCsCompliance RFCs Compliance paper], [http://code.google.com/p/pyftpdlib/w/list Wikis] and the [http://code.google.com/p/pyftpdlib/issues/list Bug Tracker].
 
 === 1.5 - Mailing lists ===
 
@@ -117,7 +118,7 @@ However, clients in general should not be resuming downloads in ASCII mode.  Res
 === 4.3 - IPv6 support ===
 
 IPv6 support for FTP including _EPRT & EPSV_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2428.html RFC-2428].
-There is no official support for IPv6 within the current code tree.
+There is no official support for IPv6 within the current code tree. Contributions are greatly appreciated.
 
 === 4.4 - SSL/TLS support ===
 
@@ -125,3 +126,4 @@ SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ com
 There is no official support for SSL/TLS within the current code tree.
 Anyway future Python 2.6 release should grant full SSL support so we hope to implement the feature when 2.6 will be out.
 Contributors willing to help add support for these protocols are greatly appreciated.
+
