@@ -57,3 +57,4 @@ _(?) == considering_
  * _(?)_ Switch from asyncore to Twisted. *_NEW_*
  * _(?)_ Include idle-timeout capabilities. *_NEW_*
  * _(?)_ Add bandwidth throttling capabilities. *_NEW_*
+ * Add the possibility to run the server in stand alone mode via command line parameters and/or configuration file. *_NEW_*
