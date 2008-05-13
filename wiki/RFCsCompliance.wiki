@@ -115,8 +115,8 @@ Introduces the new commands EPRT and EPSV extending FTP to enable its use over v
  * Status: PROPOSED STANDARD
 
 || *Command* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
-|| EPRT || MAY || NO || --- || Set active data connection over IPv4 or IPv6 || ||
-|| EPSV || MAY || NO || --- || Set passive data connection over IPv4 or IPv6 || ||
+|| EPRT || MAY || YES || 0.4.0 || Set active data connection over IPv4 or IPv6 || ||
+|| EPSV || MAY || YES || 0.4.0 || Set passive data connection over IPv4 or IPv6 || ||
 
 = =
 
