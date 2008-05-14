@@ -33,12 +33,12 @@ setup.py install
 
 If you have [http://peak.telecommunity.com/DevCenter/EasyInstall easy_install] on your system, installing pyftpdlib is quite simple. Just run:
 {{{
-easy_install.py pyftpdlib
+python easy_install.py pyftpdlib
 }}}
 This will get the most updated pyftpdlib from the Python [http://pypi.python.org/pypi pypi repository], unpack it and install it automatically.
 
 Note: if you already have an old version of pyftpdlib installed, easy_install
 will not automatically download the latest version. You can ask for a particular version by running, for example:
 {{{
-easy_install.py pyftpdlib==0.3.0
+python easy_install.py pyftpdlib==0.3.0
 }}}
