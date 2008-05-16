@@ -136,10 +136,17 @@ You should then be able to listen the server on that address, and connect to it.
 
 On Windows (XP SP2 and higher) run "netsh int ipv6 install". Again, you should be able to use IPv6 loopback afterwards.
 
-=== 4.4 - SSL/TLS support ===
+=== 4.4 - Can pyftpdlib be integrated with "real" users existing on the system? ===
+
+Yes. By using the proper system dependent authorizer pyftpdlib can look into the system account database to authenticate users.
+Starting from version 0.4.0 the `DummyAuthorizer` class provides two new methods: `impersonate_user()` and `terminate_impersonation()`.
+System dependent authorizers subclassing the dummy authorizer can assume the id of real users by overriding them as necessary.
+Every time the FTP server is going to access the filesystem (e.g. for creating or renaming a file) it will temporarily impersonate the currently logged on user, execute the filesystem call and then switch back to the user who originally started the server.
+Example UNIX and Windows FTP servers contained in the [http://code.google.com/p/pyftpdlib/source/browse/tags/release-0.4.0/demo/ demo directory] implement both real user impersonation and authentication against the system users database.
+
+=== 4.5 - SSL/TLS support ===
 
 SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2228.html RFC-2228].
 There is no official support for SSL/TLS within the current code tree.
 Anyway future Python 2.6 release should grant full SSL support so we hope to implement the feature when 2.6 will be out.
 Contributors willing to help add support for these protocols are greatly appreciated.
-

@@ -1,5 +1,4 @@
 #summary Tutorial containing API reference and example usages
-#labels Featured,Documentation,SortOrder-1
 
 = 1.0 - Introduction =
 
@@ -23,7 +22,7 @@ class ftpserver.*AuthorizerError()*
 ----
 class ftpserver.*DummyAuthorizer()*
 
-    Basic "dummy" authorizer class, suitable for subclassing to create your own custom authorizers.  An "authorizer" is a class handling authentications and permissions of the FTP server.  It is used inside `FTPHandler` class for verifying user's password, getting users home directory and checking user permissions when a filesystem read/write event occurs.  `DummyAuthorizer` is the base authorizer, providing a platform independent interface for managing "virtual" FTP users. Typically the first thing you have to do is create an instance of this class and start adding ftp users:
+    Basic "dummy" authorizer class, suitable for subclassing to create your own custom authorizers.  An "authorizer" is a class handling authentications and permissions of the FTP server.  It is used inside `FTPHandler` class for verifying user's password, getting users home directory, checking user permissions when a filesystem read/write event occurs and changing user before accessing the filesystem.  `DummyAuthorizer` is the base authorizer, providing a platform independent interface for managing "virtual" FTP users. Typically the first thing you have to do is create an instance of this class and start adding ftp users:
 
     {{{
 >>> from pyftpdlib import ftpserver
@@ -49,11 +48,17 @@ class ftpserver.*DummyAuthorizer()*
  * *add_anonymous(*_homedir_*[*, `**`_kwargs_*])*
    * Add an anonymous user to the virtual users table.  `AuthorizerError` exception raised on error conditions such as insufficient permissions, missing home directory, or duplicate anonymous users.  The keyword arguments in `kwargs` are the same expected by `add_user()` method: `perm`, `msg_login` and `msg_quit`.  The optional _perm_ keyword argument is a string defaulting to `"elr"` referencing "read-only" anonymous user's permission.  Using a "write" value results in a `RuntimeWarning`.
 
- * *remove_user(*_username_*)*
-   * Remove a user from the virtual user table.
-
  * *validate_authentication(*_username_, _password_*)*
    * Return `True` if the supplied `username` and `password` match the stored credentials.
+
+ * *impersonate_user(*_username_, _password_*)*
+   * Impersonate another user (noop).  It is always called before accessing the filesystem.  By default it does nothing.  The subclass overriding this method is expected to provide a mechanism to change the current user. _*NEW in 0.4.0*_
+
+ * *terminate_impersonation(*_username_, _password_*)*
+   * Terminate impersonation (noop).  It is always called after having accessed the filesystem.  By default it does nothing.  The subclass overriding this method is expected to provide a mechanism to switch back to the original user. _*NEW in 0.4.0*_
+
+ * *remove_user(*_username_*)*
+   * Remove a user from the virtual user table.
 
  * *has_user(*_username_*)*
    * Whether the `username` exists in the virtual users table.
@@ -194,46 +199,46 @@ Overriding these variables is always a good idea (they default to `0`, or "no li
 {{{
 #!/usr/bin/env python
 # basic_ftpd.py
-
+    
 """A basic FTP server which uses a DummyAuthorizer for managing 'virtual
 users', setting a limit for incoming connections.
 """
-
+    
 import os
-
+    
 from pyftpdlib import ftpserver
-
-
+    
+    
 if __name__ == "__main__":
-
+    
     # Instantiate a dummy authorizer for managing 'virtual' users
     authorizer = ftpserver.DummyAuthorizer()
-
+    
     # Define a new user having full r/w permissions and a read-only
     # anonymous user
     authorizer.add_user('user', '12345', os.getcwd(), perm='elradfmw')
     authorizer.add_anonymous(os.getcwd())
-
+    
     # Instantiate FTP handler class
     ftp_handler = ftpserver.FTPHandler
     ftp_handler.authorizer = authorizer
-
+    
     # Define a customized banner (string returned when client connects)
     ftp_handler.banner = "pyftpdlib %s based ftpd ready." %ftpserver.__ver__
-
+        
     # Specify a masquerade address and the range of ports to use for
     # passive connections.  Decomment in case you're behind a NAT.
     #ftp_handler.masquerade_address = '151.25.42.11'
     #ftp_handler.passive_ports = range(60000, 65535)
-
+    
     # Instantiate FTP server class and listen to 0.0.0.0:21
     address = ('', 21)
     ftpd = ftpserver.FTPServer(address, ftp_handler)
-
+    
     # set a limit for connections
     ftpd.max_cons = 256
     ftpd.max_cons_per_ip = 5
-
+    
     # start ftp server
     ftpd.serve_forever()
 }}}
@@ -249,26 +254,26 @@ Here's one method this could be implemented:
 {{{
 #!/usr/bin/env python
 # logging_management.py
-
+    
 import os
 import time
-
+    
 from pyftpdlib import ftpserver
-
+    
 now = lambda: time.strftime("[%Y-%b-%d %H:%M:%S]")
-
+    
 def standard_logger(msg):
     f1.write("%s %s\n" %(now(), msg))
-
+    
 def line_logger(msg):
     f2.write("%s %s\n" %(now(), msg))
-
+    
 if __name__ == "__main__":
     f1 = open('ftpd.log', 'a')
     f2 = open('ftpd.lines.log', 'a')
     ftpserver.log = standard_logger
     ftpserver.logline = line_logger
-
+    
     authorizer = ftpserver.DummyAuthorizer()
     authorizer.add_anonymous(os.getcwd())
     ftp_handler = ftpserver.FTPHandler
@@ -291,22 +296,22 @@ This could be easily done by using the *md5* module included with Python stdlib 
 {{{
 #!/usr/bin/env python
 # md5_ftpd.py
-
+    
 """A basic ftpd storing passwords as hash digests (platform independent).
 """
-
+    
 import md5
 import os
-
+    
 from pyftpdlib import ftpserver
-
-
+    
+    
 class DummyMD5Authorizer(ftpserver.DummyAuthorizer):
-
+    
     def validate_authentication(self, username, password):
         hash = md5.new(password).hexdigest()
         return self.user_table[username]['pwd'] == hash
-
+    
 if __name__ == "__main__":
     # get a hash digest from a clear-text password
     hash = md5.new('12345').hexdigest()
@@ -325,31 +330,41 @@ if __name__ == "__main__":
 
 If you're running a Unix system you may want to configure your ftpd to include support for "real" users existing on the system.
 
-The example below shows how to use *pwd* and *spwd* modules available in _Python 2.5_ or greater (UNIX systems only) to interact with UNIX user account and shadow password database. This basic authorizer also gets the user's home directory.
+The example below shows how to use [http://docs.python.org/lib/module-pwd.html pwd] and [http://docs.python.org/lib/module-spwd.html spwd] modules available in _Python 2.5_ or greater (UNIX systems only) to interact with UNIX user account and shadow passwords database and also to automatically get the user's home directory.
 
-Note that users must already exist on the system.
+`impersonate_user()` and `terminate_impersonation()` methods of the dummy authorizer are overridden to provide the proper mechanism to reflect the current logged-in user every time he's going to access the filesystem.
+
+Note that the users you're going to add through the `add_user` method must already exist on the system.
 
 {{{
 #!/usr/bin/env python
 # unix_ftpd.py
-
+    
 """A ftpd using local unix account database to authenticate users
 (users must already exist).
+    
+It also provides a mechanism to (temporarily) impersonate the system
+users every time they are going to perform filesystem operations.
 """
-
+    
 import os
 import pwd, spwd, crypt
-
+    
 from pyftpdlib import ftpserver
-
-
+    
+    
 class UnixAuthorizer(ftpserver.DummyAuthorizer):
-
-    def add_user(self, username, home=None, **kwargs):
+    
+    # the uid/gid the daemon runs under
+    PROCESS_UID = os.getuid()
+    PROCESS_GID = os.getgid()
+    
+    def add_user(self, username, homedir=None, **kwargs):
         """Add a "real" system user to the virtual users table.
-
+    
         If no home argument is specified the user's home directory will
         be used.
+    
         The keyword arguments in kwargs are the same expected by the
         original add_user method: "perm", "msg_login" and "msg_quit".
         """
@@ -358,15 +373,48 @@ class UnixAuthorizer(ftpserver.DummyAuthorizer):
         users = [entry.pw_name for entry in pwd.getpwall()]
         if not username in users:
             raise ftpserver.AuthorizerError('No such user "%s".' %username)
-        if not home:
-            home = pwd.getpwnam(username).pw_dir
-        ftpserver.DummyAuthorizer.add_user(self, username, '', home, **kwargs)
-
+        if not homedir:
+            homedir = pwd.getpwnam(username).pw_dir
+        ftpserver.DummyAuthorizer.add_user(self, username, '', homedir,**kwargs)
+    
+    def add_anonymous(self, homedir=None, realuser="nobody", **kwargs):
+        """Add an anonymous user to the virtual users table.
+    
+        If no homedir argument is specified the realuser's home
+        directory will possibly be determined and used.
+    
+        realuser argument specifies the system user to use for managing
+        anonymous sessions.  On many UNIX systems "nobody" is tipically
+        used but it may change (e.g. "ftp").
+        """
+        users = [entry.pw_name for entry in pwd.getpwall()]
+        if not realuser in users:
+            raise ftpserver.AuthorizerError('No such user "%s".' %realuser)
+        if not homedir:
+            homedir = pwd.getpwnam(realuser).pw_dir
+        ftpserver.DummyAuthorizer.add_anonymous(self, homedir, **kwargs)
+        self.anon_user = realuser
+    
     def validate_authentication(self, username, password):
+        if (username == "anonymous") and self.has_user('anonymous'):
+            username = self.anon_user
         pw1 = spwd.getspnam(username).sp_pwd
         pw2 = crypt.crypt(password, pw1)
         return pw1 == pw2
-
+    
+    def impersonate_user(self, username, password):
+        if (username == "anonymous") and self.has_user('anonymous'):
+            username = self.anon_user
+        uid = pwd.getpwnam(username).pw_uid
+        gid = pwd.getpwnam(username).pw_gid
+        os.setegid(gid)
+        os.seteuid(uid)
+    
+    def terminate_impersonation(self):
+        os.setegid(self.PROCESS_GID)
+        os.seteuid(self.PROCESS_UID)
+    
+    
 if __name__ == "__main__":
     authorizer = UnixAuthorizer()
     # add a user (note: user must already exists)
@@ -382,31 +430,50 @@ if __name__ == "__main__":
 
 === 3.5 - Windows NT FTP Server ===
 
-This next code shows how to implement a basic authorizer for a *Windows NT* workstation (windows NT, 2000, XP, 2003 server and so on...) to authenticate against existing Windows user accounts. This code uses Mark Hammond's [http://starship.python.net/crew/mhammond/win32/ pywin32] extension so the PyWin32 extensions must also be installed.
+The following code shows how to implement a basic authorizer for a Windows NT workstation to authenticate against existing Windows user accounts. This code uses Mark Hammond's [http://starship.python.net/crew/mhammond/win32/ pywin32] extension which is required to be installed previously.
 
-Note that, as for UNIX authorizer, users must be already created on the system.
+Note that, as for UNIX authorizer, the users you're going to add through the `add_user` method must already exist on the system.
 
 {{{
 #!/usr/bin/env python
 # winnt_ftpd.py
-
+    
 """A ftpd using local Windows NT account database to authenticate users
 (users must already exist).
+    
+It also provides a mechanism to (temporarily) impersonate the system
+users every time they are going to perform filesystem operations.
 """
-
+    
 import os
-import win32security, win32net, win32profile, pywintypes
-
+import win32security, win32net, pywintypes, win32con
+    
 from pyftpdlib import ftpserver
-
-
+    
+    
+def get_profile_dir(username):
+    """Return the user's profile directory."""
+    import _winreg, win32api
+    sid = win32security.ConvertSidToStringSid(
+            win32security.LookupAccountName(None, username)[0])
+    try:
+        key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE,
+          r"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList"+"\\"+sid)
+    except WindowsError:
+        raise ftpserver.AuthorizerError("No profile directory defined for %s "
+                                        "user" %username)
+    value = _winreg.QueryValueEx(key, "ProfileImagePath")[0]
+    return win32api.ExpandEnvironmentStrings(value)
+    
+    
 class WinNtAuthorizer(ftpserver.DummyAuthorizer):
 
-    def add_user(self, username, home=None, **kwargs):
+    def add_user(self, username, homedir=None, **kwargs):
         """Add a "real" system user to the virtual users table.
 
-        If no home argument is specified the user's home directory will
-        be used.
+        If no homedir argument is specified the user's profile
+        directory will possibly be determined and used.
+
         The keyword arguments in kwargs are the same expected by the
         original add_user method: "perm", "msg_login" and "msg_quit".
         """
@@ -415,24 +482,68 @@ class WinNtAuthorizer(ftpserver.DummyAuthorizer):
         users = [entry['name'] for entry in win32net.NetUserEnum(None, 0)[0]]
         if not username in users:
             raise ftpserver.AuthorizerError('No such user "%s".' %username)
-        if not home:
-            profiles = win32profile.GetProfilesDirectory()
-            home = str(os.path.join(profiles, username))
-        ftpserver.DummyAuthorizer.add_user(self, username, '', home, **kwargs)
+        if not homedir:
+            homedir = get_profile_dir(username)
+        ftpserver.DummyAuthorizer.add_user(self, username, '', homedir,
+                                           **kwargs)
+    
+    def add_anonymous(self, homedir=None, realuser="Guest",
+                      password="", **kwargs):
+        """Add an anonymous user to the virtual users table.
 
+        If no homedir argument is specified the realuser's profile
+        directory will possibly be determined and used.
+
+        realuser and password arguments are the credentials to use for
+        managing anonymous sessions.
+        The same behaviour is followed in IIS where the Guest account
+        is used to do so (note: it must be enabled first).
+        """
+        users = [entry['name'] for entry in win32net.NetUserEnum(None, 0)[0]]
+        if not realuser in users:
+            raise ftpserver.AuthorizerError('No such user "%s".' %realuser)
+        if not homedir:
+            homedir = get_profile_dir(realuser)
+        # make sure provided credentials are valid, otherwise an exception
+        # will be thrown; to do so we actually try to impersonate the user
+        self.impersonate_user(realuser, password)
+        self.terminate_impersonation()
+        ftpserver.DummyAuthorizer.add_anonymous(self, homedir, **kwargs)
+        self.anon_user = realuser
+        self.anon_pwd = password
+    
     def validate_authentication(self, username, password):
+        if (username == "anonymous") and self.has_user('anonymous'):
+            username = self.anon_user
+            password = self.anon_pwd
         try:
             win32security.LogonUser(username, None, password,
-                win32security.LOGON32_LOGON_NETWORK,
-                win32security.LOGON32_PROVIDER_DEFAULT)
-            return 1
+                win32con.LOGON32_LOGON_INTERACTIVE,
+                win32con.LOGON32_PROVIDER_DEFAULT)
+            return True
         except pywintypes.error:
-            return 0
-
+            return False
+    
+    def impersonate_user(self, username, password):
+        if (username == "anonymous") and self.has_user('anonymous'):
+            username = self.anon_user
+            password = self.anon_pwd
+        handler = win32security.LogonUser(username, None, password,
+                      win32con.LOGON32_LOGON_INTERACTIVE,
+                      win32con.LOGON32_PROVIDER_DEFAULT)
+        win32security.ImpersonateLoggedOnUser(handler)
+        handler.Close()
+    
+    def terminate_impersonation(self):
+        win32security.RevertToSelf()
+    
+    
 if __name__ == "__main__":
     authorizer = WinNtAuthorizer()
     # add a user (note: user must already exists)
     authorizer.add_user('user', perm='elradfmw')
+    # add an anonymous user using Guest account to handle the anonymous
+    # sessions (note: Guest must be enabled first)
     authorizer.add_anonymous(os.getcwd())
     ftp_handler = ftpserver.FTPHandler
     ftp_handler.authorizer = authorizer
