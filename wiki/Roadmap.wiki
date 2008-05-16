@@ -2,13 +2,12 @@
 #labels Featured,SortOrder-6
 = Releases roadmap =
 
-== 0.4.0 _(unreleased)_ ==
+== 0.4.0 _(current release)_ ==
 
  * ~~Assume the id of real users when using system dependent authorizers.~~
- * ~~Determine the real user home directory in WinNT_ftpd.py.~~
- * IPv6 support including _EPRT & EPSV_ commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
+ * ~~Add IPv6 support including _EPRT & EPSV_ commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].~~
 
-== 0.3.0 _(current release)_ ==
+== 0.3.0 _(released)_ ==
 
  * ~~Extend the set of assignable user permissions aside from the generical "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...).~~
  * ~~Implement MLST and MLSD commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].~~
