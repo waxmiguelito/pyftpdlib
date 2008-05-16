@@ -4,15 +4,15 @@
 
 == Major enhancements ==
 
- * Issue #65: it is now possible to assume the id of real users when using system dependent authorizers.
- * Issue #67: added IPv6 support ([http://www.faqs.org/rfcs/rfc2428.html RFC-2428]).
+ * Issue 65: it is now possible to assume the id of real users when using system dependent authorizers.
+ * Issue 67: added IPv6 support ([http://www.faqs.org/rfcs/rfc2428.html RFC-2428]).
 
 == Bugfixes ==
 
- * Issue #64: issue when authenticating as anonymous user using user-defined authorizers.
- * Issue #66: WinNTAuthorizer does not determine the real user home directory.
- * Issue #69: DummyAuthorizer incorrectly uses class attribute instead of instance attribute for user_table dictionary.
- * Issue #70: wrong NOOP response code.
+ * Issue 64: issue when authenticating as anonymous user using user-defined authorizers.
+ * Issue 66: WinNTAuthorizer does not determine the real user home directory.
+ * Issue 69: DummyAuthorizer incorrectly uses class attribute instead of instance attribute for user_table dictionary.
+ * Issue 70: wrong NOOP response code.
 
 == API changes since 0.3.0 ==
 
