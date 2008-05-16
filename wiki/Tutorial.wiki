@@ -77,7 +77,7 @@ class ftpserver.*FTPHandler(*_conn, server_*)*
 
     This class implements the FTP server Protocol Interpreter (see [http://www.faqs.org/rfcs/rfc959.html RFC-959]), handling commands received from the client on the control channel by calling the command's corresponding method (e.g. for received command "MKD pathname", `ftp_MKD()` method is called with `pathname` as the argument).  All relevant session information are stored in instance variables.
 
-    `conn` is the underlying socket object instance of the newly established connection, `server` is the `FTPHandler` class instance.  Basic usage simply requires creating an instance of `FTPHandler` class and specify which authorizer instance it will going to use:
+    `conn` is the underlying socket object instance of the newly established connection, `server` is the `FTPServer` class instance.  Basic usage simply requires creating an instance of `FTPHandler` class and specify which authorizer instance it will going to use:
 
 {{{
 >>> ftp_handler = ftpserver.FTPHandler
