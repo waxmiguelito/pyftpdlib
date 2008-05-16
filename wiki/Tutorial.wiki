@@ -1,5 +1,5 @@
 #summary Tutorial containing API reference and example usages
-#labels SortOrder-1
+#labels SortOrder-1,Featured
 
 = 1.0 - Introduction =
 
