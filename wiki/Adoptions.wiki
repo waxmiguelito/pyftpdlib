@@ -26,9 +26,15 @@ It redirects you to all files hosted on your [http://pages.google.com Google Pag
 
 http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html
 
-== Aksy == 
+== Manent ==
 
-http://walco.n--tree.net/projects/aksy
+http://trac.manent-backup.com/chrome/site/manent-logo.png
+
+[http://trac.manent-backup.com/ Manent] is an algorithmically strong backup and archival program which can offer remote backup via a pyftpdlib-based S/FTP server.
+
+http://trac.manent-backup.com/
+
+== Aksy == 
 
 Aksy is a Python module to control S5000/S6000, Z4/Z8 and MPC4000 Akai sampler models with System Exclusive over USB.  Aksy introduced the possibility to mount samplers as web folders and manage files on the sampler via FTP.
 
@@ -54,8 +60,3 @@ The [http://www.freebsd.org/ports/ FreeBSD Ports Collection] offers a simple way
 FreeBSD Ports team created a [http://www.freshports.org/ftp/py-pyftpdlib/ pyftpdlib port] to make users can easily install and use it on FreeBSD systems. [http://www.freshports.org Freshports] is a news site about FreeBSD's ports. Latest news about "py-pyftpdlib" port can be found here: 
 
 http://www.freshports.org/ftp/py-pyftpdlib/
-
- 
- 
- 
- 
