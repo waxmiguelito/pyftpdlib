@@ -53,10 +53,10 @@ class ftpserver.*DummyAuthorizer()*
    * Return `True` if the supplied `username` and `password` match the stored credentials.
 
  * *impersonate_user(*_username_, _password_*)*
-   * Impersonate another user (noop).  It is always called before accessing the filesystem.  By default it does nothing.  The subclass overriding this method is expected to provide a mechanism to change the current user. _*NEW in 0.4.0*_
+   * Impersonate another user (noop).  It is always called before accessing the filesystem.  By default it does nothing.  The subclass overriding this method is expected to provide a mechanism to change the current user. _*New in 0.4.0*_
 
  * *terminate_impersonation(*_username_, _password_*)*
-   * Terminate impersonation (noop).  It is always called after having accessed the filesystem.  By default it does nothing.  The subclass overriding this method is expected to provide a mechanism to switch back to the original user. _*NEW in 0.4.0*_
+   * Terminate impersonation (noop).  It is always called after having accessed the filesystem.  By default it does nothing.  The subclass overriding this method is expected to provide a mechanism to switch back to the original user. _*New in 0.4.0*_
 
  * *remove_user(*_username_*)*
    * Remove a user from the virtual user table.
@@ -191,6 +191,22 @@ class ftpserver.*AbstractedFS()*
 
  * *validpath(*_path_*)*
    * Check whether the path belongs to user's home directory. Expected argument is a "real" filesystem path. If path is a symbolic link it is resolved to check its real destination. Pathnames escaping from user's root directory are considered not valid (return `False`).
+----
+class ftpserver.*CallLater(*_seconds_, _callable_ *[*, `*`_args_ *[*, `**`_kwargs_*]])* _*New in 0.5.0*_
+    Calls a function at a later time. It can be used to asynchronously schedule a call within the polling loop without blocking it. The instance returned is an object that can be used to cancel or reschedule the call.
+
+ * *cancelled*
+   * Whether the call has been cancelled.
+
+ * *reset()*
+   * Reschedule the call resetting the current countdown.
+
+ * *delay(*_seconds_*)*
+   * Reschedule the call for a later time.
+
+ * *cancel()*
+   * Unschedule the call.
+
 
 = =
 
@@ -407,6 +423,7 @@ class UnixAuthorizer(ftpserver.DummyAuthorizer):
     def validate_authentication(self, username, password):
         if (username == "anonymous") and self.has_user('anonymous'):
             username = self.anon_user
+
         pw1 = spwd.getspnam(username).sp_pwd
         pw2 = crypt.crypt(password, pw1)
         return pw1 == pw2
