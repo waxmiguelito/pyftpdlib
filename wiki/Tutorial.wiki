@@ -192,8 +192,8 @@ class ftpserver.*AbstractedFS()*
  * *validpath(*_path_*)*
    * Check whether the path belongs to user's home directory. Expected argument is a "real" filesystem path. If path is a symbolic link it is resolved to check its real destination. Pathnames escaping from user's root directory are considered not valid (return `False`).
 ----
-class ftpserver.*CallLater(*_seconds_, _callable_ *[*, `*`_args_ *[*, `**`_kwargs_*]])* _*New in 0.5.0*_
-    Calls a function at a later time. It can be used to asynchronously schedule a call within the polling loop without blocking it. The instance returned is an object that can be used to cancel or reschedule the call.
+class ftpserver.*CallLater(*_seconds_, _target_ *[*, `*`_args_ *[*, `**`_kwargs_*]])* 
+    Calls a function at a later time. It can be used to asynchronously schedule a call within the polling loop without blocking it. The instance returned is an object that can be used to cancel or reschedule the call.  _*New in 0.5.0*_
 
  * *cancelled*
    * Whether the call has been cancelled.
