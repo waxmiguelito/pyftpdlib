@@ -33,7 +33,7 @@ class ftpserver.*DummyAuthorizer()*
     }}}
 
  * *add_user(*_username_, _password_, _homedir_*[*, _perm="elr"_*[*, _msg_login="Login successful."_*[*, _msg_quit="Goodbye."_*]**]**])*
-   * Add a user to the virtual users table.  `AuthorizerError` exceptions raised on error conditions such as insufficient permissions or duplicate usernames.  Optional `perm` argument is a set of letters referencing the user's permissions (see the permission table shown above).  Optional `msg_login` and `msg_quit` arguments can be specified to provide customized response strings when user log-in and quit.  The `perm` argument of the `add_user()` method refers to user's permissions. Every letter is used to indicate that the access rights the current FTP user has over the following specific actions are granted.
+   * Add a user to the virtual users table.  `AuthorizerError` exceptions raised on error conditions such as insufficient permissions or duplicate usernames.  Optional `perm` argument is a set of letters referencing the user's permissions (see the permission table shown below).  Optional `msg_login` and `msg_quit` arguments can be specified to provide customized response strings when user log-in and quit.  The `perm` argument of the `add_user()` method refers to user's permissions. Every letter is used to indicate that the access rights the current FTP user has over the following specific actions are granted.
 
     Read permissions:
       * *"e"* = change directory (CWD command)
@@ -49,6 +49,9 @@ class ftpserver.*DummyAuthorizer()*
  * *add_anonymous(*_homedir_*[*, `**`_kwargs_*])*
    * Add an anonymous user to the virtual users table.  `AuthorizerError` exception raised on error conditions such as insufficient permissions, missing home directory, or duplicate anonymous users.  The keyword arguments in `kwargs` are the same expected by `add_user()` method: `perm`, `msg_login` and `msg_quit`.  The optional _perm_ keyword argument is a string defaulting to `"elr"` referencing "read-only" anonymous user's permission.  Using a "write" value results in a `RuntimeWarning`.
 
+ * *override_perm(*_directory_, _perm_*[*, _recursive=False_*])*
+   * Override permissions for a given directory. _*New in 0.5.0*_
+
  * *validate_authentication(*_username_, _password_*)*
    * Return `True` if the supplied `username` and `password` match the stored credentials.
 
@@ -61,17 +64,6 @@ class ftpserver.*DummyAuthorizer()*
  * *remove_user(*_username_*)*
    * Remove a user from the virtual user table.
 
- * *has_user(*_username_*)*
-   * Whether the `username` exists in the virtual users table.
-
- * *has_perm(*_username_, _perm_, *[*_path=None_*])*
-   * Whether the user has permission over path (an absolute pathname of a file or a directory). Expected `perm` argument is one of the following letters: `"elradfmw"`.
-
- * *get_perms(*_username_*)*
-   * Return the user's permissions.
-
- * *get_home_dir(*_username_*)*
-   * Return the user's home directory.
 ----
 class ftpserver.*FTPHandler(*_conn, server_*)*
 
@@ -192,7 +184,7 @@ class ftpserver.*AbstractedFS()*
  * *validpath(*_path_*)*
    * Check whether the path belongs to user's home directory. Expected argument is a "real" filesystem path. If path is a symbolic link it is resolved to check its real destination. Pathnames escaping from user's root directory are considered not valid (return `False`).
 ----
-class ftpserver.*CallLater(*_seconds_, _target_ *[*, `*`_args_ *[*, `**`_kwargs_*]])* 
+class ftpserver.*CallLater(*_seconds_, _target_ *[*, `*`_args_ *[*, `**`_kwargs_*]])*
     Calls a function at a later time. It can be used to asynchronously schedule a call within the polling loop without blocking it. The instance returned is an object that can be used to cancel or reschedule the call.  _*New in 0.5.0*_
 
  * *cancelled*
