@@ -6,6 +6,7 @@
 
  * ~~Provide configurable idle timeouts to disconnect clients after a long time of inactivity.~~
  * ~~Minimize the risk of brute force password guessing by imposing a delay before replying to invalid credentials.~~
+ * ~~Adds to the DummyAuthorizer the possibility to create permission overriding for directories (e.g. define a user which does not have write permission except for one sub-directory in FTP root).~~
 
 == 0.4.0 _(current release)_ ==
 
