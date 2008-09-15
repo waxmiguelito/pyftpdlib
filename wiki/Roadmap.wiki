@@ -2,6 +2,13 @@
 #labels Featured,SortOrder-6
 = Releases roadmap =
 
+== Tasks to accomplish == 
+
+ * Add SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
+ * Add Unicode support including _LANG_ command as defined in [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
+ * Add the possibility to run the server in stand alone mode via command line parameters and/or configuration file.
+ * Include a graphical Tk-based ftp server into demo directory.
+
 == 0.5.0 _(upcoming)_ ==
 
  * ~~Provide configurable idle timeouts to disconnect clients after a long time of inactivity.~~
@@ -23,7 +30,6 @@
 
 == 0.2.0 _(released)_ ==
 
-Major enhancements:
  * ~~Support for FXP, site-to-site transfers.~~
  * ~~NAT/Firewall support with PASV (passive) mode connections.~~
  * ~~Configurable range of ports to use for passive data transfers.~~
@@ -31,17 +37,9 @@ Major enhancements:
  * ~~Maximum connections limit.~~
  * ~~Per-source-IP limits.~~
  * ~~Maximum login attempts limit.~~
-
-RFCs enhancements:
- * ~~Understand also TYPE AN and TYPE L8 commands.~~
  * ~~Change account when USER is provided a second time after authenticating.~~
- * ~~Be compliant with STOU format output as defined in [http://www.faqs.org/rfcs/rfc1123.html RFC 1123].~~
  * ~~Accept HELP command arguments.~~
- * ~~Return directory listing over the command channel when STAT is called with an argument.~~
-
-Security enhancements:
- * ~~Stop buffering when extremely long lines are received.~~
- * ~~Rejecting data connection when a privileged port is specified on PORT command.~~
+ * ~~Implement directory listing over the command channel for STAT command provided with argument.~~
 
 == 0.1.1 _(released)_==
 
@@ -51,15 +49,3 @@ Security enhancements:
 == 0.1.0 _(released)_ ==
 
  * ~~Create an asynchronous FTP server library compliant with [http://www.faqs.org/rfcs/rfc959.html RFC 959].~~
-
-= Proposals for future =
-
-_(?) == considering_
-
- * SSL / TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
- * Support for _LANG_ command as defined in [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
- * Include a graphical Tk-based ftp server into demo directory.
- * _(?)_ Switch from asyncore to Twisted. *_NEW_*
- * _(?)_ Include idle-timeout capabilities. *_NEW_*
- * _(?)_ Add bandwidth throttling capabilities. *_NEW_*
- * Add the possibility to run the server in stand alone mode via command line parameters and/or configuration file. *_NEW_*
