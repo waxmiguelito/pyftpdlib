@@ -54,17 +54,19 @@ If you are not new to Python you probably don't need that, otherwise follow the 
 
 === 2.3 - Which one is recommended? ===
 
-Python *2.4* or *2.5* because of the newer `collection.deque` object which provides better performances for file transfers.
+Python *2.4* or higher because of the newer `collection.deque` object which provides better performances for file transfers.
 
 === 2.4 - What about Python 3.x? ===
 
-Python 3.0 is still in beta version thus not yet covered.
+Python 3.0 is still in beta version thus not yet covered. A porting of pyftpdlib to Python 3k is in plan, anyway.
 
 === 2.5 - On which platforms can pyftpdlib be used? ===
 
-pyftpdlib should work on any platform where _select()_ or _poll()_ system calls are available.
-The development team has mainly tested it under various *Linux*, *Windows* and *OS X* systems. A [http://www.freshports.org/ftp/py-pyftpdlib/ port for FreeBSD] systems is also available and maintained by Li-Wen Hsu <lwhsu@freebsd.org>.
-Other Python implementation like [http://pythonce.sourceforge.net/ PythonCE] are known to work with pyftpdlib.
+pyftpdlib should work on any platform where *_select()_* or *_poll()_* system calls are available and on any Python implementation which refers to *CPython 2.3* or superior (e.g CPython 2.6 or PythonCE 2.5).
+The development team has mainly tested it under various *Linux*, *Windows*, *OS X* and *FreeBSD* systems. 
+For FreeBSD is also available a [http://www.freshports.org/ftp/py-pyftpdlib/ pre-compiled package] maintained by Li-Wen Hsu <lwhsu@freebsd.org>.
+Other Python implementation like *[http://pythonce.sourceforge.net/ PythonCE]* are known to work with pyftpdlib and every new version is usually tested against it.
+pyftpdlib currently does not work on *[http://www.jython.org/ Jython]* since the latest Jython release refers to CPython 2.2.x serie.
 
 = 3.0 - Usage =
 
@@ -78,7 +80,7 @@ Just override and modify `banner` attribute of `FTPHandler` class.
 
 === 3.3 - Can control upload/download ratios? ===
 
-Yes. [http://pyftpdlib.googlecode.com/svn/trunk/demo/throttled_ftpd.py throttled_ftpd.py] script included in the demo directory provides an hack around asyncore to implement bandwidth throttling capabilities.
+Yes. [http://pyftpdlib.googlecode.com/svn/trunk/demo/throttled_ftpd.py throttled_ftpd.py] script included in the demo directory implements bandwidth throttling capabilities for both upload and download.
 
 === 3.4 - Are there ways to limit connections? ===
 
@@ -142,11 +144,11 @@ Yes. By using the proper system dependent authorizer pyftpdlib can look into the
 Starting from version 0.4.0 the `DummyAuthorizer` class provides two new methods: `impersonate_user()` and `terminate_impersonation()`.
 System dependent authorizers subclassing the dummy authorizer can assume the id of real users by overriding them as necessary.
 Every time the FTP server is going to access the filesystem (e.g. for creating or renaming a file) it will temporarily impersonate the currently logged on user, execute the filesystem call and then switch back to the user who originally started the server.
-Example UNIX and Windows FTP servers contained in the [http://code.google.com/p/pyftpdlib/source/browse/tags/release-0.4.0/demo/ demo directory] implement both real user impersonation and authentication against the system users database.
+Example UNIX and Windows FTP servers contained in the [http://code.google.com/p/pyftpdlib/source/browse/#svn/trunk/demo demo directory] implement both real user impersonation and authentication against the system users database.
 
 === 4.5 - SSL/TLS support ===
 
 SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2228.html RFC-2228].
 There is no official support for SSL/TLS within the current code tree.
-Anyway future Python 2.6 release should grant full SSL support so we hope to implement the feature when 2.6 will be out.
-Contributors willing to help add support for these protocols are greatly appreciated.
+The new Python 2.6 release finally grants full SSL support so we hope we'll be able to implement the feature.
+Contributors willing to to provide a patch are greatly appreciated.
