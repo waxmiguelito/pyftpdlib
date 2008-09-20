@@ -4,18 +4,23 @@
 
 == Tasks to accomplish == 
 
- * Add SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
- * Add Unicode support including _LANG_ command as defined in [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
  * Add the possibility to run the server in stand alone mode via command line parameters and/or configuration file.
  * Include a graphical Tk-based ftp server into demo directory.
+ * Add Unicode support including _LANG_ command as defined in [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
+ * _(?)_ Split classes into different files. _*NEW*_
 
-== 0.5.0 _(upcoming)_ ==
+== 0.6.0 _(in development)_ ==
+
+ * Add SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
+ * Python 3K porting. _*NEW*_
+
+== 0.5.0 _(current release)_ ==
 
  * ~~Provide configurable idle timeouts to disconnect clients after a long time of inactivity.~~
  * ~~Minimize the risk of brute force password guessing by imposing a delay before replying to invalid credentials.~~
  * ~~Adds to the DummyAuthorizer the possibility to create permission overriding for directories (e.g. define a user which does not have write permission except for one sub-directory in FTP root).~~
 
-== 0.4.0 _(current release)_ ==
+== 0.4.0 _(released)_ ==
 
  * ~~Assume the id of real users when using system dependent authorizers.~~
  * ~~Add IPv6 support including _EPRT & EPSV_ commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].~~
