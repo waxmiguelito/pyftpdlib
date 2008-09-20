@@ -130,7 +130,7 @@ Provides several configuration and implementation suggestions to mitigate some s
 || FTP bounce protection || SHOULD || YES || 0.2.0 || Reject PORT if IP address specified in it does not match client IP address. Drop the incoming (PASV) data connection for the same reason. || Configurable. ||
 || Restrict PASV/PORT to non privileged ports || SHOULD || YES || 0.2.0 || Reject connections to privileged ports. || Configurable. ||
 || Brute force protection (1) || SHOULD || YES || 0.1.0 || Disconnect client after a certain number (3 or 5) of wrong authentications. || Configurable. ||
-|| Brute force protection (2) || SHOULD || NO || --- || Impose a 5 second delay before replying to an invalid "PASS" command to diminish the efficiency of a brute force attack.  || Feature not implemented because asyncore does not provide such functionality natively. A switch to Twisted framework would solve this. ||
+|| Brute force protection (2) || SHOULD || YES || --- || Impose a 5 second delay before replying to an invalid "PASS" command to diminish the efficiency of a brute force attack.  || New in 0.5.0  ||
 || Per-source-IP limit || SHOULD || YES || 0.2.0 || Limit the total number of per-ip control connections to avoid parallel brute-force attack attempts. || Configurable. ||
 || Do not reject wrong usernames || SHOULD || YES || 0.1.0 || Always return 331 to the USER command to prevent client from determining valid usernames on the server. || ||
 || Port stealing protection || SHOULD || YES || 0.1.1 || Use random-assigned local ports for data connections.  || ||
