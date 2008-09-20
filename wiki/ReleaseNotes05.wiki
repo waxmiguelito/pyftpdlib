@@ -6,31 +6,22 @@
 == Major enhancements ==
 
  * Issue #72: pyftpdlib now provides configurable idle timeouts to disconnect client after a long time of inactivity.
-
  * Issue #73: impose a delay before replying for invalid credentials to minimize the risk of brute force password guessing.
-
  * Issue #74: it is now possible to define permission exceptions for certain directories (e.g. creating a user which does not have write permission except for one sub-directory in FTP root).
-
  * Improved bandwidth throttling capabilities of [http://code.google.com/p/pyftpdlib/source/browse/tags/release-0.5.0/demo/throttled_ftpd.py demo/throttled_ftpd.py] script by having used the new `CallLater` class which drastically reduces the number of calls to time.time().
 
 == Bugfixes ==
 
  * Issue #62: some unit tests were failing on dual core machines.
-
  * Issue #71: socket handles are leaked when a data transfer is in progress and user QUITs.
-
  * Issue #75: orphaned file was left behind in case STOU failed for insufficient user permissions.
-
  * Issue #77: incorrect OOB data management on FreeBSD.
 
 == API changes since 0.4.0 ==
 
  * `FTPHandler`, `DTPHandler`, `PassiveDTP` and `ActiveDTP` classes gained a new `timeout` class attribute.
-
  * `DummyAuthorizer` class gained a new `override_perm` method.
-
  * A new class called `CallLater` has been added.
-
  * `AbstractedFS.get_stat_dir` method has been removed.
 
 == Migration notes ==
