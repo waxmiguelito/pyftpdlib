@@ -104,39 +104,13 @@ class ftpserver.*DTPHandler(*_sock_obj, cmd_channel_*)*
 
     This class handles the server-data-transfer-process (server-DTP, see [http://www.faqs.org/rfcs/rfc959.html RFC-959]) managing all transfer operations regarding the data channel.
 
-    `sock_obj` is the underlying socket object instance of the newly established connection, `cmd_channel` is the `FTPHandler` class instance.  Unless you want to add extra functionalities like bandwidth throttling you shouldn't be interested in putting hands on this class.
+    `sock_obj` is the underlying socket object instance of the newly established connection, `cmd_channel` is the `FTPHandler` class instance.  Aside from `timeout` class attribute and/or unless you want to add extra functionalities like bandwidth throttling you shouldn't be interested in putting hands on this class.
 
  * *timeout*
    * The timeout which roughly is the maximum time we permit data transfers to stall for with no progress. If the timeout triggers, the remote client will be kicked off. _*New in 5.0*_
 
- * *cmd_channel*
-   * The command channel class instance.
-
- * *file_obj*
-   * The file transferred (if any).
-
- * *receive*
-   * `True` if channel is used for receiving data.
-
-
-
- * *transfer_finished*
-   * `True` if transfer completed successfully.
-
  * *get_transmitted_bytes()*
    * Return the number of transmitted bytes.
-
- * *transfer_in_progress()*
-   * Return `True` if a transfer is in progress.
-
- * *enable_receiving(*_type_*)*
-   * Enable receiving of data over the channel.  Depending on the `type` currently in use it creates an appropriate wrapper for the incoming data.
-
- * *push(*_data_*)*
-   * Push a bufferable _data_ object (e.g. a string) onto the deque and initiate send.
-
- * *push_with_producer(*_producer_*)*
-   * Push data using a `producer` and initiate send.
 ----
 class ftpserver.*FTPServer(*_address, handler_*)*
 
