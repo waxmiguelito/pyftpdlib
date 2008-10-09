@@ -40,6 +40,12 @@ Aksy is a Python module to control S5000/S6000, Z4/Z8 and MPC4000 Akai sampler m
 
 http://walco.n--tree.net/projects/aksy/
 
+== Shareme ==
+
+Ever needed to share a directory between two computers? Usually this is done using NFS, FTP or Samba, which could be a pain to setup when you just want to move some files around.
+[http://bbs.archlinux.org/viewtopic.php?pid=431474 Shareme] is a small FTP server that, without configuration files or manuals to learn, will publish your directory, and users can download from it and upload files and directory.
+Just open a shell and run `shareme -d ~/incoming/` ...and that's it!
+
 == EasyFTPd ==
 
 An end-user UNIX FTP server with focus on simplicity.  It basically provides a configuration file interface over pyftpdlib to easily set up an FTP daemon.
