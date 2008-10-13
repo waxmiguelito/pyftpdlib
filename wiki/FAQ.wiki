@@ -54,7 +54,7 @@ If you are not new to Python you probably don't need that, otherwise follow the 
 
 === 2.3 - Which one is recommended? ===
 
-Python *2.4* or higher because of the newer `collection.deque` object which provides better performances for file transfers.
+Python *2.6* which provides a faster and cleaner asyncore implementation.
 
 === 2.4 - What about Python 3.x? ===
 
