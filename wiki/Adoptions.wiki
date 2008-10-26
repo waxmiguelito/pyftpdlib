@@ -7,6 +7,15 @@ Here comes a list of softwares and systems using pyftpdlib.
 In case you want to add your software to such list add a comment below.
 Please help us in keeping such list updated.
 
+== Python for OpenVMS ==
+
+http://mvb.saic.com/images/vms_shark_hp.png
+
+[http://h71000.www7.hp.com/index.html?jumpid=/go/openvms OpenVMS] is an operating system that runs on the [http://en.wikipedia.org/wiki/VAX VAX] and [http://en.wikipedia.org/wiki/DEC_Alpha Alpha] families of computers, now owned by [http://en.wikipedia.org/wiki/Hewlett-Packard Hewlett-Packard].
+[http://www.vmspython.org/ Python for OpenVMS] is a porting of the original cPython interpreter that runs on OpenVMS platforms which recently included pyftpdlib in the list of packages installed by default.
+
+http://www.vmspython.org/DownloadAndInstallationPython
+
 == Far Manager ==
 
 http://www.farmanager.com/img/title_light.png
