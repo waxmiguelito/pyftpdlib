@@ -1,6 +1,10 @@
 #summary A paper showing pyftpdlib compliance against FTP protocol standard RFCs.
 #labels Phase-Design,SortOrder-4
 
+= Table of contents =
+
+<wiki:toc/>
+
 = Introduction =
 
 This page lists current standard Internet RFCs that define the FTP protocol.
@@ -11,15 +15,14 @@ Future plans for pyftpdlib include the gradual implementation of other standards
 
 Some of the features like ACCT, SMNT or OPTS commands will never be implemented deliberately. Other features described in more recent RFCs like the TLS/SSL support for securing FTP are taken in great consideration and should be implemented in future (Python 2.6 should grant a full SSL support).
 
-= [http://www.ietf.org/rfc/rfc959.txt RFC-959] =
+= RFC-959 - File Transfer Protocol =
 
 The base specification of the current File Transfer Protocol.
  * Issued: October 1985
  * Status: STANDARD
  * Obsoletes: [http://www.ietf.org/rfc/rfc765.txt RFC-765]
  * Updated by: [http://www.ietf.org/rfc/rfc1123.txt RFC-1123], [http://www.ietf.org/rfc/rfc2228.txt RFC-2228], [http://www.ietf.org/rfc/rfc2640.txt RFC-2640], [http://www.ietf.org/rfc/rfc2773.txt RFC-2773]
-
-== Commands ==
+ * [http://www.ietf.org/rfc/rfc959.txt Link]
 
 || *Command* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || ABOR || MAY || YES || 0.1.0 || Abort data transfer. || ||
@@ -58,18 +61,19 @@ The base specification of the current File Transfer Protocol.
 
 = =
 
-= [http://www.ietf.org/rfc/rfc1123.txt RFC-1123] =
+= RFC-1123 - Requirements for Internet Hosts =
 
 Extends and clarifies some aspects of [http://www.ietf.org/rfc/rfc959.txt RFC-959]. Introduces new response codes 554 and 555.
 
  * Issued: October 1989
  * Status: STANDARD
+ * [http://www.ietf.org/rfc/rfc959.txt Link]
 
 || *Feature* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || TYPE L 8 as synonym of TYPE I || SHOULD || YES || 0.2.0 || TYPE L 8 command should be treated as synonym of TYPE I ("IMAGE" or binary type). || ||
 || PASV is per-transfer || MUST || YES || 0.1.0 || PASV must be used for a unique transfer. || If PASV is issued twice data-channel is restarted. ||
 || Implied type for LIST and NLST || SHOULD || YES || 0.1.0 || The data returned by a LIST or NLST command SHOULD use an implied TYPE AN. || ||
-|| STOU format output || MUST || YES || 0.2.0 || Defined the exact format output which STOU response must respect ("125/150 FILE <filename>"). || ||
+|| STOU format output || MUST || YES || 0.2.0 || Defined the exact format output which STOU response must respect ("125/150 FILE filename"). || ||
 || Avoid 250 response type on STOU || MUST || YES || 0.2.0 || The 250 positive response indicated in [http://www.ietf.org/rfc/rfc959.txt RFC-959] has been declared incorrect in [http://www.ietf.org/rfc/rfc1123.txt RFC-1123] which requires 125/150 instead. || ||
 || Handle "Experimental" directory cmds || SHOULD || YES || 0.1.0 || The server should support XCUP, XCWD, XMKD, XPWD and XRMD obsoleted commands and treat them as synonyms for CDUP, CWD, MKD, LIST and RMD commands. || ||
 || Idle timeout || SHOULD || YES || 0.5.0 || A Server-FTP process SHOULD have a configurable  idle timeout of 5 minutes, which will terminate the process and close the control connection if the server is inactive (i.e., no command or data transfer in progress) for a long period of time. ||  ||
@@ -78,12 +82,13 @@ Extends and clarifies some aspects of [http://www.ietf.org/rfc/rfc959.txt RFC-95
 
 = =
 
-= [http://www.ietf.org/rfc/rfc2228.txt RFC-2228] =
+= RFC-2228 - FTP Security Extensions =
 
 Specifies several security extensions to the base FTP protocol defined in [http://www.ietf.org/rfc/rfc959.txt RFC-959]. New commands: AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF, and ENC. New response codes: 232, 234, 235, 334, 335, 336, 431, 533, 534, 535, 536, 537, 631, 632, and 633.
  * Issued: October 1997
  * Status: PROPOSED STANDARD
  * Updates: [http://www.ietf.org/rfc/rfc959.txt RFC-959]
+ * [http://www.ietf.org/rfc/rfc2228.txt Link]
 
 || *Command* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || AUTH || SHOULD || NO || --- || Authentication/Security Mechanism. || Waiting for Python 2.6 which should grant full SSL support. ||
@@ -96,11 +101,12 @@ Specifies several security extensions to the base FTP protocol defined in [http:
 
 = =
 
-= [http://www.ietf.org/rfc/rfc2389.txt RFC-2389] =
+= RFC-2389 - Feature negotiation mechanism for the File Transfer Protocol =
 
 Introduces the new FEAT and OPTS commands.
  * Issued: August 1998
  * Status: PROPOSED STANDARD
+ * [http://www.ietf.org/rfc/rfc2389.txt Link]
 
 || *Command* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || FEAT || SHOULD || YES || 0.3.0 || List new supported commands subsequent [http://www.ietf.org/rfc/rfc959.txt RFC-959] || ||
@@ -108,11 +114,12 @@ Introduces the new FEAT and OPTS commands.
 
 = =
 
-= [http://www.ietf.org/rfc/rfc2428.txt RFC-2428] =
+= RFC-2428 - FTP Extensions for IPv6 and NATs =
 
 Introduces the new commands EPRT and EPSV extending FTP to enable its use over various network protocols, and the new response codes 522 and 229.
  * Issued: September 1998
  * Status: PROPOSED STANDARD
+ * [http://www.ietf.org/rfc/rfc2428.txt Link]
 
 || *Command* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || EPRT || MAY || YES || 0.4.0 || Set active data connection over IPv4 or IPv6 || ||
@@ -120,11 +127,12 @@ Introduces the new commands EPRT and EPSV extending FTP to enable its use over v
 
 = =
 
-= [http://www.ietf.org/rfc/rfc2577.txt RFC-2577] =
+= RFC-2577 - FTP Security Considerations =
 
 Provides several configuration and implementation suggestions to mitigate some security concerns, including limiting failed password attempts and third-party "proxy FTP" transfers, which can be used in "bounce attacks".
  * Issued: May 1999
  * Status: INFORMATIONAL
+ * [http://www.ietf.org/rfc/rfc2577.txt Link]
 
 || *Feature* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || FTP bounce protection || SHOULD || YES || 0.2.0 || Reject PORT if IP address specified in it does not match client IP address. Drop the incoming (PASV) data connection for the same reason. || Configurable. ||
@@ -137,12 +145,13 @@ Provides several configuration and implementation suggestions to mitigate some s
 
 = =
 
-= [http://www.ietf.org/rfc/rfc2640.txt RFC-2640] =
+= RFC-2640 - Internationalization of the File Transfer Protocol =
 
 Extends the FTP protocol to support multiple character sets, in addition to the original 7-bit ASCII. Introduces the new LANG command.
  * Issued: July 1999
  * Status: PROPOSED STANDARD
  * Updates: [http://www.ietf.org/rfc/rfc959.txt RFC-959]
+ * [http://www.ietf.org/rfc/rfc2640.txt Link]
 
 || *Feature* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || LANG command || MAY || NO || --- || Set current response's language. || ||
@@ -150,12 +159,13 @@ Extends the FTP protocol to support multiple character sets, in addition to the 
 
 = =
 
-= [http://www.ietf.org/rfc/rfc3659.txt RFC-3659] =
+= RFC-3659 - Extensions to FTP =
 
 Four new commands are added: "SIZE", "MDTM", "MLST", and "MLSD".  The existing command "REST" is modified.
  * Issued: March 2007
  * Status: PROPOSED STANDARD
  * Updates: [http://www.ietf.org/rfc/rfc959.txt RFC-959]
+ * [http://www.ietf.org/rfc/rfc3659.txt Link]
 
 || *Feature* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || MDTM command || MUST || YES || 0.1.0 || Get file's last modification time || ||

@@ -1,9 +1,14 @@
 #summary Tutorial containing API reference and example usages
 #labels SortOrder-1,Featured
 
+= Table of contents =
+
+<wiki:toc/>
+
 = 1.0 - Introduction =
 
-pyftpdlib implements the server side of the FTP protocol as defined in [http://www.faqs.org/rfcs/rfc959.html RFC-959].  pyftpdlib consist of a single file, *ftpserver.py*, which contains a hierarchy of classes, functions and variables which implement the backend functionality for the ftpd.  This document is intended to serve as a simple *API reference* of most important classes and functions.  Also included is an introduction to *customization* through the use of some example scripts.
+pyftpdlib implements the server side of the FTP protocol as defined in [http://www.faqs.org/rfcs/rfc959.html RFC-959].  pyftpdlib consist of a single file, [http://code.google.com/p/pyftpdlib/source/browse/trunk/pyftpdlib/ftpserver.py ftpserver.py], which contains a hierarchy of classes, functions and variables which implement the backend functionality for the ftpd.  This document is intended to serve as a simple [http://code.google.com/p/billiejoex/wiki/Tutorial#2.0_-_API_reference API reference] of most important classes and functions.  Also included is an introduction to [http://code.google.com/p/billiejoex/wiki/Tutorial#3.0_-_Customizing_your_FTP_server customization] through the use of some example scripts.
+Some of them are included in [http://code.google.com/p/pyftpdlib/source/browse/#svn/trunk/demo demo] directory of pyftpdlib source distribution.
 
 If you have written a customized configuration you think could be useful to the community feel free to share it by adding a comment at the end of this document.
 
@@ -173,14 +178,13 @@ class ftpserver.*CallLater(*_seconds_, _target_ *[*, `*`_args_ *[*, `**`_kwargs_
  * *cancel()*
    * Unschedule the call.
 
-
 = =
 
 = 3.0 - Customizing your FTP server =
 
-Below is a set of example scripts showing some of the possible customizations that can be done with pyftpdlib.  Some of them are included in demo directory of pyftpdlib source distribution.
+Below is a set of example scripts showing some of the possible customizations that can be done with pyftpdlib.  Some of them are included in [http://code.google.com/p/pyftpdlib/source/browse/#svn/trunk/demo demo] directory of pyftpdlib source distribution.
 
-=== 3.1 - Building a Base FTP server ===
+== 3.1 - Building a Base FTP server ==
 
 The script below is a basic configuration, and it's probably the best starting point for understanding how things work. It uses the base `DummyAuthorizer` for adding a bunch of "virtual" users.
 
@@ -235,7 +239,7 @@ if __name__ == "__main__":
 }}}
 
 
-=== 3.2 - Logging management ===
+== 3.2 - Logging management ==
 
 As mentioned, ftpserver.py comes with 3 different functions intended for a separate logging system: `log()`, `logline()` and `logerror()`.
 Let's suppose you don't want to print FTPd messages on screen but you want to write them into different files: _"/var/log/ftpd.log"_ will be main log file, _"/var/log/ftpd.lines.log"_ the one where you'll want to store commands and responses passing through the control connection.
@@ -275,7 +279,7 @@ if __name__ == "__main__":
 }}}
 
 
-=== 3.3 - Storing passwords as hash digests ===
+== 3.3 - Storing passwords as hash digests ==
 
 Using FTP server library with the default `DummyAuthorizer` means that password will be stored in clear-text. An end-user ftpd using the default dummy authorizer would typically require a configuration file for authenticating users and their passwords but storing clear-text passwords is of course undesirable.
 
@@ -321,7 +325,7 @@ if __name__ == "__main__":
 }}}
 
 
-=== 3.4 - Unix FTP Server ===
+== 3.4 - Unix FTP Server ==
 
 If you're running a Unix system you may want to configure your ftpd to include support for "real" users existing on the system.
 
@@ -424,7 +428,7 @@ if __name__ == "__main__":
 }}}
 
 
-=== 3.5 - Windows NT FTP Server ===
+== 3.5 - Windows NT FTP Server ==
 
 The following code shows how to implement a basic authorizer for a Windows NT workstation to authenticate against existing Windows user accounts. This code uses Mark Hammond's [http://starship.python.net/crew/mhammond/win32/ pywin32] extension which is required to be installed previously.
 

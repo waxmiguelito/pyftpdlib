@@ -1,17 +1,29 @@
 #summary A list of softwares and systems using pyftpdlib.
 #labels SortOrder-7
 
+= Table of contents =
+
+<wiki:toc/>
+
+----
+
 = Introduction =
 
 Here comes a list of softwares and systems using pyftpdlib.
 In case you want to add your software to such list add a comment below.
 Please help us in keeping such list updated.
 
+----
+
+= Softwares =
+
+Following lists the softwares adopting pyftpdlib.
+
 == Python for OpenVMS ==
 
 http://mvb.saic.com/images/vms_shark_hp.png
 
-[http://h71000.www7.hp.com/index.html?jumpid=/go/openvms OpenVMS] is an operating system that runs on the [http://en.wikipedia.org/wiki/VAX VAX] and [http://en.wikipedia.org/wiki/DEC_Alpha Alpha] families of computers, now owned by [http://en.wikipedia.org/wiki/Hewlett-Packard Hewlett-Packard].
+[http://h71000.www7.hp.com/index.html?jumpid==/go/openvms OpenVMS] is an operating system that runs on the [http://en.wikipedia.org/wiki/VAX VAX] and [http://en.wikipedia.org/wiki/DEC_Alpha Alpha] families of computers, now owned by [http://en.wikipedia.org/wiki/Hewlett-Packard Hewlett-Packard].
 [http://www.vmspython.org/ vmspython] is a porting of the original cPython interpreter that runs on OpenVMS platforms.
 pyftpdlib recently became a standard library module installed by default on every new vmspython installation.
 
@@ -21,9 +33,9 @@ http://www.vmspython.org/DownloadAndInstallationPython
 
 http://www.farmanager.com/img/title_light.png
 
-[http://farmanager.com/ Far Manager] is a program for managing files and archives in Windows operating systems. 
+[http://farmanager.com/ Far Manager] is a program for managing files and archives in Windows operating systems.
 
-Far Manager recently included pyftpdlib as [http://enforum.farmanager.com/viewtopic.php?t=640 plug-in] for making the current directory accessible through FTP. Convenient for exchanging files with virtual machines. 
+Far Manager recently included pyftpdlib as [http://enforum.farmanager.com/viewtopic.php?t==640 plug-in] for making the current directory accessible through FTP. Convenient for exchanging files with virtual machines.
 
 http://farmanager.com/
 
@@ -31,7 +43,7 @@ http://farmanager.com/
 
 http://pages.google.com/-/images/logo-labs.gif
 
-[http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html gpftpd] is a pyftpdlib based FTP server you can connect to using your Google e-mail account. 
+[http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html gpftpd] is a pyftpdlib based FTP server you can connect to using your Google e-mail account.
 It redirects you to all files hosted on your [http://pages.google.com Google Pages] account giving you access to download them and upload new ones.
 
 http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html
@@ -44,7 +56,7 @@ http://trac.manent-backup.com/chrome/site/manent-logo.png
 
 http://trac.manent-backup.com/
 
-== Aksy == 
+== Aksy ==
 
 Aksy is a Python module to control S5000/S6000, Z4/Z8 and MPC4000 Akai sampler models with System Exclusive over USB.  Aksy introduced the possibility to mount samplers as web folders and manage files on the sampler via FTP.
 
@@ -53,8 +65,10 @@ http://walco.n--tree.net/projects/aksy/
 == Shareme ==
 
 Ever needed to share a directory between two computers? Usually this is done using NFS, FTP or Samba, which could be a pain to setup when you just want to move some files around.
-[http://bbs.archlinux.org/viewtopic.php?pid=431474 Shareme] is a small FTP server that, without configuration files or manuals to learn, will publish your directory, and users can download from it and upload files and directory.
+[http://bbs.archlinux.org/viewtopic.php?pid==431474 Shareme] is a small FTP server that, without configuration files or manuals to learn, will publish your directory, and users can download from it and upload files and directory.
 Just open a shell and run `shareme -d ~/incoming/` ...and that's it!
+
+http://bbs.archlinux.org/viewtopic.php?pid==431474
 
 == EasyFTPd ==
 
@@ -62,17 +76,19 @@ An end-user UNIX FTP server with focus on simplicity.  It basically provides a c
 
 http://code.google.com/p/easyftpd/
 
+----
+
 = Packages =
 
 Following lists the packages of pyftpdlib from various platforms.
 
-== FreeBSD == 
+== FreeBSD ==
 
 http://www.websdotcom.net/images/beastie.gif
 
 [http://www.freebsd.org/ FreeBSD] is an advanced operating system for x86 compatible architectures. It is derived from BSD, the version of UNIX developed at the University of California, Berkeley.
 The [http://www.freebsd.org/ports/ FreeBSD Ports Collection] offers a simple way for users and administrators to install applications.
 
-FreeBSD Ports team created a [http://www.freshports.org/ftp/py-pyftpdlib/ pyftpdlib port] to make users can easily install and use it on FreeBSD systems. [http://www.freshports.org Freshports] is a news site about FreeBSD's ports. Latest news about "py-pyftpdlib" port can be found here: 
+FreeBSD Ports team created a [http://www.freshports.org/ftp/py-pyftpdlib/ pyftpdlib port] to make users can easily install and use it on FreeBSD systems. [http://www.freshports.org Freshports] is a news site about FreeBSD's ports. Latest news about "py-pyftpdlib" port can be found here:
 
 http://www.freshports.org/ftp/py-pyftpdlib/
