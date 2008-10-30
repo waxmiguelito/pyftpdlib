@@ -68,7 +68,7 @@ pyftpdlib should work on any platform where *_select()_* or *_poll()_* system ca
 The development team has mainly tested it under various *Linux*, *Windows*, *OS X* and *FreeBSD* systems.
 For FreeBSD is also available a [http://www.freshports.org/ftp/py-pyftpdlib/ pre-compiled package] maintained by Li-Wen Hsu <lwhsu@freebsd.org>.
 Other Python implementation like *[http://pythonce.sourceforge.net/ PythonCE]* are known to work with pyftpdlib and every new version is usually tested against it.
-pyftpdlib currently does not work on *[http://www.jython.org/ Jython]* since the latest Jython release refers to CPython 2.2.x serie.
+pyftpdlib currently does not work on *[http://www.jython.org/ Jython]* since the latest Jython release refers to CPython 2.2.x serie. The best way to know whether pyftpdlib works on your platform is installing it and running its test suite.
 
 = 3.0 - Usage =
 
