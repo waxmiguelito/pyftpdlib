@@ -9,11 +9,11 @@
 
 This page lists current standard Internet RFCs that define the FTP protocol.
 
-pyftpdlib conforms to the FTP protocol standard as defined in [http://www.ietf.org/rfc/rfc959.txt RFC-959] and [http://www.ietf.org/rfc/rfc1123.txt RFC-1123] implementing all the fundamental commands and features described in them. It also implements some more recent features such as OPTS and FEAT commands defined in [http://www.ietf.org/rfc/rfc2389.txt RFC-2398], IPv6 support as defined in [ftp://ftp.rfc-editor.org/in-notes/rfc2428.txt RFC-2428] and all the new commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].
+pyftpdlib conforms to the FTP protocol standard as defined in [http://www.ietf.org/rfc/rfc959.txt RFC-959] and [http://www.ietf.org/rfc/rfc1123.txt RFC-1123] implementing all the fundamental commands and features described in them. It also implements some more recent features such as OPTS and FEAT commands [http://www.ietf.org/rfc/rfc2389.txt RFC-2398], EPRT and EPSV commands covering the IPv6 support [ftp://ftp.rfc-editor.org/in-notes/rfc2428.txt RFC-2428] and MDTM, MLSD, MLST and SIZE commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].
 
 Future plans for pyftpdlib include the gradual implementation of other standards track RFCs.
 
-Some of the features like ACCT, SMNT or OPTS commands will never be implemented deliberately. Other features described in more recent RFCs like the TLS/SSL support for securing FTP are taken in great consideration and should be implemented in future (Python 2.6 should grant a full SSL support).
+Some of the features like ACCT or SMNT commands will never be implemented deliberately. Other features described in more recent RFCs like the TLS/SSL support for securing FTP are taken in great consideration and should be implemented in future (Python 2.6 should grant a full SSL support).
 
 = RFC-959 - File Transfer Protocol =
 
