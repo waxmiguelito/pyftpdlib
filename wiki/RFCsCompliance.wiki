@@ -67,7 +67,7 @@ Extends and clarifies some aspects of [http://www.ietf.org/rfc/rfc959.txt RFC-95
 
  * Issued: October 1989
  * Status: STANDARD
- * [http://www.ietf.org/rfc/rfc959.txt Link]
+ * [http://www.ietf.org/rfc/rfc1123.txt Link]
 
 || *Feature* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
 || TYPE L 8 as synonym of TYPE I || SHOULD || YES || 0.2.0 || TYPE L 8 command should be treated as synonym of TYPE I ("IMAGE" or binary type). || ||
