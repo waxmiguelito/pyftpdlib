@@ -54,7 +54,7 @@ The base specification of the current File Transfer Protocol.
 || STAT || SHOULD || YES || 0.1.0 || Server's status information / File LIST || ||
 || STOR || MUST || YES || 0.1.0 || Store a file (client's upload). || ||
 || STOU || MAY || YES || 0.1.0 || Store a file with a unique name. || ||
-|| STRU || MUST || YES || 0.1.0 || Set file structure (obsolete). || Accept only 'F' (file) type structure by doing a NOOP (no operation). Other structure types (record and page) are obsoleted, system-dependent and thus not implemented. ||
+|| STRU || MUST || YES || 0.1.0 || Set file structure. || Supports only File type structure by doing a NOOP (no operation). Other structure types (Record and Page) are not implemented. ||
 || SYST || MUST || YES || 0.1.0 || Get system type. || Always return "UNIX Type: L8" because of the LIST output provided. ||
 || TYPE || MUST || YES || 0.1.0 || Set current type (Binary/ASCII). || Accept only Binary and ASII TYPEs. Other TYPEs such as EBCDIC are obsoleted, system-dependent and thus not implemented. ||
 || USER || MUST || YES || 0.1.0 || Set user. || A new USER command could be entered at any point in order to change the access control flushing any user, password, and account information already supplied and beginning the login sequence again. ||
