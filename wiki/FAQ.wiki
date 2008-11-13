@@ -116,7 +116,7 @@ Since this operation can be quite intensive, both CPU- and memory-wise, pyftpdli
 == 4.2 - ASCII transfers / SIZE command implementation ==
 
 Properly handling the SIZE command when TYPE ASCII is used would require to scan the entire file to perform the ASCII translation logic (file.read().replace(os.linesep, '\r\n')) and then calculating the len of such data which may be different than the actual size of the file on the server.
-Considering that calculating such result could be very resource-intensive it could be easy for a malicious client to try a DoS attack, thus pyftpdlib do not perform the ASCII translation.
+Considering that calculating such result could be very resource-intensive it could be easy for a malicious client to try a DoS attack, thus pyftpdlib rejects SIZE when the current TYPE is ASCII.
 However, clients in general should not be resuming downloads in ASCII mode.  Resuming downloads in binary mode is the recommended way as specified in [http://www.faqs.org/rfcs/rfc3659.html RFC-3659].
 
 == 4.3.1 - IPv6 support ==
