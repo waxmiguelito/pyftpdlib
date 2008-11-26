@@ -114,6 +114,10 @@ class ftpserver.*DTPHandler(*_sock_obj, cmd_channel_*)*
  * *timeout*
    * The timeout which roughly is the maximum time we permit data transfers to stall for with no progress. If the timeout triggers, the remote client will be kicked off. _*New in 5.0*_
 
+ * *ac_in_buffer_size*
+ * *ac_out_buffer_size*
+   * The buffer sizes to use when receiving and sending data (both defaulting to `65536`). For LANs you may want this to be fairly large.  Depending on available memory and number of connected clients setting them to a lower value can result in better performances.
+
  * *get_transmitted_bytes()*
    * Return the number of transmitted bytes.
 ----
