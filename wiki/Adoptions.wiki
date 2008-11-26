@@ -13,8 +13,6 @@ Here comes a list of softwares and systems using pyftpdlib.
 In case you want to add your software to such list add a comment below.
 Please help us in keeping such list updated.
 
-----
-
 = Softwares =
 
 Following lists the softwares adopting pyftpdlib.
@@ -29,6 +27,8 @@ pyftpdlib recently became a standard library module installed by default on ever
 
 http://www.vmspython.org/DownloadAndInstallationPython
 
+----
+
 == OpenERP ==
 
 http://openerp.com/templates/tiny/images/openlogo.jpg
@@ -38,6 +38,8 @@ http://openerp.com/templates/tiny/images/openlogo.jpg
 OpenERP recently included pyftpdlib as plug in to serve documents via FTP.
 
 http://openerp.com
+
+----
 
 == Far Manager ==
 
@@ -49,6 +51,8 @@ Far Manager recently included pyftpdlib as [http://enforum.farmanager.com/viewto
 
 http://farmanager.com/
 
+----
+
 == Google Pages FTPd ==
 
 http://pages.google.com/-/images/logo-labs.gif
@@ -58,6 +62,8 @@ It redirects you to all files hosted on your [http://pages.google.com Google Pag
 
 http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html
 
+----
+
 == Manent ==
 
 http://trac.manent-backup.com/chrome/site/manent-logo.png
@@ -66,11 +72,15 @@ http://trac.manent-backup.com/chrome/site/manent-logo.png
 
 http://trac.manent-backup.com/
 
+----
+
 == Aksy ==
 
 Aksy is a Python module to control S5000/S6000, Z4/Z8 and MPC4000 Akai sampler models with System Exclusive over USB.  Aksy introduced the possibility to mount samplers as web folders and manage files on the sampler via FTP.
 
 http://walco.n--tree.net/projects/aksy/
+
+----
 
 == Shareme ==
 
@@ -79,6 +89,8 @@ Ever needed to share a directory between two computers? Usually this is done usi
 Just open a shell and run `shareme -d ~/incoming/` ...and that's it!
 
 http://bbs.archlinux.org/viewtopic.php?pid==431474
+
+----
 
 == EasyFTPd ==
 
