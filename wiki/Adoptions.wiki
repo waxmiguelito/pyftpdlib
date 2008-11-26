@@ -29,6 +29,16 @@ pyftpdlib recently became a standard library module installed by default on ever
 
 http://www.vmspython.org/DownloadAndInstallationPython
 
+== OpenERP ==
+
+http://openerp.com/templates/tiny/images/openlogo.jpg
+
+[http://openerp.com OpenERP] is an Open Source enterprise management software.  It covers and integrates most enterprise needs and processes: accounting, hr, sales, crm, purchase, stock, production, services management, project management, marketing campaign, management by affairs.
+
+OpenERP recently included pyftpdlib as plug in to serve documents via FTP.
+
+http://openerp.com
+
 == Far Manager ==
 
 http://www.farmanager.com/img/title_light.png
