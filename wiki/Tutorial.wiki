@@ -7,7 +7,7 @@
 
 = 1.0 - Introduction =
 
-pyftpdlib implements the server side of the FTP protocol as defined in [http://www.faqs.org/rfcs/rfc959.html RFC-959].  pyftpdlib consist of a single file, [http://code.google.com/p/pyftpdlib/source/browse/trunk/pyftpdlib/ftpserver.py ftpserver.py], which contains a hierarchy of classes, functions and variables which implement the backend functionality for the ftpd.  This document is intended to serve as a simple [http://code.google.com/p/billiejoex/wiki/Tutorial#2.0_-_API_reference API reference] of most important classes and functions.  Also included is an introduction to [http://code.google.com/p/billiejoex/wiki/Tutorial#3.0_-_Customizing_your_FTP_server customization] through the use of some example scripts.
+pyftpdlib implements the server side of the FTP protocol as defined in [http://www.faqs.org/rfcs/rfc959.html RFC-959].  pyftpdlib consist of a single file, [http://code.google.com/p/pyftpdlib/source/browse/trunk/pyftpdlib/ftpserver.py ftpserver.py], which contains a hierarchy of classes, functions and variables which implement the backend functionality for the ftpd. <br> This document is intended to serve as a simple [http://code.google.com/p/billiejoex/wiki/Tutorial#2.0_-_API_reference API reference] of most important classes and functions.  Also included is an introduction to [http://code.google.com/p/billiejoex/wiki/Tutorial#3.0_-_Customizing_your_FTP_server customization] through the use of some example scripts.
 Some of them are included in [http://code.google.com/p/pyftpdlib/source/browse/#svn/trunk/demo demo] directory of pyftpdlib source distribution.
 
 If you have written a customized configuration you think could be useful to the community feel free to share it by adding a comment at the end of this document.
@@ -15,172 +15,136 @@ If you have written a customized configuration you think could be useful to the 
 = 2.0 - API reference =
 
 function ftpserver.*log(*_msg_*)*
-    Log messages intended for the end user.
+  Log messages intended for the end user.
 ----
 function ftpserver.*logline(*_msg_*)*
-    Log commands and responses passing through the command channel.
+  Log commands and responses passing through the command channel.
 ----
 function ftpserver.*logerror(*_msg_*)*
-    Log traceback outputs occurring in case of errors.
+  Log traceback outputs occurring in case of errors.
 ----
 class ftpserver.*AuthorizerError()*
-    Base class for authorizers exceptions.
+  Base class for authorizers exceptions.
 ----
 class ftpserver.*DummyAuthorizer()*
 
-    Basic "dummy" authorizer class, suitable for subclassing to create your own custom authorizers.  An "authorizer" is a class handling authentications and permissions of the FTP server.  It is used inside `FTPHandler` class for verifying user's password, getting users home directory, checking user permissions when a filesystem read/write event occurs and changing user before accessing the filesystem.  `DummyAuthorizer` is the base authorizer, providing a platform independent interface for managing "virtual" FTP users. Typically the first thing you have to do is create an instance of this class and start adding ftp users:
+  Basic "dummy" authorizer class, suitable for subclassing to create your own custom authorizers. An "authorizer" is a class handling authentications and permissions of the FTP server.  It is used inside `FTPHandler` class for verifying user's password, getting users home directory, checking user permissions when a filesystem read/write event occurs and changing user before accessing the filesystem. `DummyAuthorizer` is the base authorizer, providing a platform independent interface for managing "virtual" FTP users.  Typically the first thing you have to do is create an instance of this class and start adding ftp users:
 
-    {{{
+  {{{
 >>> from pyftpdlib import ftpserver
 >>> authorizer = ftpserver.DummyAuthorizer()
 >>> authorizer.add_user('user', 'password', '/home/user', perm='elradfmw')
 >>> authorizer.add_anonymous('/home/nobody')
-    }}}
+  }}}
 
- * *add_user(*_username_, _password_, _homedir_*[*, _perm="elr"_*[*, _msg_login="Login successful."_*[*, _msg_quit="Goodbye."_*]**]**])*
-   * Add a user to the virtual users table.  `AuthorizerError` exceptions raised on error conditions such as insufficient permissions or duplicate usernames.  Optional `perm` argument is a set of letters referencing the user's permissions (see the permission table shown below).  Optional `msg_login` and `msg_quit` arguments can be specified to provide customized response strings when user log-in and quit.  The `perm` argument of the `add_user()` method refers to user's permissions. Every letter is used to indicate that the access rights the current FTP user has over the following specific actions are granted.
+ * *add_user(*_username_, _password_, _homedir_*[*, _perm="elr"_*[*, _msg_login="Login successful."_*[*, _msg_quit="Goodbye."_*]**]**])*      <br>Add a user to the virtual users table.  `AuthorizerError` exceptions raised on error conditions such as insufficient permissions or duplicate usernames.  Optional `perm` argument is a set of letters referencing the user's permissions.  Every letter is used to indicate that the access rights the current FTP user has over the following specific actions are granted.  The available permissions are the following listed below:
 
-    Read permissions:
+  Read permissions:
       * *"e"* = change directory (CWD command)
       * *"l"* = list files (LIST, NLST, MLSD commands)
       * *"r"* = retrieve file from the server (RETR command)
-    Write permissions
+  Write permissions
       * *"a"* = append data to an existing file (APPE command)
       * *"d"* = delete file or directory (DELE, RMD commands)
       * *"f"* = rename file or directory (RNFR, RNTO commands)
       * *"m"* = create directory (MKD command)
       * *"w"* = store a file to the server (STOR, STOU commands)
 
- * *add_anonymous(*_homedir_*[*, `**`_kwargs_*])*
-   * Add an anonymous user to the virtual users table.  `AuthorizerError` exception raised on error conditions such as insufficient permissions, missing home directory, or duplicate anonymous users.  The keyword arguments in `kwargs` are the same expected by `add_user()` method: `perm`, `msg_login` and `msg_quit`.  The optional _perm_ keyword argument is a string defaulting to `"elr"` referencing "read-only" anonymous user's permission.  Using a "write" value results in a `RuntimeWarning`.
+ Optional `msg_login` and `msg_quit` arguments can be specified to provide customized response strings when user log-in and quit.  The `perm` argument of the `add_user()` method refers to user's permissions. Every letter is used to indicate that the access rights the current FTP user has over the following specific actions are granted.
 
- * *override_perm(*_directory_, _perm_*[*, _recursive=False_*])*
-   * Override permissions for a given directory. _*New in 0.5.0*_
+ * *add_anonymous(*_homedir_*[*, `**`_kwargs_*])*<br>Add an anonymous user to the virtual users table.  `AuthorizerError` exception raised on error conditions such as insufficient permissions, missing home directory, or duplicate anonymous users.  The keyword arguments in `kwargs` are the same expected by `add_user()` method: `perm`, `msg_login` and `msg_quit`.  The optional _perm_ keyword argument is a string defaulting to `"elr"` referencing "read-only" anonymous user's permission.  Using a "write" value results in a `RuntimeWarning`.
 
- * *validate_authentication(*_username_, _password_*)*
-   * Return `True` if the supplied `username` and `password` match the stored credentials.
+ * *override_perm(*_directory_, _perm_*[*, _recursive=False_*])*<br>Override permissions for a given directory. _*New in 0.5.0*_
 
- * *impersonate_user(*_username_, _password_*)*
-   * Impersonate another user (noop).  It is always called before accessing the filesystem.  By default it does nothing.  The subclass overriding this method is expected to provide a mechanism to change the current user. _*New in 0.4.0*_
+ * *validate_authentication(*_username_, _password_*)*<br>Return `True` if the supplied `username` and `password` match the stored credentials.
 
- * *terminate_impersonation(*_username_, _password_*)*
-   * Terminate impersonation (noop).  It is always called after having accessed the filesystem.  By default it does nothing.  The subclass overriding this method is expected to provide a mechanism to switch back to the original user. _*New in 0.4.0*_
+ * *impersonate_user(*_username_, _password_*)*<br>Impersonate another user (noop).  It is always called before accessing the filesystem.  By default it does nothing.  The subclass overriding this method is expected to provide a mechanism to change the current user. _*New in 0.4.0*_
 
- * *remove_user(*_username_*)*
-   * Remove a user from the virtual user table.
+ * *terminate_impersonation(*_username_, _password_*)*<br>Terminate impersonation (noop).  It is always called after having accessed the filesystem.  By default it does nothing.  The subclass overriding this method is expected to provide a mechanism to switch back to the original user. _*New in 0.4.0*_
 
+ * *remove_user(*_username_*)*<br>Remove a user from the virtual user table.
 ----
 class ftpserver.*FTPHandler(*_conn, server_*)*
 
-    This class implements the FTP server Protocol Interpreter (see [http://www.faqs.org/rfcs/rfc959.html RFC-959]), handling commands received from the client on the control channel by calling the command's corresponding method (e.g. for received command "MKD pathname", `ftp_MKD()` method is called with `pathname` as the argument).  All relevant session information are stored in instance variables.
-
-    `conn` is the underlying socket object instance of the newly established connection, `server` is the `FTPServer` class instance.  Basic usage simply requires creating an instance of `FTPHandler` class and specify which authorizer instance it will going to use:
+  This class implements the FTP server Protocol Interpreter (see [http://www.faqs.org/rfcs/rfc959.html RFC-959]), handling commands received from the client on the control channel by calling the command's corresponding method (e.g. for received command "MKD pathname", `ftp_MKD()` method is called with `pathname` as the argument).  All relevant session information are stored in instance variables.  `conn` is the underlying socket object instance of the newly established connection, `server` is the `FTPServer` class instance.  Basic usage simply requires creating an instance of `FTPHandler` class and specify which authorizer instance it will going to use:
 
 {{{
 >>> ftp_handler = ftpserver.FTPHandler
 >>> ftp_handler.authorizer = authorizer
 }}}
 
-    All relevant session information is stored in class attributes reproduced below and can be modified before instantiating this class:
+  All relevant session information is stored in class attributes reproduced below and can be modified before instantiating this class:
 
- * *timeout*
-   * The timeout which is the maximum time a remote client may spend between FTP commands. If the timeout triggers, the remote client will be kicked off (defaults to `300` seconds). _*New in 5.0*_
+ * *timeout*<br>The timeout which is the maximum time a remote client may spend between FTP commands. If the timeout triggers, the remote client will be kicked off (defaults to `300` seconds). _*New in 5.0*_
 
- * *banner*
-   * String sent when client connects (default `"pyftpdlib %s ready." %__ver__`).
+ * *banner*<br>String sent when client connects (default `"pyftpdlib %s ready." %__ver__`).
 
- * *max_login_attempts*
-   * Maximum number of wrong authentications before disconnecting (default `3`).
+ * *max_login_attempts*<br>Maximum number of wrong authentications before disconnecting (default `3`).
 
- * *permit_foreign_addresses*
-   * Wether enable [http://www.proftpd.org/docs/howto/FXP.html FXP] feature (default `False`).
+ * *permit_foreign_addresses*<br>Wether enable [http://www.proftpd.org/docs/howto/FXP.html FXP] feature (default `False`).
 
- * *permit_privileged_ports*
-   * Set to `True` if you want to permit active connections (PORT) over privileged ports (not recommended, default `False`).
+ * *permit_privileged_ports*<br>Set to `True` if you want to permit active connections (PORT) over privileged ports (not recommended, default `False`).
 
- * *masquerade_address*
-   * The "masqueraded" IP address to provide along PASV reply when pyftpdlib is running behind a NAT or other types of gateways.  When configured pyftpdlib will hide its local address and instead use the public address of your NAT (default `None`).
+ * *masquerade_address*<br>The "masqueraded" IP address to provide along PASV reply when pyftpdlib is running behind a NAT or other types of gateways.  When configured pyftpdlib will hide its local address and instead use the public address of your NAT (default `None`).
 
- * *passive_ports*
-   * What ports ftpd will use for its passive data transfers.  Value expected is a list of integers (e.g. `range(60000, 65535)`).  When configured pyftpdlib will no longer use kernel-assigned random ports (default `None`).
+ * *passive_ports*<br>What ports ftpd will use for its passive data transfers.  Value expected is a list of integers (e.g. `range(60000, 65535)`).  When configured pyftpdlib will no longer use kernel-assigned random ports (default `None`).
 
 ----
 class ftpserver.*DTPHandler(*_sock_obj, cmd_channel_*)*
 
-    This class handles the server-data-transfer-process (server-DTP, see [http://www.faqs.org/rfcs/rfc959.html RFC-959]) managing all transfer operations regarding the data channel.
+  This class handles the server-data-transfer-process (server-DTP, see [http://www.faqs.org/rfcs/rfc959.html RFC-959]) managing all transfer operations regarding the data channel.  `sock_obj` is the underlying socket object instance of the newly established connection, `cmd_channel` is the `FTPHandler` class instance.  Aside from `timeout` class attribute and/or unless you want to add extra functionalities like bandwidth throttling you shouldn't be interested in putting hands on this class.
 
-    `sock_obj` is the underlying socket object instance of the newly established connection, `cmd_channel` is the `FTPHandler` class instance.  Aside from `timeout` class attribute and/or unless you want to add extra functionalities like bandwidth throttling you shouldn't be interested in putting hands on this class.
+ * *timeout*<br>The timeout which roughly is the maximum time we permit data transfers to stall for with no progress. If the timeout triggers, the remote client will be kicked off. _*New in 5.0*_
 
- * *timeout*
-   * The timeout which roughly is the maximum time we permit data transfers to stall for with no progress. If the timeout triggers, the remote client will be kicked off. _*New in 5.0*_
+ * *ac_in_buffer_size*<br>*ac_out_buffer_size*<br>The buffer sizes to use when receiving and sending data (both defaulting to `65536`). For LANs you may want this to be fairly large.  Depending on available memory and number of connected clients setting them to a lower value can result in better performances.
 
- * *ac_in_buffer_size*
- * *ac_out_buffer_size*
-   * The buffer sizes to use when receiving and sending data (both defaulting to `65536`). For LANs you may want this to be fairly large.  Depending on available memory and number of connected clients setting them to a lower value can result in better performances.
-
- * *get_transmitted_bytes()*
-   * Return the number of transmitted bytes.
+ * *get_transmitted_bytes()*<br>Return the number of transmitted bytes.
 ----
 class ftpserver.*FTPServer(*_address, handler_*)*
 
-    This class is an `asyncore.dispatcher` subclass.  It creates a FTP socket listening on `address` (a tuple containing the ip:port pair), dispatching the requests to a "handler" (typically `FTPHandler` class object).  It is typically used for starting asyncore polling loop:
+  This class is an `asyncore.dispatcher` subclass.  It creates a FTP socket listening on `address` (a tuple containing the ip:port pair), dispatching the requests to a "handler" (typically `FTPHandler` class object).  It is typically used for starting asyncore polling loop:
 
-    {{{
+  {{{
 >>> address = ('127.0.0.1', 21)
 >>> ftpd = ftpserver.FTPServer(address, ftp_handler)
 >>> ftpd.serve_forever()
-    }}}
+  }}}
 
- * *max_cons*
-   * Number of maximum simultaneous connections accepted (default `0` == _no limit_).
+ * *max_cons*<br>Number of maximum simultaneous connections accepted (default `0` == _no limit_).
 
- * *max_cons_per_ip*
-   * Number of maximum connections accepted for the same IP address (default `0` == _no limit_).
+ * *max_cons_per_ip*<br>Number of maximum connections accepted for the same IP address (default `0` == _no limit_).
 
- * *serve_forever([*_timeout=1_*[*, _use_poll=False_*[*, _map=None_*[*, _count=None_*]]])*
-   * A wrap around asyncore.loop(); starts the asyncore polling loop including running the scheduler. The arguments are the same expected by original asyncore.loop() function.
+ * *serve_forever([*_timeout=1_*[*, _use_poll=False_*[*, _map=None_*[*, _count=None_*]]])*<br>A wrap around asyncore.loop(); starts the asyncore polling loop including running the scheduler. The arguments are the same expected by original asyncore.loop() function.
 
- * *close()*
-   * Stop serving without disconnecting currently connected clients.
+ * *close()*<br>Stop serving without disconnecting currently connected clients.
 
- * *close_all([*_map=None_*[*, _ignore_all=False_*]])*
-   * Stop serving disconnecting also the currently connected clients. The `map` parameter is a dictionary whose items are the channels to close. If `map` is omitted, the default `asyncore.socket_map` is used. Having `ignore_all` parameter set to `False` results in raising exception in case of unexpected errors.
+ * *close_all([*_map=None_*[*, _ignore_all=False_*]])*<br>Stop serving disconnecting also the currently connected clients. The `map` parameter is a dictionary whose items are the channels to close. If `map` is omitted, the default `asyncore.socket_map` is used. Having `ignore_all` parameter set to `False` results in raising exception in case of unexpected errors.
 ----
 class ftpserver.*AbstractedFS()*
-    A class used to interact with the file system, providing a high level, cross-platform interface compatible with both Windows and UNIX style filesystems.  It provides some utility methods to operate on pathnames and the wraps around the common calls to interact with the filesystem (e.g. open(), os.mkdir(), os.listdir(), etc...).  These latter ones are not reproduced below (see the source instead).
+  A class used to interact with the file system, providing a high level, cross-platform interface compatible with both Windows and UNIX style filesystems.  It provides some utility methods to operate on pathnames and the wraps around the common calls to interact with the filesystem (e.g. open(), os.mkdir(), os.listdir(), etc...).  These latter ones are not reproduced below (see the source instead).
 
- * *root*
-   * User's home directory ("real").
+ * *root*<br>User's home directory ("real").
 
- * *cwd*
-   * User's current working directory ("virtual").
+ * *cwd*<br>User's current working directory ("virtual").
 
- * *ftpnorm(*_ftppath_*)*
-   * Normalize a "virtual" ftp pathname depending on the current working directory (e.g. having "/foo" as current working directory "x" becomes "/foo/x"). _*New in 3.0*_
+ * *ftpnorm(*_ftppath_*)*<br>Normalize a "virtual" ftp pathname depending on the current working directory (e.g. having "/foo" as current working directory "x" becomes "/foo/x"). _*New in 3.0*_
 
- * *ftp2fs(*_ftppath_*)*
-   * Translate a "virtual" ftp pathname into equivalent absolute "real" filesystem pathname (e.g. having "/home/user" as root directory "x" becomes  "/home/user/x"). _*New in 3.0*_
+ * *ftp2fs(*_ftppath_*)*<br>Translate a "virtual" ftp pathname into equivalent absolute "real" filesystem pathname (e.g. having "/home/user" as root directory "x" becomes  "/home/user/x"). _*New in 3.0*_
 
- * *fs2ftp(*_fspath_*)*
-   * Translate a "real" filesystem pathname into equivalent absolute "virtual" ftp pathname depending on the user's root directory (e.g. having "/home/user" as root directory "/home/user/x" becomes "/x". _*New in 3.0*_
+ * *fs2ftp(*_fspath_*)*<br>Translate a "real" filesystem pathname into equivalent absolute "virtual" ftp pathname depending on the user's root directory (e.g. having "/home/user" as root directory "/home/user/x" becomes "/x". _*New in 3.0*_
 
- * *validpath(*_path_*)*
-   * Check whether the path belongs to user's home directory. Expected argument is a "real" filesystem path. If path is a symbolic link it is resolved to check its real destination. Pathnames escaping from user's root directory are considered not valid (return `False`).
+ * *validpath(*_path_*)*<br>Check whether the path belongs to user's home directory. Expected argument is a "real" filesystem path. If path is a symbolic link it is resolved to check its real destination. Pathnames escaping from user's root directory are considered not valid (return `False`).
 ----
 class ftpserver.*CallLater(*_seconds_, _target_ *[*, `*`_args_ *[*, `**`_kwargs_*]])*
-    Calls a function at a later time. It can be used to asynchronously schedule a call within the polling loop without blocking it. The instance returned is an object that can be used to cancel or reschedule the call.  _*New in 0.5.0*_
+  Calls a function at a later time. It can be used to asynchronously schedule a call within the polling loop without blocking it. The instance returned is an object that can be used to cancel or reschedule the call.  _*New in 0.5.0*_
 
- * *cancelled*
-   * Whether the call has been cancelled.
+ * *cancelled*<br>Whether the call has been cancelled.
 
- * *reset()*
-   * Reschedule the call resetting the current countdown.
+ * *reset()*<br>Reschedule the call resetting the current countdown.
 
- * *delay(*_seconds_*)*
-   * Reschedule the call for a later time.
+ * *delay(*_seconds_*)*<br>Reschedule the call for a later time.
 
- * *cancel()*
-   * Unschedule the call.
+ * *cancel()*<br>Unschedule the call.
 
 = =
 
