@@ -7,7 +7,7 @@
  * Add the possibility to run the server in stand alone mode via command line parameters and/or configuration file.
  * Include a graphical Tk-based ftp server into demo directory.
  * Add Unicode support.
- * Add support for _LANG_ command to ([http://www.faqs.org/rfcs/rfc2640.html RFC 2640]).
+ * Add support for _LANG_ command ([http://www.faqs.org/rfcs/rfc2640.html RFC 2640]).
  * _(?)_ Split classes into different files. _*NEW*_
 
 == 0.6.0 ==
