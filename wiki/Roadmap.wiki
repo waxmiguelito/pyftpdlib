@@ -6,13 +6,20 @@
 
  * Add the possibility to run the server in stand alone mode via command line parameters and/or configuration file.
  * Include a graphical Tk-based ftp server into demo directory.
- * Add Unicode support including _LANG_ command as defined in [http://www.faqs.org/rfcs/rfc2640.html RFC 2640].
+ * Add Unicode support.
+ * Add support for _LANG_ command to ([http://www.faqs.org/rfcs/rfc2640.html RFC 2640]).
  * _(?)_ Split classes into different files. _*NEW*_
 
-== 0.6.0 _(in development)_ ==
+== 0.6.0 ==
 
  * Add SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
  * Python 3K porting. _*NEW*_
+
+== 0.5.1 _(in development)_ ==
+
+ * ~~Set bigger buffer sizes to speedup data transfers.~~
+ * ~~Speedup ASCII data transfers on Windows.~~
+ * ~~Fix various bugs.~~
 
 == 0.5.0 _(current release)_ ==
 
