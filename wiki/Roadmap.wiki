@@ -2,7 +2,7 @@
 #labels Featured,SortOrder-6
 = Releases roadmap =
 
-== Tasks to accomplish == 
+== Tasks to accomplish ==
 
  * Add the possibility to run the server in stand alone mode via command line parameters and/or configuration file.
  * Include a graphical Tk-based ftp server into demo directory.
@@ -19,6 +19,7 @@
 
  * ~~Set bigger buffer sizes to speedup data transfers.~~
  * ~~Speedup ASCII data transfers on Windows.~~
+ * ~~Add preliminary support for SITE command.~~
  * ~~Fix various bugs.~~
 
 == 0.5.0 _(current release)_ ==

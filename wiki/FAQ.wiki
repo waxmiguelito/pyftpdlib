@@ -154,3 +154,8 @@ SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ com
 There is no official support for SSL/TLS within the current code tree.
 The new Python 2.6 release finally grants full SSL support so we hope we'll be able to implement the feature.
 Contributors willing to to provide a patch are greatly appreciated.
+
+== 4.6 - What about SITE commands? ==
+
+No SITE commands aside from *SITE HELP* are implemented by default.
+The user willing to add support for a specific SITE command (e.g. *SITE CHMOD*) has to define a new ftp_SITE_%CMD% method in the `FTPHandler` subclass.
