@@ -49,7 +49,7 @@ The base specification of the current File Transfer Protocol.
 || RMD || MUST || YES || 0.1.0 || Remove directory. || ||
 || RNFR || MUST || YES || 0.1.0 || File renaming (source) || ||
 || RNTO || MUST || YES || 0.1.0 || File renaming (destination) || ||
-|| SITE || MAY || YES || 0.5.1 || Site specific server services. || No SITE commands aside from "SITE HELP" are implemented by default.  The user willing to add support for a specific SITE command has to define a new ftp_SITE_%CMD% method in the FTPHandler subclass. ||
+|| SITE || MAY || YES || 0.5.1 || Site specific server services. || No SITE commands aside from "SITE HELP" are implemented by default.  The user willing to add support for a specific SITE command has to define a new `ftp_SITE_%CMD%` method in the `FTPHandler` subclass. ||
 || SMNT || MAY || NO || --- || Mount file-system structure. || Will never be implemented (too much system-dependent and almost never used). ||
 || STAT || SHOULD || YES || 0.1.0 || Server's status information / File LIST || ||
 || STOR || MUST || YES || 0.1.0 || Store a file (client's upload). || ||
