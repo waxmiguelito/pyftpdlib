@@ -158,4 +158,4 @@ Contributors willing to to provide a patch are greatly appreciated.
 == 4.6 - What about SITE commands? ==
 
 No SITE commands aside from *SITE HELP* are implemented by default.
-The user willing to add support for a specific SITE command (e.g. *SITE CHMOD*) has to define a new ftp_SITE_%CMD% method in the `FTPHandler` subclass.
+The user willing to add support for a specific SITE command (e.g. *SITE CHMOD*) has to define a new `ftp_SITE_%CMD%` method in the `FTPHandler` subclass.
