@@ -64,7 +64,7 @@ Python 3.0 is still in beta version thus not yet covered. A porting of pyftpdlib
 
 == 2.5 - On which platforms can pyftpdlib be used? ==
 
-pyftpdlib should work on any platform where *_select()_* or *_poll()_* system calls are available and on any Python implementation which refers to *CPython 2.3* or superior (e.g CPython 2.6 or PythonCE 2.5).
+pyftpdlib should work on any platform where *_select()_* or *_poll()_* system calls are available and on any Python implementation which refers to *cPython 2.3* or superior (e.g cPython 2.6 or PythonCE 2.5).
 The development team has mainly tested it under various *Linux*, *Windows*, *OS X* and *FreeBSD* systems.
 For FreeBSD is also available a [http://www.freshports.org/ftp/py-pyftpdlib/ pre-compiled package] maintained by Li-Wen Hsu <lwhsu@freebsd.org>.
 Other Python implementation like *[http://pythonce.sourceforge.net/ PythonCE]* are known to work with pyftpdlib and every new version is usually tested against it.
@@ -74,11 +74,11 @@ pyftpdlib currently does not work on *[http://www.jython.org/ Jython]* since the
 
 == 3.1 - Why do I get socket.error "Permission denied" error on ftpd starting? ==
 
-Probably because you're on a unix system and you're trying to start ftpd as an unprivileged user. _ftpserver.py_ binds on port 21 by default and only super-user account (e.g. root) could bind sockets on such ports. If you want to bind ftpd as non-privileged user you should set a port higher than 1024.
+Probably because you're on a unix system and you're trying to start ftpd as an unprivileged user. _ftpserver.py_ binds on port 21 by default and only super-user account (e.g. root) can bind sockets on such ports. If you want to bind ftpd as non-privileged user you should set a port higher than 1024.
 
 == 3.2 - How can I prevent the server version from being displayed? ==
 
-Just override and modify `banner` attribute of `FTPHandler` class.
+Just modify `banner` attribute of `FTPHandler` class.
 
 == 3.3 - Can control upload/download ratios? ==
 
@@ -92,12 +92,12 @@ Overriding these variables is always recommended to avoid DoS attacks.
 == 3.5 - I'm behind a NAT / gateway ==
 
 When behind a NAT a ftp server needs to replace the IP local address displayed in PASV replies and instead use the public address of the NAT to allow client to connect.  By overriding `masquerade_address` attribute of `FTPHandler` class you will force pyftpdlib to do such replacement.
-However, one big problem still exists.  The passive FTP connections will use ports from 1024 and up, which means that you must forward all ports 1024-65535 from the NAT to the FTP server!  And you have to allow many (possibly) dangerous ports in your firewalling rules!  To resolve this, simply override `passive_ports` attribute of `FTPHandler` class to control what ports proftpd will use for its passive data transfers.  Value expected by `passive_ports` attribute is a list of integers (e.g. range(60000, 65535)) indicating which ports will be used for initializing the passive data channel.
+However, one problem still exists.  The passive FTP connections will use ports from 1024 and up, which means that you must forward all ports 1024-65535 from the NAT to the FTP server!  And you have to allow many (possibly) dangerous ports in your firewalling rules!  To resolve this, simply override `passive_ports` attribute of `FTPHandler` class to control what ports pyftpdlib will use for its passive data transfers.  Value expected by `passive_ports` attribute is a list of integers (e.g. range(60000, 65535)) indicating which ports will be used for initializing the passive data channel.
 
 == 3.6.1 - What is FXP? ==
 
 FXP is part of the name of a popular Windows FTP client: [http://www.flashfxp.com http://www.flashfxp.com].
-This client has made the name "FXP" commonly used as a synonym for site-to-site FTP transfers, for transferring a file between two remote FTP servers without the transfer going through the client's host. Sometimes "FXP" is referred to as a protocol; in fact, it is not. The site-to-site transfer capability was deliberately designed into [http://www.faqs.org/rfcs/rfc959.html RFC-959].
+This client has made the name "FXP" commonly used as a synonym for site-to-site FTP transfers, for transferring a file between two remote FTP servers without the transfer going through the client's host.  Sometimes "FXP" is referred to as a protocol; in fact, it is not. The site-to-site transfer capability was deliberately designed into [http://www.faqs.org/rfcs/rfc959.html RFC-959].
 More info can be found here: [http://www.proftpd.org/docs/howto/FXP.html http://www.proftpd.org/docs/howto/FXP.html].
 
 == 3.6.2 - Does pyftpdlib support FXP? ==
@@ -111,7 +111,7 @@ Yes. It is disabled by default for security reasons (see [http://gim.org.pl/rfcs
 Globbing is a common Unix shell mechanism for expanding wildcard patterns to match multiple filenames. When an argument is provided to the *STAT* command, ftpd should return directory listing over the command channel.
 [http://www.faqs.org/rfcs/rfc959.html RFC-959] does not explicitly mention globbing; this means that FTP servers are not required to support globbing in order to be compliant.  However, many FTP servers do support globbing as a measure of convenience for FTP clients and users.
 In order to search for and match the given globbing expression, the code has to search (possibly) many directories, examine each contained filename, and build a list of matching files in memory.
-Since this operation can be quite intensive, both CPU- and memory-wise, pyftpdlib does not support globbing.
+Since this operation can be quite intensive, both CPU- and memory-wise, pyftpdlib _does not_ support globbing.
 
 == 4.2 - ASCII transfers / SIZE command implementation ==
 
@@ -152,7 +152,7 @@ Example UNIX and Windows FTP servers contained in the [http://code.google.com/p/
 
 SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2228.html RFC-2228].
 There is no official support for SSL/TLS within the current code tree.
-The new Python 2.6 release finally grants full SSL support so we hope we'll be able to implement the feature.
+The new Python 2.6 release finally grants full SSL support so we hope we'll be able to implement this feature soon.
 Contributors willing to to provide a patch are greatly appreciated.
 
 == 4.6 - What about SITE commands? ==
