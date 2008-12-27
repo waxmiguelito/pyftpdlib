@@ -29,6 +29,16 @@ http://www.vmspython.org/DownloadAndInstallationPython
 
 ----
 
+== Google Chrome ==
+
+http://www.google.com/chrome/intl/en/images/logo_sm.jpg
+
+[http://www.google.com/chrome Google Chrome] is the new free and open source web browser developed by Google. [http://code.google.com/intl/it-IT/chromium/ Google Chromium], the open source project behind Google Chrome, included pyftpdlib in the code base to develop Google Chrome's FTP client unit tests.
+
+http://www.google.com/chrome
+
+----
+
 == OpenERP ==
 
 http://openerp.com/templates/tiny/images/openlogo.jpg
@@ -123,3 +133,5 @@ http://www.gnu-darwin.org/new4p2-gd-sm.png
 
 [http://www.gnu-darwin.org GNU Darwin] is a unix distribution which focuses on the porting of free software to Darwin and Mac OS X.
 pyftpdlib has been recently included in the official repositories to make users can easily install and use it on GNU Darwin systems.
+
+http://www.gnu-darwin.org
