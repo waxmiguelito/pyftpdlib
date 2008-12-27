@@ -114,3 +114,10 @@ The [http://www.freebsd.org/ports/ FreeBSD Ports Collection] offers a simple way
 FreeBSD Ports team created a [http://www.freshports.org/ftp/py-pyftpdlib/ pyftpdlib port] to make users can easily install and use it on FreeBSD systems. [http://www.freshports.org Freshports] is a news site about FreeBSD's ports. Latest news about "py-pyftpdlib" port can be found here:
 
 http://www.freshports.org/ftp/py-pyftpdlib/
+
+== GNU Darwin ==
+
+http://www.gnu-darwin.org/new4p2-gd-sm.png
+
+[http://www.gnu-darwin.org GNU Darwin] is a unix distribution which focuses on the porting of free software to Darwin and Mac OS X.
+pyftpdlib has been recently included in the official repositories to make users can easily install and use it on GNU Darwin systems.
