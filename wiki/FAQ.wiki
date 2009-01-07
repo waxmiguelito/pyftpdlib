@@ -150,7 +150,7 @@ Example UNIX and Windows FTP servers contained in the [http://code.google.com/p/
 
 == 4.5 - Does pyftpdlib support FTP over TLS/SSL (FTPS) ==
 
-The standard code base does not offer any "official" FTPS support yet but starting from version [http://pyftpdlib.googlecode.com/files/pyftpdlib-0.5.1.tar.gz 0.5.1] the [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/?r=505 demo] directory contains a [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py script] which implements a simple FTPS daemon supporting both TLS and SSL protocols and *AUTH*, *PBSZ* and *PROT* commands as defined in [http://www.ietf.org/rfc/rfc4217.txt RFC-4217].
+The standard code base does not offer any "official" FTPS support yet but starting from version [http://pyftpdlib.googlecode.com/files/pyftpdlib-0.5.1.tar.gz 0.5.1] the [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo demo] directory contains a [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py script] which implements a simple FTPS daemon supporting both TLS and SSL protocols and *AUTH*, *PBSZ* and *PROT* commands as defined in [http://www.ietf.org/rfc/rfc4217.txt RFC-4217].
 
 == 4.6 - What about SITE commands? ==
 
