@@ -148,12 +148,9 @@ System dependent authorizers subclassing the dummy authorizer can assume the id 
 Every time the FTP server is going to access the filesystem (e.g. for creating or renaming a file) it will temporarily impersonate the currently logged on user, execute the filesystem call and then switch back to the user who originally started the server.
 Example UNIX and Windows FTP servers contained in the [http://code.google.com/p/pyftpdlib/source/browse/#svn/trunk/demo demo directory] implement both real user impersonation and authentication against the system users database.
 
-== 4.5 - SSL/TLS support ==
+== 4.5 - Does pyftpdlib support FTP over TLS/SSL (FTPS) ==
 
-SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands is a feature defined in [http://www.faqs.org/rfcs/rfc2228.html RFC-2228].
-There is no official support for SSL/TLS within the current code tree.
-The new Python 2.6 release finally grants full SSL support so we hope we'll be able to implement this feature soon.
-Contributors willing to to provide a patch are greatly appreciated.
+The standard code base does not offer any "official" FTPS support yet but starting from version [http://pyftpdlib.googlecode.com/files/pyftpdlib-0.5.1.tar.gz 0.5.1] the [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/?r=505 demo] directory contains a [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py script] which implements a simple FTPS daemon supporting both TLS and SSL protocols and *AUTH*, *PBSZ* and *PROT* commands as defined in [http://www.ietf.org/rfc/rfc4217.txt RFC-4217].
 
 == 4.6 - What about SITE commands? ==
 
