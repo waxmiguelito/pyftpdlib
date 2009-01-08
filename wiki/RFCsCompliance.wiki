@@ -9,11 +9,11 @@
 
 This page lists current standard Internet RFCs that define the FTP protocol.
 
-pyftpdlib conforms to the FTP protocol standard as defined in [http://www.ietf.org/rfc/rfc959.txt RFC-959] and [http://www.ietf.org/rfc/rfc1123.txt RFC-1123] implementing all the fundamental commands and features described in them. It also implements some more recent features such as OPTS and FEAT commands ([http://www.ietf.org/rfc/rfc2389.txt RFC-2398]), EPRT and EPSV commands covering the IPv6 support ([ftp://ftp.rfc-editor.org/in-notes/rfc2428.txt RFC-2428]) and MDTM, MLSD, MLST and SIZE commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].
+pyftpdlib conforms to the FTP protocol standard as defined in [http://www.ietf.org/rfc/rfc959.txt RFC-959] and [http://www.ietf.org/rfc/rfc1123.txt RFC-1123] implementing all the fundamental commands and features described in them. It also implements some more recent features such as *OPTS* and *FEAT* commands ([http://www.ietf.org/rfc/rfc2389.txt RFC-2398]), *EPRT* and *EPSV* commands covering the IPv6 support ([ftp://ftp.rfc-editor.org/in-notes/rfc2428.txt RFC-2428]) and *MDTM*, *MLSD*, *MLST* and *SIZE* commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].
 
 Future plans for pyftpdlib include the gradual implementation of other standards track RFCs.
 
-Some of the features like ACCT or SMNT commands will never be implemented deliberately. Other features described in more recent RFCs like the TLS/SSL support for securing FTP are taken in great consideration and should be implemented in future (Python 2.6 should grant a full SSL support).
+Some of the features like *ACCT* or *SMNT* commands will never be implemented deliberately. Other features described in more recent RFCs like the *TLS/SSL* support for securing FTP ([http://www.ietf.org/rfc/rfc4217.txt RFC-4217]) are now implemented as a [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script], waiting to reach the proper level of stability to be then included in the standard code base.
 
 = RFC-959 - File Transfer Protocol =
 
@@ -91,13 +91,13 @@ Specifies several security extensions to the base FTP protocol defined in [http:
  * [http://www.ietf.org/rfc/rfc2228.txt Link]
 
 || *Command* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
-|| AUTH || SHOULD || NO || --- || Authentication/Security Mechanism. || Waiting for Python 2.6 which should grant full SSL support. ||
-|| CCC || SHOULD || NO || --- || Clear Command Channel. || Waiting for Python 2.6 which should grant full SSL support. ||
-|| CONF || SHOULD || NO || --- || Confidentiality Protected Command. || Waiting for Python 2.6 which should grant full SSL support. ||
-|| EENC || SHOULD || NO || --- || Privacy Protected Command. || Waiting for Python 2.6 which should grant full SSL support. ||
-|| MIC || SHOULD || NO || --- || Integrity Protected Command. || Waiting for Python 2.6 which should grant full SSL support. ||
-|| PBSZ || SHOULD || NO || --- || Protection Buffer Size. || Waiting for Python 2.6 which should grant full SSL support. ||
-|| PROT || SHOULD || NO || --- || Data Channel Protection Level. || Waiting for Python 2.6 which should grant full SSL support. ||
+|| AUTH || SHOULD || NO || --- || Authentication/Security Mechanism. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] by following the [http://www.ietf.org/rfc/rfc4217.txt RFC-4217] guide line. ||
+|| CCC || SHOULD || NO || --- || Clear Command Channel. || ||
+|| CONF || SHOULD || NO || --- || Confidentiality Protected Command. || Somewhat obsoleted by [http://www.ietf.org/rfc/rfc4217.txt RFC-4217]. ||
+|| EENC || SHOULD || NO || --- || Privacy Protected Command. || Somewhat obsoleted by [http://www.ietf.org/rfc/rfc4217.txt RFC-4217]. ||
+|| MIC || SHOULD || NO || --- || Integrity Protected Command. || Somewhat obsoleted by [http://www.ietf.org/rfc/rfc4217.txt RFC-4217]. ||
+|| PBSZ || SHOULD || NO || --- || Protection Buffer Size. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] by following the [http://www.ietf.org/rfc/rfc4217.txt RFC-4217] guide line as a no-op command. ||
+|| PROT || SHOULD || NO || --- || Data Channel Protection Level. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] by following the [http://www.ietf.org/rfc/rfc4217.txt RFC-4217] guide line supporting only "P" and "C" protection levels. ||
 
 = =
 
@@ -159,6 +159,9 @@ Extends the FTP protocol to support multiple character sets, in addition to the 
 
 = =
 
+
+
+
 = RFC-3659 - Extensions to FTP =
 
 Four new commands are added: "SIZE", "MDTM", "MLST", and "MLSD".  The existing command "REST" is modified.
@@ -174,3 +177,20 @@ Four new commands are added: "SIZE", "MDTM", "MLST", and "MLSD".  The existing c
 || SIZE command || MUST || YES || 0.1.0 || Get file size. || In case of ASCII TYPE it does not perform the ASCII conversion to avoid DoS conditions (see FAQs for more details). ||
 || TVSF mechanism || SHOULD || YES || 0.1.0 || Provide a file system naming conventions modeled loosely upon those of the unix file system supporting relative and absolute path names. || ||
 || Minimum required set of MLST facts || SHOULD || YES || 0.3.0 || If conceivably possible, support at least the type, perm, size, unique, and modify MLSX command facts. || ||
+
+= =
+
+= RFC-4217 - Securing FTP with TLS =
+
+Provides a description on how to implement TLS as a security mechanism to secure FTP clients and/or servers.
+
+ * Issued: October 2005
+ * Status: STANDARD
+ * Updates: [http://www.ietf.org/rfc/rfc959.txt RFC-959], [http://www.ietf.org/rfc/rfc2246.txt RFC-2246], [http://www.ietf.org/rfc/rfc2228.txt RFC-2228]
+ * [http://www.ietf.org/rfc/rfc4217.txt Link]
+
+|| *Command* || *Requirement* || *Implemented* || *Milestone* || *Description* || *Notes* ||
+|| AUTH || SHOULD || NO || --- || Authentication/Security Mechanism. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] supporting both TLS and SSL. ||
+|| CCC || SHOULD || NO || --- || Clear Command Channel. || ||
+|| PBSZ || SHOULD || NO || --- || Protection Buffer Size. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] as a no-op command. ||
+|| PROT || SHOULD || NO || --- || Data Channel Protection Level. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] supporting only "P" and "C" protection levels. ||
