@@ -4,19 +4,21 @@
 
 == Tasks to accomplish ==
 
- * Add the possibility to run the server in stand alone mode via command line parameters and/or configuration file.
  * Include a graphical Tk-based ftp server into demo directory.
  * Add Unicode support.
- * Add support for _LANG_ command ([http://www.faqs.org/rfcs/rfc2640.html RFC 2640]).
- * _(?)_ Split classes into different files. _*NEW*_
+ * _(?)_ Add the possibility to run the server in stand alone mode via command line parameters and/or configuration file.
+ * _(?)_ *LANG* command support ([http://www.faqs.org/rfcs/rfc2640.html RFC 2640]).
+ * _(?)_ Split classes into different files.
+ * _(?)_ Support for *ADAT*, *MIC*, *CONF* and *ENC* commands ([http://www.ietf.org/rfc/rfc2228.txt RFC-2228]).
 
 == 0.6.0 ==
 
- * Add SSL/TLS support including _AUTH, ADAT, PROT, PBSZ, CCC, MIC, CONF_ and _ENC_ commands as defined in [http://www.faqs.org/rfcs/rfc2228.html RFC 2228].
- * Python 3K porting. _*NEW*_
+ * Add SSL/TLS support at library level including  *AUTH*, *PROT*, *PBSZ* and *CCC* commands as defined in [http://www.faqs.org/rfcs/rfc4217.html RFC 4217].
+ * Python 3K porting.
 
 == 0.5.1 _(in development)_ ==
 
+ * ~~Add a new demo script implementing FTPS (FTP over TLS/SSL) supporting *AUTH*, *PROT* and *PBSZ* commands.~~
  * ~~Set bigger buffer sizes to speedup data transfers.~~
  * ~~Speedup ASCII data transfers on Windows.~~
  * ~~Add preliminary support for SITE command.~~
@@ -31,32 +33,32 @@
 == 0.4.0 _(released)_ ==
 
  * ~~Assume the id of real users when using system dependent authorizers.~~
- * ~~Add IPv6 support including _EPRT & EPSV_ commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].~~
+ * ~~Add IPv6 support including *EPRT* & *EPSV* commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].~~
 
 == 0.3.0 _(released)_ ==
 
  * ~~Extend the set of assignable user permissions aside from the generical "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...).~~
- * ~~Implement MLST and MLSD commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].~~
- * ~~Implement FEAT and OPTS commands defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~
- * ~~Use iterators for calculating requests requiring long time to complete (LIST and MLSD commands).~~
- * ~~Provide real permissions, owner, and group for files on UNIX platforms processing the LIST command.~~
+ * ~~Implement *MLST* and *MLSD* commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].~~
+ * ~~Implement *FEAT* and *OPTS* commands defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~
+ * ~~Use iterators for calculating requests requiring long time to complete (*LIST* and *MLSD* commands).~~
+ * ~~Provide real permissions, owner, and group for files on UNIX platforms processing the *LIST* command.~~
 
 == 0.2.0 _(released)_ ==
 
- * ~~Support for FXP, site-to-site transfers.~~
- * ~~NAT/Firewall support with PASV (passive) mode connections.~~
+ * ~~Support for *FXP*, site-to-site transfers.~~
+ * ~~NAT/Firewall support with *PASV* (passive) mode connections.~~
  * ~~Configurable range of ports to use for passive data transfers.~~
  * ~~Per-user messages configurability.~~
  * ~~Maximum connections limit.~~
  * ~~Per-source-IP limits.~~
  * ~~Maximum login attempts limit.~~
- * ~~Change account when USER is provided a second time after authenticating.~~
- * ~~Accept HELP command arguments.~~
- * ~~Implement directory listing over the command channel for STAT command provided with argument.~~
+ * ~~Change account when *USER* is provided a second time after authenticating.~~
+ * ~~Accept *HELP* command arguments.~~
+ * ~~Implement directory listing over the command channel for *STAT* command provided with argument.~~
 
 == 0.1.1 _(released)_==
 
- * ~~Randomize PASV port selection.~~
+ * ~~Randomize *PASV* port selection.~~
  * ~~Release pyftpdlib under a license the most freely possible (MIT).~~
 
 == 0.1.0 _(released)_ ==
