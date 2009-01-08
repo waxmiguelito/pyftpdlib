@@ -60,7 +60,7 @@ Python *2.6* which provides a faster and cleaner asyncore implementation.
 
 == 2.4 - What about Python 3.x? ==
 
-Python 3.0 is still in beta version thus not yet covered. A porting of pyftpdlib to Python 3k is in plan, anyway.
+Python 3.x is not yet covered because I still have to figure out how to deal with the str/bytes and encoding differences introduced in the new Python version =). A porting to Python 3.x is surely in plan, anyway.
 
 == 2.5 - On which platforms can pyftpdlib be used? ==
 
