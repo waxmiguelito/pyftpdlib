@@ -57,7 +57,7 @@ http://www.farmanager.com/img/title_light.png
 
 [http://farmanager.com/ Far Manager] is a program for managing files and archives in Windows operating systems.
 
-Far Manager recently included pyftpdlib as [http://enforum.farmanager.com/viewtopic.php?t==640 plug-in] for making the current directory accessible through FTP. Convenient for exchanging files with virtual machines.
+Far Manager recently included pyftpdlib as [http://www.farmanager.com/enforum/viewtopic.php?t=640&highlight=&sid=12d4d90f27f421243bcf7a0e3c516efb plug-in] for making the current directory accessible through FTP. Convenient for exchanging files with virtual machines.
 
 http://farmanager.com/
 
@@ -95,10 +95,10 @@ http://walco.n--tree.net/projects/aksy/
 == Shareme ==
 
 Ever needed to share a directory between two computers? Usually this is done using NFS, FTP or Samba, which could be a pain to setup when you just want to move some files around.
-[http://bbs.archlinux.org/viewtopic.php?pid==431474 Shareme] is a small FTP server that, without configuration files or manuals to learn, will publish your directory, and users can download from it and upload files and directory.
+[http://bbs.archlinux.org/viewtopic.php?id=56623 Shareme] is a small FTP server that, without configuration files or manuals to learn, will publish your directory, and users can download from it and upload files and directory.
 Just open a shell and run `shareme -d ~/incoming/` ...and that's it!
 
-http://bbs.archlinux.org/viewtopic.php?pid==431474
+http://bbs.archlinux.org/viewtopic.php?id=56623
 
 ----
 
