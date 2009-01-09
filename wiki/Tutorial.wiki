@@ -81,7 +81,7 @@ class ftpserver.*FTPHandler(*_conn, server_*)*
 
  * *max_login_attempts*<br>Maximum number of wrong authentications before disconnecting (default `3`).
 
- * *permit_foreign_addresses*<br>Wether enable [http://www.proftpd.org/docs/howto/FXP.html FXP] feature (default `False`).
+ * *permit_foreign_addresses*<br>Whether enable [http://www.proftpd.org/docs/howto/FXP.html FXP] feature (default `False`).
 
  * *permit_privileged_ports*<br>Set to `True` if you want to permit active connections (PORT) over privileged ports (not recommended, default `False`).
 

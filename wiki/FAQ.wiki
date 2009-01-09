@@ -74,7 +74,7 @@ pyftpdlib currently does not work on *[http://www.jython.org/ Jython]* since the
 
 == 3.1 - Why do I get socket.error "Permission denied" error on ftpd starting? ==
 
-Probably because you're on a unix system and you're trying to start ftpd as an unprivileged user. _ftpserver.py_ binds on port 21 by default and only super-user account (e.g. root) can bind sockets on such ports. If you want to bind ftpd as non-privileged user you should set a port higher than 1024.
+Probably because you're on a Unix system and you're trying to start ftpd as an unprivileged user. _ftpserver.py_ binds on port 21 by default and only super-user account (e.g. root) can bind sockets on such ports. If you want to bind ftpd as non-privileged user you should set a port higher than 1024.
 
 == 3.2 - How can I prevent the server version from being displayed? ==
 

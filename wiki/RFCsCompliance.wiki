@@ -175,7 +175,7 @@ Four new commands are added: "SIZE", "MDTM", "MLST", and "MLSD".  The existing c
 || MLSD command || MUST || YES || 0.3.0 || Get directory list in a standardized form. || ||
 || MLST command || MUST || YES || 0.3.0 || Get file information in a standardized form. || ||
 || SIZE command || MUST || YES || 0.1.0 || Get file size. || In case of ASCII TYPE it does not perform the ASCII conversion to avoid DoS conditions (see FAQs for more details). ||
-|| TVSF mechanism || SHOULD || YES || 0.1.0 || Provide a file system naming conventions modeled loosely upon those of the unix file system supporting relative and absolute path names. || ||
+|| TVSF mechanism || SHOULD || YES || 0.1.0 || Provide a file system naming conventions modeled loosely upon those of the Unix file system supporting relative and absolute path names. || ||
 || Minimum required set of MLST facts || SHOULD || YES || 0.3.0 || If conceivably possible, support at least the type, perm, size, unique, and modify MLSX command facts. || ||
 
 = =

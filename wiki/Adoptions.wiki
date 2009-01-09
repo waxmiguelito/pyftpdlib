@@ -131,7 +131,7 @@ http://www.freshports.org/ftp/py-pyftpdlib/
 
 http://www.gnu-darwin.org/new4p2-gd-sm.png
 
-[http://www.gnu-darwin.org GNU Darwin] is a unix distribution which focuses on the porting of free software to Darwin and Mac OS X.
+[http://www.gnu-darwin.org GNU Darwin] is a Unix distribution which focuses on the porting of free software to Darwin and Mac OS X.
 pyftpdlib has been recently included in the official repositories to make users can easily install and use it on GNU Darwin systems.
 
 http://www.gnu-darwin.org

@@ -37,7 +37,7 @@
 
 == 0.3.0 _(released)_ ==
 
- * ~~Extend the set of assignable user permissions aside from the generical "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...).~~
+ * ~~Extend the set of assignable user permissions aside from the generic "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...).~~
  * ~~Implement *MLST* and *MLSD* commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].~~
  * ~~Implement *FEAT* and *OPTS* commands defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~
  * ~~Use iterators for calculating requests requiring long time to complete (*LIST* and *MLSD* commands).~~
