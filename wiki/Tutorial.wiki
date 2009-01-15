@@ -532,9 +532,22 @@ if __name__ == "__main__":
     ftpd.serve_forever()
 }}}
 
+= 4.0 - Advanced usages = 
 
-== 3.6 - FTPS (FTP over TLS/SSL) server ==
+== 4.1 - FTPS (FTP over TLS/SSL) server ==
 
 Although the standard code base does not offer any "official" FTPS support yet starting from version [http://pyftpdlib.googlecode.com/files/pyftpdlib-0.5.1.tar.gz 0.5.1] the [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo demo] directory contains a [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py script] which implements a simple FTPS daemon supporting both TLS and SSL protocols and *AUTH*, *PBSZ* and *PROT* commands as defined in [http://www.ietf.org/rfc/rfc4217.txt RFC-4217].
 
+This is possible thanks to the new [http://docs.python.org/library/ssl.html#module-ssl ssl module] introduced in Python 2.6.
+
 [http://pyftpdlib.googlecode.com/svn/trunk/demo/tls_ftpd.py download script]
+
+== 4.2 - Adding bandwidth throttling capabilities ==
+
+An important feature for an ftpd is limiting the speed for downloads and uploads affecting the data channel.
+
+The basic idea behind this script is to wrap sending and receiving in a data counter and temporary "sleep" the data channel so that you burst to no more than x Kb/sec average. Such sleep must be "asynchronous" since we want to avoid the polling loop from blocking.
+
+To accomplish such behaviour I used the `CallLater` class to implement the asynchronous sleeps and ovverridden the original `DTPHandler` class. When the new DTPHandler realizes that more than x Kb in a second are being transmitted it temporary blocks the transfer for a certain number of seconds.
+
+[http://pyftpdlib.googlecode.com/svn/trunk/demo/throttled_ftpd.py download script]
