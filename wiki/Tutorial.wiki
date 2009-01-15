@@ -163,6 +163,8 @@ The script below is a basic configuration, and it's probably the best starting p
 It also sets a limit for connections by overriding `FTPServer.max_cons` and `FTPServer.max_cons_per_ip` attributes which are intended to set limits for maximum connections to handle simultaneously and maximum connections from the same IP address.
 Overriding these variables is always a good idea (they default to `0`, or "no limit") since they are a good workaround for avoiding DoS attacks.
 
+[http://pyftpdlib.googlecode.com/svn/trunk/demo/basic_ftpd.py download script]
+
 {{{
 #!/usr/bin/env python
 # basic_ftpd.py
@@ -258,7 +260,9 @@ Using FTP server library with the default `DummyAuthorizer` means that password 
 The most common way to do things in such case would be first creating new users and then storing their usernames + passwords as hash digests into a file or wherever you find it convenient.
 
 The example below shows how to easily create an encrypted account storage system by storing passwords as one-way hashes by using md5 algorithm.
-This could be easily done by using the *hashlib* module included with Python stdlib and by sub-classing the original `DummyAuthorizer` class overriding its `validate_authentication()` method:
+This could be easily done by using the *hashlib* module included with Python stdlib and by sub-classing the original `DummyAuthorizer` class overriding its `validate_authentication()` method.
+
+[http://pyftpdlib.googlecode.com/svn/trunk/demo/md5_ftpd.py download script]
 
 {{{
 #!/usr/bin/env python
@@ -306,6 +310,8 @@ The example below shows how to use [http://docs.python.org/lib/module-pwd.html p
 `impersonate_user()` and `terminate_impersonation()` methods of the dummy authorizer are overridden to provide the proper mechanism to reflect the current logged-in user every time he's going to access the filesystem.
 
 Note that the users you're going to add through the `add_user` method must already exist on the system.
+
+[http://pyftpdlib.googlecode.com/svn/trunk/demo/unix_ftpd.py download script]
 
 {{{
 #!/usr/bin/env python
@@ -405,6 +411,8 @@ if __name__ == "__main__":
 The following code shows how to implement a basic authorizer for a Windows NT workstation to authenticate against existing Windows user accounts. This code uses Mark Hammond's [http://starship.python.net/crew/mhammond/win32/ pywin32] extension which is required to be installed previously.
 
 Note that, as for UNIX authorizer, the users you're going to add through the `add_user` method must already exist on the system.
+
+[http://pyftpdlib.googlecode.com/svn/trunk/demo/winnt_ftpd.py  download script]
 
 {{{
 #!/usr/bin/env python
@@ -528,3 +536,5 @@ if __name__ == "__main__":
 == 3.6 - FTPS (FTP over TLS/SSL) server ==
 
 Although the standard code base does not offer any "official" FTPS support yet starting from version [http://pyftpdlib.googlecode.com/files/pyftpdlib-0.5.1.tar.gz 0.5.1] the [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo demo] directory contains a [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py script] which implements a simple FTPS daemon supporting both TLS and SSL protocols and *AUTH*, *PBSZ* and *PROT* commands as defined in [http://www.ietf.org/rfc/rfc4217.txt RFC-4217].
+
+[http://pyftpdlib.googlecode.com/svn/trunk/demo/tls_ftpd.py download script]
