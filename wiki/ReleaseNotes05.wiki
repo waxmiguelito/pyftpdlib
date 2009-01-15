@@ -5,26 +5,26 @@
 
 == Enhancements ==
 
- * Issue #79: added two new callback methods to `FTPHandler` class to handle `on_file_sent` and `on_file_received` events.
- * Issue #82: added table of contents in documentation.
- * Issue #92: ASCII transfers are now 200% faster on those systems using "\r\n" as line separator (typically Windows).
- * Issue #94: a bigger buffer size for `send()` and `recv()` has been set resulting in a considerable speedup for both incoming and outgoing data transfers.
- * Issue #98: added preliminary support for SITE command.
- * Issue #99: a new script implementing FTPS (FTP over TLS/SSL) has been added to the demo directory ([http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py link]).
+ * Issue 79: added two new callback methods to `FTPHandler` class to handle `on_file_sent` and `on_file_received` events.
+ * Issue 82: added table of contents in documentation.
+ * Issue 92: ASCII transfers are now 200% faster on those systems using "\r\n" as line separator (typically Windows).
+ * Issue 94: a bigger buffer size for `send()` and `recv()` has been set resulting in a considerable speedup for both incoming and outgoing data transfers.
+ * Issue 98: added preliminary support for SITE command.
+ * Issue 99: a new script implementing FTPS (FTP over TLS/SSL) has been added to the demo directory ([http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py link]).
 
 == Bugfixes ==
 
- * Issue #78: the idle timeout of passive data connections gets stopped in case of rejected "site-to-site" connections.
- * Issue #80: demo/md5_ftpd.py should use hashlib module instead of the deprecated md5 module.
- * Issue #81: fixed some tests which were failing on SunOS.
- * Issue #84: fixed a very rare unhandled exception which could occur when retrieving the first bytes of a corrupted file.
- * Issue #85: a positive MKD response is supposed to include the name of the new directory.
- * Issue #87: SIZE should be rejected when the current TYPE is ASCII.
- * Issue #88: REST should be rejected when the current TYPE is ASCII.
- * Issue #89: "TYPE AN" was erroneously treated as synonym for "TYPE A" when "TYPE L7" should have been used instead.
- * Issue #90: an unhandled exception can occur when using MDTM against a file modified before year 1900.
- * Issue #91: an unhandled exception can occur in case `accept()` returns None instead of a socket (it happens sometimes).
- * Issue #95: anonymous is now treated as any other case-sensitive user.
+ * Issue 78: the idle timeout of passive data connections gets stopped in case of rejected "site-to-site" connections.
+ * Issue 80: demo/md5_ftpd.py should use hashlib module instead of the deprecated md5 module.
+ * Issue 81: fixed some tests which were failing on SunOS.
+ * Issue 84: fixed a very rare unhandled exception which could occur when retrieving the first bytes of a corrupted file.
+ * Issue 85: a positive MKD response is supposed to include the name of the new directory.
+ * Issue 87: SIZE should be rejected when the current TYPE is ASCII.
+ * Issue 88: REST should be rejected when the current TYPE is ASCII.
+ * Issue 89: "TYPE AN" was erroneously treated as synonym for "TYPE A" when "TYPE L7" should have been used instead.
+ * Issue 90: an unhandled exception can occur when using MDTM against a file modified before year 1900.
+ * Issue 91: an unhandled exception can occur in case `accept()` returns None instead of a socket (it happens sometimes).
+ * Issue 95: anonymous is now treated as any other case-sensitive user.
 
 == API changes since 0.5.0 ==
 
@@ -37,17 +37,17 @@
 
 == Enhancements ==
 
- * Issue #72: pyftpdlib now provides configurable idle timeouts to disconnect client after a long time of inactivity.
- * Issue #73: impose a delay before replying for invalid credentials to minimize the risk of brute force password guessing.
- * Issue #74: it is now possible to define permission exceptions for certain directories (e.g. creating a user which does not have write permission except for one sub-directory in FTP root).
+ * Issue 72: pyftpdlib now provides configurable idle timeouts to disconnect client after a long time of inactivity.
+ * Issue 73: impose a delay before replying for invalid credentials to minimize the risk of brute force password guessing.
+ * Issue 74: it is now possible to define permission exceptions for certain directories (e.g. creating a user which does not have write permission except for one sub-directory in FTP root).
  * Improved bandwidth throttling capabilities of [http://code.google.com/p/pyftpdlib/source/browse/tags/release-0.5.0/demo/throttled_ftpd.py demo/throttled_ftpd.py] script by having used the new `CallLater` class which drastically reduces the number of calls to time.time().
 
 == Bugfixes ==
 
- * Issue #62: some unit tests were failing on dual core machines.
- * Issue #71: socket handles are leaked when a data transfer is in progress and user QUITs.
- * Issue #75: orphaned file was left behind in case STOU failed for insufficient user permissions.
- * Issue #77: incorrect OOB data management on FreeBSD.
+ * Issue 62: some unit tests were failing on dual core machines.
+ * Issue 71: socket handles are leaked when a data transfer is in progress and user QUITs.
+ * Issue 75: orphaned file was left behind in case STOU failed for insufficient user permissions.
+ * Issue 77: incorrect OOB data management on FreeBSD.
 
 == API changes since 0.4.0 ==
 
