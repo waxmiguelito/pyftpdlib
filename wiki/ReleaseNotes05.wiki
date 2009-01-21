@@ -1,14 +1,14 @@
 #summary pyftpdlib 0.5.x series release notes.
 #labels SortOrder-5
 
-= Version: 0.5.1 - Date: 2009-01-16 =
+= Version: 0.5.1 - Date: 2009-01-21 =
 
 == Enhancements ==
 
  * Issue 79: added two new callback methods to `FTPHandler` class to handle `on_file_sent` and `on_file_received` events.
  * Issue 82: added table of contents in documentation.
  * Issue 92: ASCII transfers are now 200% faster on those systems using "\r\n" as line separator (typically Windows).
- * Issue 94: a bigger buffer size for `send()` and `recv()` has been set resulting in a considerable speedup for both incoming and outgoing data transfers.
+ * Issue 94: a bigger buffer size for `send()` and `recv()` has been set resulting in a considerable speedup (about 40% faster) for both incoming and outgoing data transfers.
  * Issue 98: added preliminary support for SITE command.
  * Issue 99: a new script implementing FTPS (FTP over TLS/SSL) has been added to the demo directory ([http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py link]).
 
@@ -58,12 +58,12 @@
 
 == Migration notes ==
 
-Changes applied to the 0.5.0 trunk should be fully compatible with the previous 0.4.0 version. Your existing 0.4.0 based code will most likely work without need to be modified. The new features in this release are detailed below. 
+Changes applied to the 0.5.0 trunk should be fully compatible with the previous 0.4.0 version. Your existing 0.4.0 based code will most likely work without need to be modified. The new features in this release are detailed below.
 
 === Idle timeouts and new CallLater class ===
 
-The previous version suffered the problem of not having a mechanism to disconnect clients after a long time of inactivity. 
-This posed the risk for the FTP server to be easily vulnerable to DoS attacks in which a lot of connected clients could clump system's resources and sockets. 
+The previous version suffered the problem of not having a mechanism to disconnect clients after a long time of inactivity.
+This posed the risk for the FTP server to be easily vulnerable to DoS attacks in which a lot of connected clients could clump system's resources and sockets.
 
 0.5.0 version solved this problem by implementing a brand new polling loop which, other than serving the connected clients, also checks if it is the proper time for scheduled functions to be called (if any). Thanks to the new loop and the new `CallLater` class implementing [http://code.google.com/p/pyftpdlib/issues/detail?id=72 timeouts] and [http://code.google.com/p/pyftpdlib/issues/detail?id=73 delays to invalid credential replies] have been possible.
 

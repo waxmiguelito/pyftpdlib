@@ -16,7 +16,7 @@
  * Add SSL/TLS support at library level including  *AUTH*, *PROT*, *PBSZ* and *CCC* commands as defined in [http://www.faqs.org/rfcs/rfc4217.html RFC 4217].
  * Python 3K porting.
 
-== 0.5.1 _(in development)_ ==
+== 0.5.1 _(current release)_ ==
 
  * ~~Add a new demo script implementing FTPS (FTP over TLS/SSL) supporting *AUTH*, *PROT* and *PBSZ* commands.~~
  * ~~Set bigger buffer sizes to speedup data transfers.~~
@@ -24,7 +24,7 @@
  * ~~Add preliminary support for SITE command.~~
  * ~~Fix various bugs.~~
 
-== 0.5.0 _(current release)_ ==
+== 0.5.0 _(released)_ ==
 
  * ~~Provide configurable idle timeouts to disconnect clients after a long time of inactivity.~~
  * ~~Minimize the risk of brute force password guessing by imposing a delay before replying to invalid credentials.~~
