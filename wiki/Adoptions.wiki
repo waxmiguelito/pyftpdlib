@@ -102,6 +102,14 @@ http://bbs.archlinux.org/viewtopic.php?id=56623
 
 ----
 
+== ShareFTP ==
+
+A program functionally equivalent to Shareme project.
+
+http://git.logfish.net/shareftp.git/
+
+----
+
 == EasyFTPd ==
 
 An end-user UNIX FTP server with focus on simplicity.  It basically provides a configuration file interface over pyftpdlib to easily set up an FTP daemon.
