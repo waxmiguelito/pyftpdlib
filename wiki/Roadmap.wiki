@@ -10,7 +10,7 @@
  * _(?)_ *LANG* command support ([http://www.faqs.org/rfcs/rfc2640.html RFC 2640]).
  * _(?)_ Split classes into different files.
  * _(?)_ Support for *ADAT*, *MIC*, *CONF* and *ENC* commands ([http://www.ietf.org/rfc/rfc2228.txt RFC-2228]).
- * _(?)_ Add `remove_orphaned_files` attribute to FTPHandler class to delete orphaned files left behind in case clients didn't complete uploads successfully.
+ * _(?)_ Add `remove_orphaned_files` attribute to FTPHandler class to delete the orphaned file left behind in case client doesn't complete upload successfully.
 
 == 0.6.0 ==
 
