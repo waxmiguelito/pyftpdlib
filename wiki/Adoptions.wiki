@@ -17,6 +17,27 @@ Please help us in keeping such list updated.
 
 Following lists the softwares adopting pyftpdlib.
 
+== Google Chrome ==
+
+http://www.google.com/chrome/intl/en/images/logo_sm.jpg
+
+[http://www.google.com/chrome Google Chrome] is the new free and open source web browser developed by Google. [http://code.google.com/intl/it-IT/chromium/ Google Chromium], the open source project behind Google Chrome, included pyftpdlib in the code base to develop Google Chrome's FTP client unit tests.
+
+http://www.google.com/chrome
+
+----
+
+== Bazaar == 
+
+http://lh5.ggpht.com/_Ukz_BlennCk/SQ3hoYxi-0I/AAAAAAAAAZU/4cRqZLdzfJU/s800/bazaar-logo.jpg
+
+[http://bazaar-vcs.org/ Bazaar] is a distributed version control system similar to Subversion which supports different protocols among which FTP.
+As for [http://www.google.com/chrome Google Chrome], Bazaar recently adopted pyftpdlib as base FTP server to implement internal FTP unit tests.
+
+http://bazaar-vcs.org/
+
+-----
+
 == Python for OpenVMS ==
 
 http://mvb.saic.com/images/vms_shark_hp.png
@@ -26,16 +47,6 @@ http://mvb.saic.com/images/vms_shark_hp.png
 pyftpdlib recently became a standard library module installed by default on every new vmspython installation.
 
 http://www.vmspython.org/DownloadAndInstallationPython
-
-----
-
-== Google Chrome ==
-
-http://www.google.com/chrome/intl/en/images/logo_sm.jpg
-
-[http://www.google.com/chrome Google Chrome] is the new free and open source web browser developed by Google. [http://code.google.com/intl/it-IT/chromium/ Google Chromium], the open source project behind Google Chrome, included pyftpdlib in the code base to develop Google Chrome's FTP client unit tests.
-
-http://www.google.com/chrome
 
 ----
 
