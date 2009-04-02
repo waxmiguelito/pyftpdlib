@@ -1,14 +1,6 @@
 #summary A list of softwares and systems using pyftpdlib.
 #labels SortOrder-7
 
-= Table of contents =
-
-<wiki:toc/>
-
-----
-
-= Introduction =
-
 Here comes a list of softwares and systems using pyftpdlib.
 In case you want to add your software to such list add a comment below.
 Please help us in keeping such list updated.
