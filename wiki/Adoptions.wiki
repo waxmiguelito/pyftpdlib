@@ -13,6 +13,48 @@ Here comes a list of softwares and systems using pyftpdlib.
 In case you want to add your software to such list add a comment below.
 Please help us in keeping such list updated.
 
+= Packages =
+
+Following lists the packages of pyftpdlib from various platforms.
+
+
+== Fedora ==
+
+http://blog.blacknight.com/images/fedora-logo.png
+
+[http://fedoraproject.org Fedora] is a famous Linux based operating system.
+Fedora development team created an [https://admin.fedoraproject.org/pkgdb/packages/name/pyftpdlib RPM packaged version of pyftpdlib] and added it into their official repositories to make users easily install it with:
+
+{{{
+yum install pyftpdlib
+}}}
+
+Packaged version of pyftpdlib should be available starting from Fedora 11.
+
+----
+
+== FreeBSD ==
+
+http://www.websdotcom.net/images/beastie.gif
+
+[http://www.freebsd.org/ FreeBSD] is an advanced operating system for x86 compatible architectures. It is derived from BSD, the version of UNIX developed at the University of California, Berkeley.
+The [http://www.freebsd.org/ports/ FreeBSD Ports Collection] offers a simple way for users and administrators to install applications.
+
+FreeBSD Ports team created a [http://www.freshports.org/ftp/py-pyftpdlib/ pyftpdlib port] to make users can easily install and use it on FreeBSD systems. [http://www.freshports.org Freshports] is a news site about FreeBSD's ports. Latest news about "py-pyftpdlib" port can be found here:
+
+http://www.freshports.org/ftp/py-pyftpdlib/
+
+----
+
+== GNU Darwin ==
+
+http://www.gnu-darwin.org/new4p2-gd-sm.png
+
+[http://www.gnu-darwin.org GNU Darwin] is a Unix distribution which focuses on the porting of free software to Darwin and Mac OS X.
+pyftpdlib has been recently included in the official repositories to make users can easily install and use it on GNU Darwin systems.
+
+http://www.gnu-darwin.org
+
 = Softwares =
 
 Following lists the softwares adopting pyftpdlib.
@@ -87,8 +129,6 @@ http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html
 
 == Manent ==
 
-http://trac.manent-backup.com/chrome/site/manent-logo.png
-
 [http://trac.manent-backup.com/ Manent] is an algorithmically strong backup and archival program which can offer remote backup via a pyftpdlib-based S/FTP server.
 
 http://trac.manent-backup.com/
@@ -128,29 +168,3 @@ An end-user UNIX FTP server with focus on simplicity.  It basically provides a c
 http://code.google.com/p/easyftpd/
 
 ----
-
-= Packages =
-
-Following lists the packages of pyftpdlib from various platforms.
-
-== FreeBSD ==
-
-http://www.websdotcom.net/images/beastie.gif
-
-[http://www.freebsd.org/ FreeBSD] is an advanced operating system for x86 compatible architectures. It is derived from BSD, the version of UNIX developed at the University of California, Berkeley.
-The [http://www.freebsd.org/ports/ FreeBSD Ports Collection] offers a simple way for users and administrators to install applications.
-
-FreeBSD Ports team created a [http://www.freshports.org/ftp/py-pyftpdlib/ pyftpdlib port] to make users can easily install and use it on FreeBSD systems. [http://www.freshports.org Freshports] is a news site about FreeBSD's ports. Latest news about "py-pyftpdlib" port can be found here:
-
-http://www.freshports.org/ftp/py-pyftpdlib/
-
-----
-
-== GNU Darwin ==
-
-http://www.gnu-darwin.org/new4p2-gd-sm.png
-
-[http://www.gnu-darwin.org GNU Darwin] is a Unix distribution which focuses on the porting of free software to Darwin and Mac OS X.
-pyftpdlib has been recently included in the official repositories to make users can easily install and use it on GNU Darwin systems.
-
-http://www.gnu-darwin.org
