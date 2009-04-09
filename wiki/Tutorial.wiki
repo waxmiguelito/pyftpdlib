@@ -105,6 +105,14 @@ class ftpserver.*DTPHandler(*_sock_obj, cmd_channel_*)*
 
  * *get_transmitted_bytes()*<br>Return the number of transmitted bytes.
 ----
+class ftpserver.*ThrottledDTPHandler(*_sock_obj, cmd_channel_*)*
+
+  A `DTPHandler` subclass which wraps sending and receiving in a data counter and temporarily "sleeps" the channel so that you burst to no more than x Kb/sec average. Use it instead of `DTPHandler` to set transfer rates limits for both downloads and/or uploads (see the [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/throttled_ftpd.py demo script] showing the example usage). *_New in 0.5.2_*
+
+ * *read_limit*<br>The maximum number of bytes to read (receive) in one second (defaults to 0 == no limit)
+
+ * *write_limit*<br>The maximum number of bytes to write (send) in one second (defaults to 0 == no limit).
+----
 class ftpserver.*FTPServer(*_address, handler_*)*
 
   This class is an `asyncore.dispatcher` subclass.  It creates a FTP socket listening on `address` (a tuple containing the ip:port pair), dispatching the requests to a "handler" (typically `FTPHandler` class object).  It is typically used for starting asyncore polling loop:
@@ -115,9 +123,9 @@ class ftpserver.*FTPServer(*_address, handler_*)*
 >>> ftpd.serve_forever()
   }}}
 
- * *max_cons*<br>Number of maximum simultaneous connections accepted (default `0` == _no limit_).
+ * *max_cons*<br>Number of maximum simultaneous connections accepted (default 0 == _no limit_).
 
- * *max_cons_per_ip*<br>Number of maximum connections accepted for the same IP address (default `0` == _no limit_).
+ * *max_cons_per_ip*<br>Number of maximum connections accepted for the same IP address (default 0 == _no limit_).
 
  * *serve_forever(*<font size="4">*`[`*</font>_timeout=1_<font size="4">*`[`*</font>, _use_poll=False_<font size="4">*`[`*</font>, _map=None_<font size="4">*`[`*</font>, _count=None_*]]])*<br>A wrap around asyncore.loop(); starts the asyncore polling loop including running the scheduler. The arguments are the same expected by original [http://docs.python.org/library/asyncore.html#asyncore.loop asyncore.loop()] function.
 
