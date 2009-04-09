@@ -553,12 +553,11 @@ This is possible thanks to the new [http://docs.python.org/library/ssl.html#modu
 
 [http://pyftpdlib.googlecode.com/svn/trunk/demo/tls_ftpd.py download script]
 
-== 4.2 - Adding bandwidth throttling capabilities ==
+== 4.2 - Throttle bandwidth ==
 
 An important feature for an ftpd is limiting the speed for downloads and uploads affecting the data channel.
 
-The basic idea behind this script is to wrap sending and receiving in a data counter and temporary "sleep" the data channel so that you burst to no more than x Kb/sec average. Such sleep must be "asynchronous" since we want to avoid the polling loop from blocking.
-
-To accomplish such behaviour I used the `CallLater` class to implement the asynchronous sleeps and ovverridden the original `DTPHandler` class. When the new DTPHandler realizes that more than x Kb in a second are being transmitted it temporary blocks the transfer for a certain number of seconds.
+Starting from version 0.5.2 it is possible to use the new `ThrottledDTPHandler` class to set such limits.
+The basic idea behind `ThrottledDTPHandler` is to wrap sending and receiving in a data counter and temporary "sleep" the data channel so that you burst to no more than x Kb/sec average. When it realizes that more than x Kb in a second are being transmitted it temporary blocks the transfer for a certain number of seconds.
 
 [http://pyftpdlib.googlecode.com/svn/trunk/demo/throttled_ftpd.py download script]
