@@ -82,7 +82,7 @@ Just modify `banner` attribute of `FTPHandler` class.
 
 == 3.3 - Can control upload/download ratios? ==
 
-Yes. [http://pyftpdlib.googlecode.com/svn/trunk/demo/throttled_ftpd.py throttled_ftpd.py] script included in the demo directory implements bandwidth throttling capabilities for both upload and download.
+Yes. Starting from version 0.5.2 ftpserver.py provides a new class called `ThrottledDTPHandler`. You can set speed limits by modifying `read_limit` and `write_limit` class attributes as it is shown in [http://pyftpdlib.googlecode.com/svn/trunk/demo/throttled_ftpd.py throttled_ftpd.py] demo script.
 
 == 3.4 - Are there ways to limit connections? ==
 
