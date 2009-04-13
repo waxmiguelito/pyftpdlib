@@ -76,6 +76,28 @@ pyftpdlib currently does not work on *[http://www.jython.org/ Jython]* since the
 
 = Usage =
 
+== How can I run long-running tasks without blocking the server? ==
+
+pyftpdlib is an *asynchronous* FTP server. That means that if you need to run a time consuming task you have to use a separate Python process or thread for the actual processing work otherwise the entire asynchronous loop will be blocked.
+
+Let's suppose you want to implement a long-running task every time the server receives a file. This is the the correct way to do it by using a thread.
+Notice how we first set `FTPHandler.sleeping` attribute to `False`, then we set it back to `True` when the long-running task has completed.<br>
+By setting `FTPHandler.sleeping` attribute to `False` we temporarily "sleep" the channel which won't be able to send or receive any data and won't be closed (disconnected) as long as we don't set it back to `True`.
+This is fundamental when working with threads to avoid race conditions, dead locks etc.
+
+{{{
+class MyHandler(ftpserver.FTPHandler):
+
+    def on_file_received(self, file):
+
+        def blocking_task():
+            time.sleep(5)
+            self.sleeping = False
+
+        self.sleeping = True
+        threading.Thread(target=blocking_task).start()
+}}}
+
 == Why do I get socket.error "Permission denied" error on ftpd starting? ==
 
 Probably because you're on a Unix system and you're trying to start ftpd as an unprivileged user. _ftpserver.py_ binds on port 21 by default and only super-user account (e.g. root) can bind sockets on such ports. If you want to bind ftpd as non-privileged user you should set a port higher than 1024.
