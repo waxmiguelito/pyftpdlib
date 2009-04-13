@@ -80,9 +80,10 @@ pyftpdlib currently does not work on *[http://www.jython.org/ Jython]* since the
 
 pyftpdlib is an *asynchronous* FTP server. That means that if you need to run a time consuming task you have to use a separate Python process or thread for the actual processing work otherwise the entire asynchronous loop will be blocked.
 
-Let's suppose you want to implement a long-running task every time the server receives a file. This is the the correct way to do it by using a thread.
+Let's suppose you want to implement a long-running task every time the server receives a file. The code snippet below shows the correct way to do it by using a thread.
+
 Notice how we first set `FTPHandler.sleeping` attribute to `False`, then we set it back to `True` when the long-running task has completed.<br>
-By setting `FTPHandler.sleeping` attribute to `False` we temporarily "sleep" the channel which won't be able to send or receive any data and won't be closed (disconnected) as long as we don't set it back to `True`.
+By setting `sleeping` attribute to `False` we temporarily "sleep" the channel which won't be able to send or receive any more data and won't be closed (disconnected) as long as we don't set it back to `True`.
 This is fundamental when working with threads to avoid race conditions, dead locks etc.
 
 {{{
