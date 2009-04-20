@@ -89,9 +89,9 @@ class ftpserver.*FTPHandler(*_conn, server_*)*
 
  * *passive_ports*<br>What ports ftpd will use for its passive data transfers.  Value expected is a list of integers (e.g. `range(60000, 65535)`).  When configured pyftpdlib will no longer use kernel-assigned random ports (default `None`).
 
- * *on_file_sent(*_file_*)*<br>Called every time a file has been successfully sent. _*New in 0.5.1*_
+ * *on_file_sent(*_file_*)*<br>Called every time a file has been successfully sent (read the FAQ on how to [http://code.google.com/p/pyftpdlib/wiki/FAQ#How_can_I_run_long-running_tasks_without_blocking_the_server? run time consuming tasks]). _*New in 0.5.1*_
 
- * *on_file_received(*_file_*)*<br>Called every time a file has been successfully received. _*New in 0.5.1*_
+ * *on_file_received(*_file_*)*<br>Called every time a file has been successfully received (read the FAQ on how to [http://code.google.com/p/pyftpdlib/wiki/FAQ#How_can_I_run_long-running_tasks_without_blocking_the_server? run time consuming tasks]). _*New in 0.5.1*_
 
 ----
 class ftpserver.*DTPHandler(*_sock_obj, cmd_channel_*)*
