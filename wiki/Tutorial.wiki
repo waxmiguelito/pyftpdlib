@@ -135,7 +135,7 @@ class ftpserver.*FTPServer(*_address, handler_*)*
 ----
 class ftpserver.*AbstractedFS()*
 
-  A class used to interact with the file system, providing a high level, cross-platform interface compatible with both Windows and UNIX style filesystems.  It provides some utility methods to operate on pathnames and the wraps around the common calls to interact with the filesystem (e.g. open(), os.mkdir(), os.listdir(), etc...).  These latter ones are not reproduced below (see the source instead).
+  A class used to interact with the file system, providing a cross-platform interface compatible with both Windows and UNIX style filesystems where all paths use "/" separator. <br>`AbstractedFS` distinguishes between "real" filesystem paths and "virtual" ftp paths emulating a UNIX chroot jail where the user can not escape its home directory (example: real "/home/user" path will be seen as "/" by the client). <br>It also provides some utility methods and wraps around all `os.*` calls involving operations against the filesystem like creating files or removing directories.
 
  * *root*<br>User's home directory ("real").
 
