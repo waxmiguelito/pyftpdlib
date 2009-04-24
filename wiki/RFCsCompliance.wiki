@@ -59,7 +59,7 @@ The base specification of the current File Transfer Protocol.
 || TYPE || YES || 0.1.0 || Set current type (Binary/ASCII). || Accept only Binary and ASII TYPEs. Other TYPEs such as EBCDIC are obsoleted, system-dependent and thus not implemented. ||
 || USER || YES || 0.1.0 || Set user. || A new USER command could be entered at any point in order to change the access control flushing any user, password, and account information already supplied and beginning the login sequence again. ||
 
-= =
+<br>
 
 = RFC-1123 - Requirements for Internet Hosts =
 
@@ -80,7 +80,7 @@ Extends and clarifies some aspects of [http://www.ietf.org/rfc/rfc959.txt RFC-95
 || Concurrency of data and control || YES || 0.1.0 || Server-FTP should be able to process STAT or ABOR while a data transfer is in progress || Feature granted natively for ALL commands since we're in an asynchronous environment. ||
 || 554 response on wrong REST || YES || 0.2.0 || Return a 554 reply may for a command that follows a REST command.  The reply indicates that the existing file at the Server-FTP cannot be repositioned as specified in the REST. || ||
 
-= =
+<br>
 
 = RFC-2228 - FTP Security Extensions =
 
@@ -99,7 +99,7 @@ Specifies several security extensions to the base FTP protocol defined in [http:
 || PBSZ || NO || --- || Protection Buffer Size. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] by following the [http://www.ietf.org/rfc/rfc4217.txt RFC-4217] guide line as a no-op command. ||
 || PROT || NO || --- || Data Channel Protection Level. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] by following the [http://www.ietf.org/rfc/rfc4217.txt RFC-4217] guide line supporting only "P" and "C" protection levels. ||
 
-= =
+<br>
 
 = RFC-2389 - Feature negotiation mechanism for the File Transfer Protocol =
 
@@ -112,7 +112,7 @@ Introduces the new FEAT and OPTS commands.
 || FEAT || YES || 0.3.0 || List new supported commands subsequent [http://www.ietf.org/rfc/rfc959.txt RFC-959] || ||
 || OPTS || YES || 0.3.0 || Set options for certain commands. || MLST is the only command which could be used with OPTS. ||
 
-= =
+<br>
 
 = RFC-2428 - FTP Extensions for IPv6 and NATs =
 
@@ -125,7 +125,7 @@ Introduces the new commands EPRT and EPSV extending FTP to enable its use over v
 || EPRT || YES || 0.4.0 || Set active data connection over IPv4 or IPv6 || ||
 || EPSV || YES || 0.4.0 || Set passive data connection over IPv4 or IPv6 || ||
 
-= =
+<br>
 
 = RFC-2577 - FTP Security Considerations =
 
@@ -143,7 +143,7 @@ Provides several configuration and implementation suggestions to mitigate some s
 || Do not reject wrong usernames || YES || 0.1.0 || Always return 331 to the USER command to prevent client from determining valid usernames on the server. || ||
 || Port stealing protection || YES || 0.1.1 || Use random-assigned local ports for data connections.  || ||
 
-= =
+<br>
 
 = RFC-2640 - Internationalization of the File Transfer Protocol =
 
@@ -157,10 +157,7 @@ Extends the FTP protocol to support multiple character sets, in addition to the 
 || LANG command || NO || --- || Set current response's language. || ||
 || Support for UNICODE  || NO || --- || For support of global compatibility it is rencommended that clients and servers use UTF-8 encoding when exchanging pathnames. || ||
 
-= =
-
-
-
+<br>
 
 = RFC-3659 - Extensions to FTP =
 
@@ -178,7 +175,7 @@ Four new commands are added: "SIZE", "MDTM", "MLST", and "MLSD".  The existing c
 || TVSF mechanism || YES || 0.1.0 || Provide a file system naming conventions modeled loosely upon those of the Unix file system supporting relative and absolute path names. || ||
 || Minimum required set of MLST facts || YES || 0.3.0 || If conceivably possible, support at least the type, perm, size, unique, and modify MLSX command facts. || ||
 
-= =
+<br>
 
 = RFC-4217 - Securing FTP with TLS =
 
