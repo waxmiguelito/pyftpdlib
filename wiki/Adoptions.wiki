@@ -1,6 +1,8 @@
 #summary A list of softwares and systems using pyftpdlib.
 #labels SortOrder-7
 
+<wiki:toc />
+
 Here comes a list of softwares and systems using pyftpdlib.
 In case you want to add your software to such list add a comment below.
 Please help us in keeping such list updated.
@@ -167,3 +169,9 @@ An end-user UNIX FTP server with focus on simplicity.  It basically provides a c
 http://code.google.com/p/easyftpd/
 
 ----
+
+== Eframe ==
+
+[http://code.google.com/p/adqmisc/wiki/eframe Eframe] offers Python support for the BT EFrame 1000 digital photo frame.
+
+http://code.google.com/p/adqmisc/wiki/eframe
