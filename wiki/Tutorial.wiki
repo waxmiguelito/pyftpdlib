@@ -41,7 +41,7 @@ class ftpserver.*DummyAuthorizer()*
 
   Read permissions:
       * *"e"* = change directory (CWD command)
-      * *"l"* = list files (LIST, NLST, MLSD commands)
+      * *"l"* = list files (LIST, NLST, STAT, MLSD, MLST commands)
       * *"r"* = retrieve file from the server (RETR command)
   Write permissions
       * *"a"* = append data to an existing file (APPE command)

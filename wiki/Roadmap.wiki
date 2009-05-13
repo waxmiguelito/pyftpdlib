@@ -17,6 +17,10 @@
  * Add SSL/TLS support at library level including  *AUTH*, *PROT*, *PBSZ* and *CCC* commands as defined in [http://www.faqs.org/rfcs/rfc4217.html RFC 4217].
  * Python 3K porting.
 
+== 0.5.2 _(upcoming release)_ ==
+
+ * ~~Set transfer speed limits thanks to addition of ThrottledDTPHandler class.~~
+
 == 0.5.1 _(current release)_ ==
 
  * ~~Add a new demo script implementing FTPS (FTP over TLS/SSL) supporting *AUTH*, *PROT* and *PBSZ* commands.~~
