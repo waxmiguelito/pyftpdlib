@@ -96,12 +96,12 @@ class ftpserver.*FTPHandler(*_conn, server_*)*
 ----
 class ftpserver.*DTPHandler(*_sock_obj, cmd_channel_*)*
 
-  This class handles the server-data-transfer-process (server-DTP, see [http://www.faqs.org/rfcs/rfc959.html RFC-959]) managing all transfer operations regarding the data channel.  `sock_obj` is the underlying socket object instance of the newly established connection, `cmd_channel` is the `FTPHandler` class instance.  Aside from `timeout` class attribute and/or unless you want to add extra functionalities like bandwidth throttling you shouldn't be interested in putting hands on this class.
+  This class handles the server-data-transfer-process (server-DTP, see [http://www.faqs.org/rfcs/rfc959.html RFC-959]) managing all transfer operations regarding the data channel.  `sock_obj` is the underlying socket object instance of the newly established connection, `cmd_channel` is the `FTPHandler` class instance.
 
  * *timeout*<br>The timeout which roughly is the maximum time we permit data transfers to stall for with no progress. If the timeout triggers, the remote client will be kicked off. _*New in 5.0*_
 
  * *ac_in_buffer_size*<br>
- * *ac_out_buffer_size*<br>The buffer sizes to use when receiving and sending data (both defaulting to `65536`). For LANs you may want this to be fairly large.  Depending on available memory and number of connected clients setting them to a lower value can result in better performances.
+ * *ac_out_buffer_size*<br>The buffer sizes to use when receiving and sending data (both defaulting to `65536` bytes). For LANs you may want this to be fairly large.  Depending on available memory and number of connected clients setting them to a lower value can result in better performances.
 
 ----
 class ftpserver.*ThrottledDTPHandler(*_sock_obj, cmd_channel_*)*
@@ -315,7 +315,7 @@ if __name__ == "__main__":
 
 If you're running a Unix system you may want to configure your ftpd to include support for "real" users existing on the system.
 
-The example below shows how to use [http://docs.python.org/lib/module-pwd.html pwd] and [http://docs.python.org/lib/module-spwd.html spwd] modules available in _Python 2.5_ or greater (UNIX systems only) to interact with UNIX user account and shadow passwords database and also to automatically get the user's home directory.
+The example below shows how to use [http://docs.python.org/lib/module-pwd.html pwd] and [http://docs.python.org/lib/module-spwd.html spwd] modules available since Python 2.5 to interact with UNIX user account and shadow passwords database and also to automatically get the user's home directory.
 
 `impersonate_user()` and `terminate_impersonation()` methods of the dummy authorizer are overridden to provide the proper mechanism to reflect the current logged-in user every time he's going to access the filesystem.
 
@@ -542,6 +542,15 @@ if __name__ == "__main__":
     ftpd.serve_forever()
 }}}
 
+== 3.6 - Throttle bandwidth ==
+
+An important feature for an ftpd is limiting the speed for downloads and uploads affecting the data channel.
+
+Starting from version 0.5.2 it is possible to use the new `ThrottledDTPHandler` class to set such limits.
+The basic idea behind `ThrottledDTPHandler` is to wrap sending and receiving in a data counter and temporary "sleep" the data channel so that you burst to no more than x Kb/sec average. When it realizes that more than x Kb in a second are being transmitted it temporary blocks the transfer for a certain number of seconds.
+
+[http://pyftpdlib.googlecode.com/svn/trunk/demo/throttled_ftpd.py download script]
+
 = 4.0 - Advanced usages =
 
 == 4.1 - FTPS (FTP over TLS/SSL) server ==
@@ -551,12 +560,3 @@ Although the standard code base does not offer any "official" FTPS support yet s
 This is possible thanks to the new [http://docs.python.org/library/ssl.html#module-ssl ssl module] introduced in Python 2.6.
 
 [http://pyftpdlib.googlecode.com/svn/trunk/demo/tls_ftpd.py download script]
-
-== 4.2 - Throttle bandwidth ==
-
-An important feature for an ftpd is limiting the speed for downloads and uploads affecting the data channel.
-
-Starting from version 0.5.2 it is possible to use the new `ThrottledDTPHandler` class to set such limits.
-The basic idea behind `ThrottledDTPHandler` is to wrap sending and receiving in a data counter and temporary "sleep" the data channel so that you burst to no more than x Kb/sec average. When it realizes that more than x Kb in a second are being transmitted it temporary blocks the transfer for a certain number of seconds.
-
-[http://pyftpdlib.googlecode.com/svn/trunk/demo/throttled_ftpd.py download script]
