@@ -82,7 +82,7 @@ pyftpdlib is an *asynchronous* FTP server. That means that if you need to run a 
 
 Let's suppose you want to implement a long-running task every time the server receives a file. The code snippet below shows the correct way to do it by using a thread.
 
-Notice how we first set `FTPHandler.sleeping` attribute to `False`, then we set it back to `True` when the long-running task has completed.<br>
+Notice how we first set `FTPHandler.sleeping` attribute to `True`, then we set it back to `False` when the long-running task has completed.<br>
 By setting `sleeping` attribute to `False` we temporarily "sleep" the channel which won't be able to send or receive any more data and won't be closed (disconnected) as long as we don't set it back to `True`.
 This is fundamental when working with threads to avoid race conditions, dead locks etc.
 
@@ -91,11 +91,11 @@ class MyHandler(ftpserver.FTPHandler):
 
     def on_file_received(self, file):
         """Called every time a file has been received"""
-        
+
         def blocking_task():
             time.sleep(5)
             self.sleeping = False
-        
+
         self.sleeping = True
         threading.Thread(target=blocking_task).start()
 }}}
