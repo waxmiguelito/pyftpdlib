@@ -105,6 +105,19 @@ http://openerp.com
 
 ----
 
+== Plumi ==
+
+http://www.engagemedia.org/Members/EngageMedia/plumi-banner.jpg
+
+[http://plumi.org/wiki Plumi] is a video sharing Content Management System based on [http://plone.org Plone] that enables you to create your own sophisticated video sharing site.
+
+pyftpdlib has been included in Plumi to allow resumable large video file uploads into [http://www.zope.org/ Zope].
+
+http://plumi.org/wiki
+http://blog.plumi.org/
+
+----
+
 == Far Manager ==
 
 http://www.farmanager.com/img/title_light.png
