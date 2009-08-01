@@ -7,7 +7,7 @@ Python 2.3 or higher (not Python 3.x). You can get the latest 2.x stable Python 
 
 = Using easy_install / setuptools =
 
-If you have [http://peak.telecommunity.com/DevCenter/EasyInstall easy_install] on your system, installing pyftpdlib is quite simple. Just run:
+If you have [http://pypi.python.org/pypi/setuptools easy_install / setuptools] on your system, installing pyftpdlib is quite simple. Just run:
 {{{
 easy_install pyftpdlib
 }}}
