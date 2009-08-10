@@ -157,6 +157,16 @@ http://walco.n--tree.net/projects/aksy/
 
 ----
 
+== Imgserve ==
+
+[http://github.com/wuzhe/imgserve/tree/master Imgserve] is a python image processing server designed to provide image processing service. It can utilize modern multicore CPU to achieve higher throughput and possibly better performance.
+
+It uses pyftpdlib to permit image downloading/uploading through FTP/FTPS.
+
+http://github.com/wuzhe/imgserve/tree/master
+
+----
+
 == Shareme ==
 
 Ever needed to share a directory between two computers? Usually this is done using NFS, FTP or Samba, which could be a pain to setup when you just want to move some files around.
