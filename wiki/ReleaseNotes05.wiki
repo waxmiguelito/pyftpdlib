@@ -28,8 +28,8 @@
 
 == API changes since 0.5.1 ==
 
- * ThrottledDTPHandler class has been added.
- * FTPHandler.process_command() method has been added.
+ * `ThrottledDTPHandler` class has been added (see [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/throttled_ftpd.py usage example]).
+ * `FTPHandler.process_command()` method has been added.
 
 
 = Version: 0.5.1 - Date: 2009-01-21 =
