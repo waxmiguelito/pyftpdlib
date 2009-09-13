@@ -10,20 +10,20 @@
 
 == Bugfixes == 
 
- * Issue #100: fixed a race condition in FTPHandler constructor which could throw an exception in case of connection bashing (DoS).  (thanks Bram Neijt)
- * Issue #102: FTPServer.close_all() now removes any unfired delayed call left behind to prevent potential memory leaks.
- * Issue #104: fixed a bug in FTPServer.handle_accept() where socket.accept() could return None instead of a valid address causing the server to crash. (OS X only, reported by Wentao Han)
- * Issue #104: an unhandled EPIPE exception might be thrown by asyncore.recv() when dealing with ill-behaved clients on OS X . (reported by Wentao Han)
- * Issue #105: ECONNABORTED might be thrown by socket.accept() on FreeBSD causing the server to crash.
- * Issue #109: an unhandled EBADF exception might be thrown when using poll() on OS X and FreeBSD.
- * Issue #111: the license used was not MIT as stated in source files.
- * Issue #112: fixed a MDTM related test case failure occurring on 64 bit OSes.
- * Issue #113: fixed unix_ftp.py which was treating anonymous as a normal user.
- * Issue #114: MLST is now denied unless the "l" permission has been specified for the user.
- * Issue #115: asyncore.dispatcher.close() is now called before doing any other cleanup operation when client disconnects. This way we avoid an endless loop which hangs the server in case an exception is raised in close() method. (thanks Arkadiusz Wahlig)
- * Issue #116: extra carriage returns were added to files transferred in ASCII mode.
- * Issue #118: CDUP always changes to "/".
- * Issue #119: QUIT sent during a transfer caused a memory leak.
+ * Issue 100: fixed a race condition in FTPHandler constructor which could throw an exception in case of connection bashing (DoS).  (thanks Bram Neijt)
+ * Issue 102: FTPServer.close_all() now removes any unfired delayed call left behind to prevent potential memory leaks.
+ * Issue 104: fixed a bug in FTPServer.handle_accept() where socket.accept() could return None instead of a valid address causing the server to crash. (OS X only, reported by Wentao Han)
+ * Issue 104: an unhandled EPIPE exception might be thrown by asyncore.recv() when dealing with ill-behaved clients on OS X . (reported by Wentao Han)
+ * Issue 105: ECONNABORTED might be thrown by socket.accept() on FreeBSD causing the server to crash.
+ * Issue 109: an unhandled EBADF exception might be thrown when using poll() on OS X and FreeBSD.
+ * Issue 111: the license used was not MIT as stated in source files.
+ * Issue 112: fixed a MDTM related test case failure occurring on 64 bit OSes.
+ * Issue 113: fixed unix_ftp.py which was treating anonymous as a normal user.
+ * Issue 114: MLST is now denied unless the "l" permission has been specified for the user.
+ * Issue 115: asyncore.dispatcher.close() is now called before doing any other cleanup operation when client disconnects. This way we avoid an endless loop which hangs the server in case an exception is raised in close() method. (thanks Arkadiusz Wahlig)
+ * Issue 116: extra carriage returns were added to files transferred in ASCII mode.
+ * Issue 118: CDUP always changes to "/".
+ * Issue 119: QUIT sent during a transfer caused a memory leak.
 
 
 == API changes since 0.5.1 ==
