@@ -160,8 +160,6 @@ class ftpserver.*CallLater(*_seconds_, _target_ <font size="4">*`[`*</font>, `*`
 
  * *cancel()*<br>Unschedule the call.
 
-= =
-
 = 3.0 - Customizing your FTP server =
 
 Below is a set of example scripts showing some of the possible customizations that can be done with pyftpdlib.  Some of them are included in [http://code.google.com/p/pyftpdlib/source/browse/#svn/trunk/demo demo] directory of pyftpdlib source distribution.
