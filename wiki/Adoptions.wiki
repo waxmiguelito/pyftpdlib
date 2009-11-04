@@ -220,3 +220,11 @@ http://code.google.com/p/adqmisc/wiki/eframe
 http://www.ricamarketing.com/BLOG_files/picture-1.png
 
 [http://www.bitsontherun.com www.bitsontherun.com]
+
+----
+
+== www.adcast.tv ==
+
+http://pyftpdlib.googlecode.com/svn/wiki/images/adcast.png
+
+[http://www.adcast.tv http://www.adcast.tv]
