@@ -215,6 +215,14 @@ http://code.google.com/p/adqmisc/wiki/eframe
 
 = Web sites using pyftpdlib =
 
+== www.adcast.tv ==
+
+http://pyftpdlib.googlecode.com/svn/wiki/images/adcast.png
+
+[http://www.adcast.tv http://www.adcast.tv]
+
+----
+
 == www.bitsontherun.com == 
 
 http://www.ricamarketing.com/BLOG_files/picture-1.png
@@ -223,8 +231,8 @@ http://www.ricamarketing.com/BLOG_files/picture-1.png
 
 ----
 
-== www.adcast.tv ==
+== www.netplay.it ==
 
-http://pyftpdlib.googlecode.com/svn/wiki/images/adcast.png
+http://pyftpdlib.googlecode.com/svn/wiki/images/netplay.jpg
 
-[http://www.adcast.tv http://www.adcast.tv]
+[http://www.netplay.it www.netplay.it]
