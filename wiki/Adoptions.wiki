@@ -198,3 +198,7 @@ http://code.google.com/p/easyftpd/
 [http://code.google.com/p/adqmisc/wiki/eframe Eframe] offers Python support for the BT EFrame 1000 digital photo frame.
 
 http://code.google.com/p/adqmisc/wiki/eframe
+
+= Web sites using pyftpdlib =
+
+ * [http://www.bitsontherun.com www.bitsontherun.com]
