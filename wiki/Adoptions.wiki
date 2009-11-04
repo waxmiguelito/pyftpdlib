@@ -118,6 +118,18 @@ http://blog.plumi.org/
 
 ----
 
+== Rackspace Cloud's python bindings == 
+
+http://www.rackspacecloud.com/images/rackspace-cloud-hosting.gif
+
+[http://github.com/rackspace/python-cloudfiles python-cloudfiles] provides Python language bindings for Cloud Files API.
+
+ftp-cloudfs is a ftp server acting as a proxy to Rackspace Cloud Files. It allow you to connect via any FTP client to do upload/download or create containers.
+
+[http://github.com/rackspace/python-cloudfiles http://github.com/rackspace/python-cloudfiles]
+
+----
+
 == Far Manager ==
 
 http://www.farmanager.com/img/title_light.png
@@ -199,6 +211,9 @@ http://code.google.com/p/easyftpd/
 
 http://code.google.com/p/adqmisc/wiki/eframe
 
+----
+
 = Web sites using pyftpdlib =
 
+== www.bitsontherun.com == 
  * [http://www.bitsontherun.com www.bitsontherun.com]
