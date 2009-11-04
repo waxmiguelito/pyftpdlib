@@ -118,15 +118,15 @@ http://blog.plumi.org/
 
 ----
 
-== Rackspace Cloud's python bindings == 
+== Rackspace Cloud's FTP == 
 
 http://www.rackspacecloud.com/images/rackspace-cloud-hosting.gif
 
-[http://github.com/rackspace/python-cloudfiles python-cloudfiles] provides Python language bindings for Cloud Files API.
-
-ftp-cloudfs is a ftp server acting as a proxy to Rackspace Cloud Files. It allow you to connect via any FTP client to do upload/download or create containers.
+[http://github.com/chmouel/ftp-cloudfs ftp-cloudfs] is a ftp server acting as a proxy to Rackspace [http://www.rackspacecloud.com Cloud Files]. It allows you to connect via any FTP client to do upload/download or create containers.
 
 [http://github.com/rackspace/python-cloudfiles http://github.com/rackspace/python-cloudfiles]
+
+[http://www.rackspacecloud.com http://www.rackspacecloud.com]
 
 ----
 
