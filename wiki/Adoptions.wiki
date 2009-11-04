@@ -216,4 +216,7 @@ http://code.google.com/p/adqmisc/wiki/eframe
 = Web sites using pyftpdlib =
 
 == www.bitsontherun.com == 
- * [http://www.bitsontherun.com www.bitsontherun.com]
+
+http://www.ricamarketing.com/BLOG_files/picture-1.png
+
+[http://www.bitsontherun.com www.bitsontherun.com]
