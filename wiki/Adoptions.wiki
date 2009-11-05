@@ -83,7 +83,7 @@ http://bazaar-vcs.org/
 
 == Python for OpenVMS ==
 
-http://mvb.saic.com/images/vms_shark_hp.png
+http://www.openvms.org/images/wwwovmsorg_logo.png
 
 [http://h71000.www7.hp.com/index.html?jumpid==/go/openvms OpenVMS] is an operating system that runs on the [http://en.wikipedia.org/wiki/VAX VAX] and [http://en.wikipedia.org/wiki/DEC_Alpha Alpha] families of computers, now owned by [http://en.wikipedia.org/wiki/Hewlett-Packard Hewlett-Packard].
 [http://www.vmspython.org/ vmspython] is a porting of the original cPython interpreter that runs on OpenVMS platforms.
@@ -215,19 +215,19 @@ http://code.google.com/p/adqmisc/wiki/eframe
 
 = Web sites using pyftpdlib =
 
-== www.adcast.tv ==
-
-http://pyftpdlib.googlecode.com/svn/wiki/images/adcast.png
-
-[http://www.adcast.tv http://www.adcast.tv]
-
-----
-
 == www.bitsontherun.com == 
 
 http://www.ricamarketing.com/BLOG_files/picture-1.png
 
 [http://www.bitsontherun.com www.bitsontherun.com]
+
+----
+
+== www.adcast.tv ==
+
+http://pyftpdlib.googlecode.com/svn/wiki/images/adcast.png
+
+[http://www.adcast.tv http://www.adcast.tv]
 
 ----
 
