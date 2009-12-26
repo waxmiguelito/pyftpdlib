@@ -153,6 +153,16 @@ http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html
 
 ----
 
+== Symbian Python FTP server ==
+
+An FTP server for Symbian OS.
+
+http://code.google.com/p/sypftp/
+
+----
+
+
+
 == Manent ==
 
 [http://trac.manent-backup.com/ Manent] is an algorithmically strong backup and archival program which can offer remote backup via a pyftpdlib-based S/FTP server.
