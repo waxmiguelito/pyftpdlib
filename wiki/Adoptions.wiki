@@ -199,6 +199,15 @@ http://bbs.archlinux.org/viewtopic.php?id=56623
 
 ----
 
+== Zenftp ==
+
+A simple service that bridges an FTP client with zenfolio via SOAP.
+Start zenftp.py, providing the name of the target photoset on Zenfolio, and then connect to localhost with your FTP client.
+
+http://code.irondojo.com/
+
+----
+
 == ShareFTP ==
 
 A program functionally equivalent to Shareme project.
