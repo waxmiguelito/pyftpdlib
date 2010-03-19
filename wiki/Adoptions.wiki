@@ -70,6 +70,16 @@ http://www.google.com/chrome
 
 ----
 
+== Smartfile ==
+
+http://www.smartfile.com/images/logo.gif
+
+[http://www.smartfile.com Smartfile] is a market leader in FTP and online file storage that has a robust and easy-to-use web interface. We utilize pyftpdlib as the underpinnings of our FTP service. Pyftpdlib gives us the flexibility we require to integrate FTP with the rest of our application.
+
+[http://www.smartfile.com http://www.smartfile.com]
+
+----
+
 == Bazaar == 
 
 http://lh5.ggpht.com/_Ukz_BlennCk/SQ3hoYxi-0I/AAAAAAAAAZU/4cRqZLdzfJU/s800/bazaar-logo.jpg
