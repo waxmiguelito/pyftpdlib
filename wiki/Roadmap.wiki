@@ -2,19 +2,21 @@
 #labels Featured,SortOrder-6
 = Releases roadmap =
 
-== Tasks to accomplish ==
+== Possible ideas for future versions ==
 
+ * Python 3 porting.
  * Include a graphical Tk-based ftp server into demo directory.
  * Add Unicode support.
- * _(?)_ Add the possibility to run the server in stand alone mode via command line parameters and/or configuration file.
+ * _(?)_ Add the possibility to run the server as a daemon at library level. 
  * _(?)_ *LANG* command support ([http://www.faqs.org/rfcs/rfc2640.html RFC 2640]).
  * _(?)_ Split classes into different files.
  * _(?)_ Support for *ADAT*, *MIC*, *CONF* and *ENC* commands ([http://www.ietf.org/rfc/rfc2228.txt RFC-2228]).
- * _(?)_ Add `remove_orphaned_files` attribute to FTPHandler class to delete the orphaned file left behind in case client doesn't complete upload successfully.
 
 == 0.6.0 ==
 
- * Add SSL/TLS support at library level including  *AUTH*, *PROT*, *PBSZ* and *CCC* commands as defined in [http://www.faqs.org/rfcs/rfc4217.html RFC 4217].
+ * Add the possibility to run the server in stand alone mode via command line parameters.
+ * Add SSL/TLS support at library level (pyftpdlib.contrib package).
+ * Make Unix and Windows authorizers be part of the library (pyftpdlib.contrib package)
  * Python 3K porting.
 
 == 0.5.2 _(current release)_ ==
