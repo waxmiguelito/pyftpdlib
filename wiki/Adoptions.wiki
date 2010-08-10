@@ -11,19 +11,30 @@ Please help us in keeping such list updated.
 
 Following lists the packages of pyftpdlib from various platforms.
 
+== Debian ==
+
+http://vesta.homelinux.net/wiki/100px_debian_logo.png
+
+[http://www.debian.org/ Debian] is a famous Linux based operating system.
+Debian development team created an [http://packages.debian.org/sid/python-pyftpdlib .deb packaged version of pyftpdlib] and added it into their official repositories to make users easily install it with:
+
+{{{
+apt-get install python-pyftpdlib
+}}}
+
+Packaged version of pyftpdlib is currently available for the unstable branch only.
+
+-----
 
 == Fedora ==
 
 http://blog.blacknight.com/images/fedora-logo.png
 
-[http://fedoraproject.org Fedora] is a famous Linux based operating system.
-Fedora development team created an [https://admin.fedoraproject.org/pkgdb/packages/name/pyftpdlib RPM packaged version of pyftpdlib] and added it into their official repositories to make users easily install it with:
+A [https://admin.fedoraproject.org/pkgdb/packages/name/pyftpdlib RPM packaged version] is available for Fedora and users can be easily installed it with:
 
 {{{
 yum install pyftpdlib
 }}}
-
-Packaged version of pyftpdlib should be available starting from Fedora 11.
 
 ----
 
@@ -171,7 +182,30 @@ http://code.google.com/p/sypftp/
 
 ----
 
+== Sierramobilepos ==
 
+The goal of this project is to extend Openbravo POS to use Windows Mobile Professional or Standard devices. It will import the data from Ob POS (originally in Postgres, later MySql). This data will reside in a database using sqlite3. Later a program will allow to sync by FTP or using a USB cable connected to the WinMob device.
+
+http://forge.openbravo.com/plugins/mwiki/index.php/MobilePOS
+
+----
+
+== Featus ==
+
+Faetus is an FTP server that translates FTP commands into Amazon S3 API calls providing an FTP interface on top of Amazon S3 storage.
+
+http://tomatohater.com/2010/07/15/faetus-v05-released/
+
+----
+
+== Pyfilesystem ==
+
+Pyfilesystem is a Python module that provides a common interface to many types of filesystem, and provides some powerful features such as exposing filesystems over an internet connection, or to the native filesystem.
+It uses pyftpdlib as a backend for testing its FTP component.
+
+http://code.google.com/p/pyfilesystem/
+
+----
 
 == Manent ==
 
@@ -246,7 +280,7 @@ http://code.google.com/p/adqmisc/wiki/eframe
 
 == www.bitsontherun.com == 
 
-http://www.ricamarketing.com/BLOG_files/picture-1.png
+http://cdn.reelseo.com/wp-content/uploads/bits-on-the-run-logo-200x411.png
 
 [http://www.bitsontherun.com www.bitsontherun.com]
 
