@@ -172,6 +172,16 @@ It redirects you to all files hosted on your [http://pages.google.com Google Pag
 
 http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html
 
+-----
+
+== Peerscape ==
+
+http://www.peerscape.org/_/rsrc/1240589946895/config/app/images/customLogo/customLogo.gif?revision=2
+
+[http://www.peerscape.org/ Peerscape] is an experimental peer-to-peer social network implemented as an extension to the Firefox web browser. It implements a kind of serverless read-write web supporting third-party AJAX application development. Under the hood, your computer stores copies of your data, the data of your friends and the groups you have joined, and some data about, e.g., friends of friends. It also caches copies of other data that you navigate to. Computers that store the same data establish connections among themselves to keep it in sync.
+
+http://www.peerscape.org/
+
 ----
 
 == Symbian Python FTP server ==
