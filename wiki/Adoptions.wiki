@@ -200,7 +200,7 @@ http://forge.openbravo.com/plugins/mwiki/index.php/MobilePOS
 
 ----
 
-== Featus ==
+== Faetus ==
 
 Faetus is an FTP server that translates FTP commands into Amazon S3 API calls providing an FTP interface on top of Amazon S3 storage.
 
