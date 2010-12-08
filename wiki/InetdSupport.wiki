@@ -1,4 +1,5 @@
 #summary Support for inetd, xinetd and launchd
+#labels Deprecated
 
 = Table of contents =
 
