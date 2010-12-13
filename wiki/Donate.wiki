@@ -1,0 +1,19 @@
+#summary Donate some money
+
+= Donate =
+
+A lot of time and effort went into making pyftpdlib as it is right now.
+If you feel pyftpdlib is useful to you or your business and want to support it's future development please consider donating me (Giampaolo Rodolà) some money.
+
+I only ask for a small donation, but of course I appreciate any amount.
+
+Thanks in advance
+
+[https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=g.rodola%40gmail%2ecom&item_name=pyftpdlib&no_shipping=1&no_note=1&tax=0&currency_code=EUR&bn=PP%2dDonationsBF&charset=UTF%2d8 http://www.paypal.com/en_US/i/btn/x-click-but04.gif]
+
+
+
+
+= Contributors =
+
+_(2010-14-12) No contributors so far_
