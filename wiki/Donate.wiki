@@ -16,4 +16,5 @@ Thanks in advance
 
 = Contributors =
 
+ * 2010-12-16 - Ben Timby (300 $)
  * 2010-12-14 - Adam Williams (10 €)
