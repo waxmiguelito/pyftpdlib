@@ -9,7 +9,7 @@ I only ask for a small donation, but of course I appreciate any amount.
 
 Thanks in advance
 
-[https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=g.rodola%40gmail%2ecom&item_name=pyftpdlib&no_shipping=1&no_note=1&tax=0&currency_code=EUR&bn=PP%2dDonationsBF&charset=UTF%2d8 http://www.paypal.com/en_US/i/btn/x-click-but04.gif]
+[https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZSSF7G42VA2XE https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif]
 
 
 
