@@ -1,5 +1,5 @@
 #summary pyftpdlib 0.5.x series release notes.
-#labels SortOrder-5
+#labels SortOrder-5,Deprecated
 
 = Version: 0.5.2 - Date: 2009-09-14 =
 
