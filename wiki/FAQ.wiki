@@ -18,10 +18,28 @@ Python is an interpreted, interactive, object-oriented, easy-to-learn programmin
 == I'm not a python programmer. Can I use it anyway? ==
 
 Yes. pyftpdlib is a fully working FTP server implementation that can be run "as is".
-For example, (after having installed a [http://www.python.org/download/ Python interpreter]) you could run an anonymous ftp server from cmd-line by running:
+For example you could run an anonymous ftp server from cmd-line by running:
 {{{
-python -m pyftpdlib.ftpserver
+giampaolo@ubuntu:~$ sudo python -m pyftpdlib.ftpserver
+Serving FTP on 0.0.0.0:21
 }}}
+This is useful in case you want a quick and dirty way to share a directory without, say, installing and configuring samba.
+Starting from version 0.6.0 options can be passed to the command line (see `python -m pyftpdlib.ftpserver --help` to see all available options). Examples:
+
+Anonymous FTP server with write access:
+{{{
+giampaolo@ubuntu:~$ sudo python -m pyftpdlib.ftpserver -w
+/usr/local/lib/python2.6/site-packages/pyftpdlib/ftpserver.py:520: RuntimeWarning: Write permissions assigned to anonymous user.
+  RuntimeWarning)
+Serving FTP on 0.0.0.0:21
+}}}
+
+Listen on a different ip/port:
+{{{
+giampaolo@ubuntu:~$ python -m pyftpdlib.ftpserver -i 127.0.0.1 -p 8021
+Serving FTP on 127.0.0.1:8021
+}}}
+
 Customizing ftpd for basic tasks like adding users or deciding where log file should be placed is mostly simply editing variables. This is basically like learning how to edit a common unix ftpd.conf file and doesn't really require Python knowledge.
 Customizing ftpd more deeply requires a python script which imports pyftpdlib to be written separately.
 An example about how this could be done are the scripts contained in the [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo demo directory].
@@ -54,19 +72,16 @@ If you are not new to Python you probably don't need that, otherwise follow the 
 
 == Which Python versions are compatible? ==
 
-[http://www.python.org/download/releases/2.3.6/ Python 2.3] and higher.
-
-== Which one is recommended? ==
-
-Python *2.6* which provides a faster and cleaner asyncore implementation.
+*2.4*, *2.5*, *2.6* and *2.7*.
+Python 2.3 support has been removed starting from version 0.6.0. The latest version supporting Python 2.3 is [http://code.google.com/p/pyftpdlib/downloads/detail?name=pyftpdlib-0.5.2.tar.gz pyftpdlib 0.5.2].
 
 == What about Python 3.x? ==
 
-Python 3.x is not yet covered because I still have to figure out how to deal with the str/bytes and encoding differences introduced in the new Python version =). A porting to Python 3.x is surely in plan, anyway.
+Python 3.x is not yet covered because I still have to figure out how to deal with the str/bytes and encoding differences introduced in the new Python version =). A porting to Python 3.x is surely in plan, anyway (see [http://code.google.com/p/pyftpdlib/issues/detail?id=76 issue #76].
 
 == On which platforms can pyftpdlib be used? ==
 
-pyftpdlib should work on any platform where *_select()_* or *_poll()_* system calls are available and on any Python implementation which refers to *cPython 2.3* or superior (e.g cPython 2.6 or PythonCE 2.5).
+pyftpdlib should work on any platform where *_select()_* or *_poll()_* system calls are available and on any Python implementation which refers to *cPython 2.4* or superior (e.g cPython 2.6 or PythonCE 2.5).
 The development team has mainly tested it under various *Linux*, *Windows*, *OS X* and *FreeBSD* systems.
 For FreeBSD is also available a [http://www.freshports.org/ftp/py-pyftpdlib/ pre-compiled package] maintained by Li-Wen Hsu <lwhsu@freebsd.org>.
 Other Python implementation like *[http://pythonce.sourceforge.net/ PythonCE]* are known to work with pyftpdlib and every new version is usually tested against it.
@@ -121,6 +136,7 @@ Overriding these variables is always recommended to avoid DoS attacks.
 
 When behind a NAT a ftp server needs to replace the IP local address displayed in PASV replies and instead use the public address of the NAT to allow client to connect.  By overriding `masquerade_address` attribute of `FTPHandler` class you will force pyftpdlib to do such replacement.
 However, one problem still exists.  The passive FTP connections will use ports from 1024 and up, which means that you must forward all ports 1024-65535 from the NAT to the FTP server!  And you have to allow many (possibly) dangerous ports in your firewalling rules!  To resolve this, simply override `passive_ports` attribute of `FTPHandler` class to control what ports pyftpdlib will use for its passive data transfers.  Value expected by `passive_ports` attribute is a list of integers (e.g. range(60000, 65535)) indicating which ports will be used for initializing the passive data channel.
+In case you run a FTP server with multiple private IP addresses behind a NAT firewall with multiple public IP addresses you can use `FTPHandler.masquerade_address_map` option which allows you to define multiple 1 to 1 mappings (*_New in 0.6.0_*). 
 
 == What is FXP? ==
 
@@ -169,6 +185,8 @@ If you use IPv6 and want your FTP daemon to do so just pass a valid IPv6 address
 Serving FTP on ::1:21
 }}}
 
+If your OS (for example: all recent UNIX systems) have an hybrid dual-stack IPv6/IPv4 implementation the code above will listen on both IPv4 and IPv6 by using a single IPv6 socket (_*New in 0.6.0*_).
+
 == How do I install IPv6 support on my system? ==
 
 If you want to install IPv6 support on Linux run "modprobe ipv6", then "ifconfig".
@@ -179,30 +197,30 @@ On Windows (XP SP2 and higher) run "netsh int ipv6 install". Again, you should b
 
 == Can pyftpdlib be integrated with "real" users existing on the system? ==
 
-Yes. By using the proper system dependent authorizer pyftpdlib can look into the system account database to authenticate users.
-Starting from version 0.4.0 the `DummyAuthorizer` class provides two new methods: `impersonate_user()` and `terminate_impersonation()`.
-System dependent authorizers subclassing the dummy authorizer can assume the id of real users by overriding them as necessary.
-Every time the FTP server is going to access the filesystem (e.g. for creating or renaming a file) it will temporarily impersonate the currently logged on user, execute the filesystem call and then switch back to the user who originally started the server.
-Example UNIX and Windows FTP servers contained in the [http://code.google.com/p/pyftpdlib/source/browse/#svn/trunk/demo demo directory] implement both real user impersonation and authentication against the system users database.
+Yes. Starting from version 0.6.0 pyftpdlib provides the new `UnixAuthorizer` and `WindowsAuthorizer` classes.
+By using them pyftpdlib can look into the system account database to authenticate users.
+They also assume the id of real users every time the FTP server is going to access the filesystem (e.g. for creating or renaming a file) the authorizer will temporarily impersonate the currently logged on user, execute the filesystem call and then switch back to the user who originally started the server.
+Example UNIX and Windows FTP servers contained in the [http://code.google.com/p/pyftpdlib/source/browse/#svn/trunk/demo demo directory] shows how to use `UnixAuthorizer` and `WindowsAuthorizer` classes.
 
-== Does pyftpdlib support FTP over TLS/SSL (FTPS) ==
+== Does pyftpdlib support FTP over TLS/SSL (FTPS)? ==
 
-The standard code base does not offer any "official" FTPS support yet but starting from version [http://pyftpdlib.googlecode.com/files/pyftpdlib-0.5.1.tar.gz 0.5.1] the [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo demo] directory contains a [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py script] which implements a simple FTPS daemon supporting both TLS and SSL protocols and *AUTH*, *PBSZ* and *PROT* commands as defined in [http://tools.ietf.org/html/rfc4217 RFC-4217].
+Yes, starting from version 0.6.0, see: http://code.google.com/p/billiejoex/wiki/Tutorial#3.7_-_FTPS_(FTP_over_TLS/SSL)_server
 
 == What about SITE commands? ==
 
 No SITE commands aside from *SITE HELP* are implemented by default.
-The user willing to add support for a specific SITE command (e.g. *SITE CHMOD*) has to define a new `ftp_SITE_%CMD%` method in the `FTPHandler` subclass and add a new entry in `ftpserver.proto_cmds` dictionary. Example:
+The user willing to add support for a specific SITE command (e.g. *SITE CHMOD*) has to define a new `ftp_SITE_%CMD%` method in the `FTPHandler` subclass and add a new entry in `proto_cmds` dictionary. Example:
 
 {{{
 from pyftpdlib import ftpserver
-
-prop = (None, True, None, False, 'Syntax: SITE CHMOD <SP> path (change file permission).')
-ftpserver.proto_cmds['SITE CHMOD'] = ftpserver._CommandProperty(*prop)
 
 class CustomizedFTPHandler(ftpserver.FTPHandler):
 
     def ftp_SITE_CHMOD(self, line):
         """Change file permissions."""
-        ...
+        # implementation here
+        # ...
+
+properties = (None, True, None, False, 'Syntax: SITE CHMOD <SP> path (change file permission).')
+CustomizedFTPHandler.proto_cmds['SITE CHMOD'] = ftpserver._CommandProperty(*properties)
 }}}

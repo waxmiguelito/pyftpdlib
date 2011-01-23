@@ -4,71 +4,78 @@
 
 == Possible ideas for future versions ==
 
- * Python 3 porting.
+ * Python 3 porting ([http://code.google.com/p/pyftpdlib/issues/detail?id=76 issue 76]).
+ * Multi processes support ([http://code.google.com/p/pyftpdlib/issues/detail?id=148 issue 148]).
  * Include a graphical Tk-based ftp server into demo directory.
  * Add Unicode support.
+ * x/inetd support ([http://code.google.com/p/pyftpdlib/issues/detail?id=147 issue 147]).
  * _(?)_ Add the possibility to run the server as a daemon at library level. 
  * _(?)_ *LANG* command support ([http://www.faqs.org/rfcs/rfc2640.html RFC 2640]).
  * _(?)_ Split classes into different files.
  * _(?)_ Support for *ADAT*, *MIC*, *CONF* and *ENC* commands ([http://www.ietf.org/rfc/rfc2228.txt RFC-2228]).
 
-== 0.6.0 ==
+== 0.6.0 _(current release)_ ==
 
- * Add the possibility to run the server in stand alone mode via command line parameters.
+ * Command line parameters.
  * Add SSL/TLS support at library level (pyftpdlib.contrib package).
- * Make Unix and Windows authorizers be part of the library (pyftpdlib.contrib package)
- * Python 3K porting.
+ * Make Unix and Windows authorizers be part of the library (pyftpdlib.contrib package).
+ * Use GMT times.
+ * Standardized logging.
+ * Callbacks for incomplete transfers.
+ * Server both IPv4 and IPv6 by using a single socket.
+ * Enable TCP_NODELAY socket option (2x speedup).
+ * Unix filesystem.
 
-== 0.5.2 _(current release)_ ==
+== 0.5.2 ==
 
- * ~~Set transfer speed limits thanks to addition of ThrottledDTPHandler class.~~
- * ~~Add unix_daemon.py daemon script.~~
+ * Set transfer speed limits thanks to addition of ThrottledDTPHandler class.
+ * Add unix_daemon.py daemon script.
 
 == 0.5.1 _(released)_ ==
 
- * ~~Add a new demo script implementing FTPS (FTP over TLS/SSL) supporting *AUTH*, *PROT* and *PBSZ* commands.~~
- * ~~Set bigger buffer sizes to speedup data transfers.~~
- * ~~Speedup ASCII data transfers on Windows.~~
- * ~~Add preliminary support for SITE command.~~
- * ~~Fix various bugs.~~
+ * Add a new demo script implementing FTPS (FTP over TLS/SSL) supporting *AUTH*, *PROT* and *PBSZ* commands.
+ * Set bigger buffer sizes to speedup data transfers.
+ * Speedup ASCII data transfers on Windows.
+ * Add preliminary support for SITE command.
+ * Fix various bugs.
 
 == 0.5.0 _(released)_ ==
 
- * ~~Provide configurable idle timeouts to disconnect clients after a long time of inactivity.~~
- * ~~Minimize the risk of brute force password guessing by imposing a delay before replying to invalid credentials.~~
- * ~~Adds to the DummyAuthorizer the possibility to create permission overriding for directories (e.g. define a user which does not have write permission except for one sub-directory in FTP root).~~
+ * Provide configurable idle timeouts to disconnect clients after a long time of inactivity.
+ * Minimize the risk of brute force password guessing by imposing a delay before replying to invalid credentials.
+ * Adds to the DummyAuthorizer the possibility to create permission overriding for directories (e.g. define a user which does not have write permission except for one sub-directory in FTP root).
 
 == 0.4.0 _(released)_ ==
 
- * ~~Assume the id of real users when using system dependent authorizers.~~
- * ~~Add IPv6 support including *EPRT* & *EPSV* commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].~~
+ * Assume the id of real users when using system dependent authorizers.
+ * Add IPv6 support including *EPRT* & *EPSV* commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
 
 == 0.3.0 _(released)_ ==
 
- * ~~Extend the set of assignable user permissions aside from the generic "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...).~~
- * ~~Implement *MLST* and *MLSD* commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].~~
- * ~~Implement *FEAT* and *OPTS* commands defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].~~
- * ~~Use iterators for calculating requests requiring long time to complete (*LIST* and *MLSD* commands).~~
- * ~~Provide real permissions, owner, and group for files on UNIX platforms processing the *LIST* command.~~
+ * Extend the set of assignable user permissions aside from the generic "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...).
+ * Implement *MLST* and *MLSD* commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].
+ * Implement *FEAT* and *OPTS* commands defined in [http://www.faqs.org/rfcs/rfc2389.html RFC 2389].
+ * Use iterators for calculating requests requiring long time to complete (*LIST* and *MLSD* commands).
+ * Provide real permissions, owner, and group for files on UNIX platforms processing the *LIST* command.
 
 == 0.2.0 _(released)_ ==
 
- * ~~Support for *FXP*, site-to-site transfers.~~
- * ~~NAT/Firewall support with *PASV* (passive) mode connections.~~
- * ~~Configurable range of ports to use for passive data transfers.~~
- * ~~Per-user messages configurability.~~
- * ~~Maximum connections limit.~~
- * ~~Per-source-IP limits.~~
- * ~~Maximum login attempts limit.~~
- * ~~Change account when *USER* is provided a second time after authenticating.~~
- * ~~Accept *HELP* command arguments.~~
- * ~~Implement directory listing over the command channel for *STAT* command provided with argument.~~
+ * Support for *FXP*, site-to-site transfers.
+ * NAT/Firewall support with *PASV* (passive) mode connections.
+ * Configurable range of ports to use for passive data transfers.
+ * Per-user messages configurability.
+ * Maximum connections limit.
+ * Per-source-IP limits.
+ * Maximum login attempts limit.
+ * Change account when *USER* is provided a second time after authenticating.
+ * Accept *HELP* command arguments.
+ * Implement directory listing over the command channel for *STAT* command provided with argument.
 
 == 0.1.1 _(released)_==
 
- * ~~Randomize *PASV* port selection.~~
- * ~~Release pyftpdlib under a license the most freely possible (MIT).~~
+ * Randomize *PASV* port selection.
+ * Release pyftpdlib under a license the most freely possible (MIT).
 
 == 0.1.0 _(released)_ ==
 
- * ~~Create an asynchronous FTP server library compliant with [http://www.faqs.org/rfcs/rfc959.html RFC 959].~~
+ * Create an asynchronous FTP server library compliant with [http://www.faqs.org/rfcs/rfc959.html RFC 959].

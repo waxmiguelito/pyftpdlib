@@ -188,7 +188,7 @@ Provides a description on how to implement TLS as a security mechanism to secure
  * [http://www.ietf.org/rfc/rfc4217.txt Link]
 
 || *Command* || *Implemented* || *Milestone* || *Description* || *Notes* ||
-|| AUTH || NO || --- || Authentication/Security Mechanism. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] supporting both TLS and SSL. ||
+|| AUTH || YES || --- || Authentication/Security Mechanism. || ||
 || CCC || NO || --- || Clear Command Channel. || ||
-|| PBSZ || NO || --- || Protection Buffer Size. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] as a no-op command. ||
-|| PROT || NO || --- || Data Channel Protection Level. || Implemented as [http://code.google.com/p/pyftpdlib/source/browse/trunk/demo/tls_ftpd.py demo script] supporting only "P" and "C" protection levels. ||
+|| PBSZ || YES || --- || Protection Buffer Size. || Implemented as as a no-op as recommended. ||
+|| PROT || YES || --- || Data Channel Protection Level. || Support only "P" and "C" protection levels. ||
