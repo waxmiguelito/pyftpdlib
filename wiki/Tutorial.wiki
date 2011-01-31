@@ -7,7 +7,7 @@
 
 = 1.0 - Introduction =
 
-pyftpdlib implements the server side of the FTP protocol as defined in [http://www.faqs.org/rfcs/rfc959.html RFC-959].  pyftpdlib consist of a single file, [http://code.google.com/p/pyftpdlib/source/browse/trunk/pyftpdlib/ftpserver.py ftpserver.py], which contains a hierarchy of classes, functions and variables which implement the backend functionality for the ftpd. <br> This document is intended to serve as a simple [http://code.google.com/p/billiejoex/wiki/Tutorial#2.0_-_API_reference API reference] of most important classes and functions.  Also included is an introduction to [http://code.google.com/p/billiejoex/wiki/Tutorial#3.0_-_Customizing_your_FTP_server customization] through the use of some example scripts.
+pyftpdlib implements the server side of the FTP protocol as defined in [http://www.faqs.org/rfcs/rfc959.html RFC-959].  pyftpdlib consist of a single file, [http://code.google.com/p/pyftpdlib/source/browse/trunk/pyftpdlib/ftpserver.py ftpserver.py], which contains a hierarchy of classes which implement the backend functionality for the ftpd. <br> This document is intended to serve as a simple [http://code.google.com/p/billiejoex/wiki/Tutorial#2.0_-_API_reference API reference] of most important classes and functions.  Also included is an introduction to [http://code.google.com/p/billiejoex/wiki/Tutorial#3.0_-_Customizing_your_FTP_server customization] through the use of some example scripts.
 Some of them are included in [http://code.google.com/p/pyftpdlib/source/browse/#svn/trunk/demo demo] directory of pyftpdlib source distribution.
 
 If you have written a customized configuration you think could be useful to the community feel free to share it by adding a comment at the end of this document.
