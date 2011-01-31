@@ -153,7 +153,7 @@ https://github.com/ybrs/putio-ftp-connector <br/>
 
 == Rackspace Cloud's FTP ==
 
-http://pyftpdlib.googlecode.com/svn-history/wiki/images/rackspace-cloud-hosting.gif
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/rackspace-cloud-hosting.jpg
 
 [http://github.com/chmouel/ftp-cloudfs ftp-cloudfs] is a ftp server acting as a proxy to Rackspace [http://www.rackspacecloud.com Cloud Files]. It allows you to connect via any FTP client to do upload/download or create containers.
 
