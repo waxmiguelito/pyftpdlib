@@ -139,6 +139,17 @@ http://blog.plumi.org/
 
 ----
 
+== put.io FTP connector ==
+
+http://eu.techcrunch.com/wp-content/uploads/icon1-150x150.png
+
+A proof of concept FTP server that proxies FTP clients requests to [http://put.io/ putio] via HTTP, or in other words an FTP interface to [http://put.io/ put.io]. Put.io is a storage service that fetches media files remotely and lets you stream them immediately. More info can be found [http://mashable.com/2010/08/25/putio/ here].
+
+https://github.com/ybrs/putio-ftp-connector <br/>
+[http://ybrs.in/2011/01/27/putio-ftp-connector/ blog entry]
+
+----
+
 == Rackspace Cloud's FTP == 
 
 http://www.rackspacecloud.com/images/rackspace-cloud-hosting.gif
