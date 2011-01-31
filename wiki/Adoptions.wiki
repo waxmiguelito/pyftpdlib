@@ -1,5 +1,4 @@
 #summary A list of softwares and systems using pyftpdlib.
-#labels SortOrder-7
 
 <wiki:toc />
 
@@ -13,7 +12,7 @@ Following lists the packages of pyftpdlib from various platforms.
 
 == Debian ==
 
-http://vesta.homelinux.net/wiki/100px_debian_logo.png
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/debian.png
 
 [http://www.debian.org/ Debian] is a famous Linux based operating system.
 Debian development team created an [http://packages.debian.org/sid/python-pyftpdlib .deb packaged version of pyftpdlib] and added it into their official repositories to make users easily install it with:
@@ -28,7 +27,7 @@ Packaged version of pyftpdlib is currently available for the unstable branch onl
 
 == Fedora ==
 
-http://blog.blacknight.com/images/fedora-logo.png
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/fedora.png
 
 A [https://admin.fedoraproject.org/pkgdb/packages/name/pyftpdlib RPM packaged version] is available for Fedora and users can be easily installed it with:
 
@@ -40,7 +39,7 @@ yum install pyftpdlib
 
 == FreeBSD ==
 
-http://www.websdotcom.net/images/beastie.gif
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/freebsd.gif
 
 [http://www.freebsd.org/ FreeBSD] is an advanced operating system for x86 compatible architectures. It is derived from BSD, the version of UNIX developed at the University of California, Berkeley.
 The [http://www.freebsd.org/ports/ FreeBSD Ports Collection] offers a simple way for users and administrators to install applications.
@@ -60,7 +59,7 @@ http://www.freshports.org/ftp/py-pyftpdlib/
 
 == GNU Darwin ==
 
-http://www.gnu-darwin.org/new4p2-gd-sm.png
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/gnudarwin.png
 
 [http://www.gnu-darwin.org GNU Darwin] is a Unix distribution which focuses on the porting of free software to Darwin and Mac OS X.
 pyftpdlib has been recently included in the official repositories to make users can easily install and use it on GNU Darwin systems.
@@ -73,7 +72,7 @@ Following lists the softwares adopting pyftpdlib.
 
 == Google Chrome ==
 
-http://www.google.com/chrome/intl/en/images/logo_sm.jpg
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/chrome.jpg
 
 [http://www.google.com/chrome Google Chrome] is the new free and open source web browser developed by Google. [http://code.google.com/intl/it-IT/chromium/ Google Chromium], the open source project behind Google Chrome, included pyftpdlib in the code base to develop Google Chrome's FTP client unit tests.
 
@@ -83,7 +82,7 @@ http://www.google.com/chrome
 
 == Smartfile ==
 
-http://www.smartfile.com/images/logo.gif
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/smartfile.jpg
 
 [http://www.smartfile.com Smartfile] is a market leader in FTP and online file storage that has a robust and easy-to-use web interface. We utilize pyftpdlib as the underpinnings of our FTP service. Pyftpdlib gives us the flexibility we require to integrate FTP with the rest of our application.
 
@@ -91,9 +90,9 @@ http://www.smartfile.com/images/logo.gif
 
 ----
 
-== Bazaar == 
+== Bazaar ==
 
-http://lh5.ggpht.com/_Ukz_BlennCk/SQ3hoYxi-0I/AAAAAAAAAZU/4cRqZLdzfJU/s800/bazaar-logo.jpg
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/bazaar.jpg
 
 [http://bazaar-vcs.org/ Bazaar] is a distributed version control system similar to Subversion which supports different protocols among which FTP.
 As for [http://www.google.com/chrome Google Chrome], Bazaar recently adopted pyftpdlib as base FTP server to implement internal FTP unit tests.
@@ -104,7 +103,7 @@ http://bazaar-vcs.org/
 
 == Python for OpenVMS ==
 
-http://www.openvms.org/images/wwwovmsorg_logo.png
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/pyopenvms.png
 
 [http://h71000.www7.hp.com/index.html?jumpid==/go/openvms OpenVMS] is an operating system that runs on the [http://en.wikipedia.org/wiki/VAX VAX] and [http://en.wikipedia.org/wiki/DEC_Alpha Alpha] families of computers, now owned by [http://en.wikipedia.org/wiki/Hewlett-Packard Hewlett-Packard].
 [http://www.vmspython.org/ vmspython] is a porting of the original cPython interpreter that runs on OpenVMS platforms.
@@ -116,7 +115,7 @@ http://www.vmspython.org/DownloadAndInstallationPython
 
 == OpenERP ==
 
-http://openerp.com/templates/tiny/images/openlogo.jpg
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/openerp.jpg
 
 [http://openerp.com OpenERP] is an Open Source enterprise management software.  It covers and integrates most enterprise needs and processes: accounting, hr, sales, crm, purchase, stock, production, services management, project management, marketing campaign, management by affairs.
 
@@ -128,7 +127,7 @@ http://openerp.com
 
 == Plumi ==
 
-http://www.engagemedia.org/Members/EngageMedia/plumi-banner.jpg
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/plumi.jpg
 
 [http://plumi.org/wiki Plumi] is a video sharing Content Management System based on [http://plone.org Plone] that enables you to create your own sophisticated video sharing site.
 
@@ -141,7 +140,7 @@ http://blog.plumi.org/
 
 == put.io FTP connector ==
 
-http://eu.techcrunch.com/wp-content/uploads/icon1-150x150.png
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/putio.png
 
 A proof of concept FTP server that proxies FTP clients requests to [http://put.io/ putio] via HTTP, or in other words an FTP interface to [http://put.io/ put.io]. Put.io is a storage service that fetches media files remotely and lets you stream them immediately. More info can be found [http://mashable.com/2010/08/25/putio/ here].
 
@@ -150,9 +149,9 @@ https://github.com/ybrs/putio-ftp-connector <br/>
 
 ----
 
-== Rackspace Cloud's FTP == 
+== Rackspace Cloud's FTP ==
 
-http://www.rackspacecloud.com/images/rackspace-cloud-hosting.gif
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/rackspace-cloud-hosting.gif
 
 [http://github.com/chmouel/ftp-cloudfs ftp-cloudfs] is a ftp server acting as a proxy to Rackspace [http://www.rackspacecloud.com Cloud Files]. It allows you to connect via any FTP client to do upload/download or create containers.
 
@@ -164,7 +163,7 @@ http://www.rackspacecloud.com/images/rackspace-cloud-hosting.gif
 
 == Far Manager ==
 
-http://www.farmanager.com/img/title_light.png
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/farmanager.png
 
 [http://farmanager.com/ Far Manager] is a program for managing files and archives in Windows operating systems.
 
@@ -176,7 +175,7 @@ http://farmanager.com/
 
 == Google Pages FTPd ==
 
-http://pages.google.com/-/images/logo-labs.gif
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/google-pages.gif
 
 [http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html gpftpd] is a pyftpdlib based FTP server you can connect to using your Google e-mail account.
 It redirects you to all files hosted on your [http://pages.google.com Google Pages] account giving you access to download them and upload new ones.
@@ -187,7 +186,7 @@ http://arkadiusz-wahlig.blogspot.com/2008/04/hosting-files-on-google.html
 
 == Peerscape ==
 
-http://www.peerscape.org/_/rsrc/1240589946895/config/app/images/customLogo/customLogo.gif?revision=2
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/peerscape.gif
 
 [http://www.peerscape.org/ Peerscape] is an experimental peer-to-peer social network implemented as an extension to the Firefox web browser. It implements a kind of serverless read-write web supporting third-party AJAX application development. Under the hood, your computer stores copies of your data, the data of your friends and the groups you have joined, and some data about, e.g., friends of friends. It also caches copies of other data that you navigate to. Computers that store the same data establish connections among themselves to keep it in sync.
 
@@ -299,9 +298,9 @@ http://code.google.com/p/adqmisc/wiki/eframe
 
 = Web sites using pyftpdlib =
 
-== www.bitsontherun.com == 
+== www.bitsontherun.com ==
 
-http://cdn.reelseo.com/wp-content/uploads/bits-on-the-run-logo-200x411.png
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/bitsontherun.png
 
 [http://www.bitsontherun.com www.bitsontherun.com]
 
@@ -309,7 +308,7 @@ http://cdn.reelseo.com/wp-content/uploads/bits-on-the-run-logo-200x411.png
 
 == www.adcast.tv ==
 
-http://pyftpdlib.googlecode.com/svn/wiki/images/adcast.png
+http://pyftpdlib.googlecode.com/svn-history/wiki/images/adcast.png
 
 [http://www.adcast.tv http://www.adcast.tv]
 
