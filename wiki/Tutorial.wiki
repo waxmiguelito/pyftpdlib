@@ -205,13 +205,9 @@ _class_ pyftpdlib.contrib.authorizers.*UnixAuthorizer(*_global_perm="elradfmw"_,
 
 {{{
 >>> from pyftpdlib.contrib.authorizers import UnixAuthorizer
->>> # accept all except root
 >>> auth = UnixAuthorizer(rejected_users=["root"])
->>> # accept some users only
 >>> auth = UnixAuthorizer(allowed_users=["matt", "jay"])
->>> # accept everybody and don't care if they have not a valid shell
 >>> auth = UnixAuthorizer(require_valid_shell=False)
->>> # set different options for a specific user
 >>> auth.override_user("matt", password="foo", perm="elr")
 }}}
 
@@ -248,14 +244,7 @@ Overriding these variables is always a good idea (they default to `0`, or "no li
 [http://pyftpdlib.googlecode.com/svn/trunk/demo/basic_ftpd.py download script]
 
 {{{
-#!/usr/bin/env python
-
-"""A basic FTP server which uses a DummyAuthorizer for managing 'virtual
-users', setting a limit for incoming connections.
-"""
-
 from pyftpdlib import ftpserver
-
 
 def main():
     # Instantiate a dummy authorizer for managing 'virtual' users
@@ -302,8 +291,6 @@ Let's suppose you don't want to print FTPd messages on screen but you want to wr
 Here's one method this could be implemented:
 
 {{{
-#!/usr/bin/env python
-
 import os
 import time
 
@@ -350,16 +337,11 @@ This could be easily done by using the *hashlib* module included with Python std
 [http://pyftpdlib.googlecode.com/svn/trunk/demo/md5_ftpd.py download script]
 
 {{{
-#!/usr/bin/env python
-
-"""A basic ftpd storing passwords as hash digests."""
-
 import os
 try:
     from hashlib import md5
 except ImportError:
-    # backward compatibility with Python < 2.5
-    from md5 import new as md5
+    from md5 import new as md5  # Python < 2.5
 
 from pyftpdlib import ftpserver
 
@@ -394,14 +376,6 @@ If you're running a Unix system you may want to configure your ftpd to include s
 The example below uses `UnixAuthorizer` and `UnixFilesystem` classes to do so.
 
 {{{
-#!/usr/bin/env python
-
-"""A FTPd using local UNIX account database to authenticate users.
-
-It temporarily impersonate the system users every time they are going
-to perform a filesystem operations.
-"""
-
 from pyftpdlib import ftpserver
 from pyftpdlib.contrib.authorizers import UnixAuthorizer
 from pyftpdlib.contrib.filesystems import UnixFilesystem
@@ -427,8 +401,6 @@ The following code shows how to implement a basic authorizer for a Windows NT wo
 [http://pyftpdlib.googlecode.com/svn/trunk/demo/winnt_ftpd.py  download script]
 
 {{{
-#!/usr/bin/env python
-
 from pyftpdlib import ftpserver
 from pyftpdlib.contrib.authorizers import WindowsAuthorizer
 
@@ -455,12 +427,6 @@ An important feature for an ftpd is limiting the speed for downloads and uploads
 The basic idea behind `ThrottledDTPHandler` is to wrap sending and receiving in a data counter and temporary "sleep" the data channel so that you burst to no more than x Kb/sec average. When it realizes that more than x Kb in a second are being transmitted it temporary blocks the transfer for a certain number of seconds.
 
 {{{
-#!/usr/bin/env python
-
-"""An FTP server which uses the ThrottledDTPHandler class for limiting the
-speed of downloads and uploads.
-"""
-
 import os
 
 from pyftpdlib import ftpserver
@@ -495,10 +461,9 @@ Starting from version 0.6.0 pyftpdlib finally includes full FTPS support impleme
 
 {{{
 #!/usr/bin/env python
-# $Id: tls_ftpd.py 757 2010-11-08 09:51:04Z g.rodola $
 
-"""An RFC-4217 asynchronous FTPS server supporting both SSL and TLS.
-
+"""
+An RFC-4217 asynchronous FTPS server supporting both SSL and TLS.
 Requires PyOpenSSL module (http://pypi.python.org/pypi/pyOpenSSL).
 """
 
@@ -570,7 +535,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 }}}
 
 == 3.9 - Command line usage ==
