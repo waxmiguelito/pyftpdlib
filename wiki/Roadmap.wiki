@@ -7,7 +7,11 @@
  * Python 3 porting ([http://code.google.com/p/pyftpdlib/issues/detail?id=76 issue 76]).
  * Multi processes support ([http://code.google.com/p/pyftpdlib/issues/detail?id=148 issue 148]).
  * Include a graphical Tk-based ftp server into demo directory.
- * Add Unicode support.
+ * Unicode support.
+ * MODE Z ([http://tools.ietf.org/html/draft-preston-ftpext-deflate-04 link)]
+ * Impicit SSL
+ * CCC command support ([http://code.google.com/p/pyftpdlib/issues/detail?id=172 issue 172])
+ * sendfile() support ([http://code.google.com/p/pyftpdlib/issues/detail?id=152 issue 152])
  * x/inetd support ([http://code.google.com/p/pyftpdlib/issues/detail?id=147 issue 147]).
  * _(?)_ Add the possibility to run the server as a daemon at library level. 
  * _(?)_ *LANG* command support ([http://www.faqs.org/rfcs/rfc2640.html RFC 2640]).
