@@ -543,14 +543,20 @@ Starting from version 0.6.0 pyftpdlib can be run as a simple stand-alone server 
 
 Anonymous FTPd sharing current directory:
 
-`python -m pyftpdlib.ftpserver`
+{{{
+python -m pyftpdlib.ftpserver
+}}}
 
 Anonymous FTPd with write permission:
 
-`python -m pyftpdlib.ftpserver -w`
+{{{
+python -m pyftpdlib.ftpserver -w
+}}}
 
 Set a different address/port and home directory:
 
-`python -m pyftpdlib.ftpserver -i localhost -p 8021 -d /home/someone`
+{{{
+python -m pyftpdlib.ftpserver -i localhost -p 8021 -d /home/someone
+}}}
 
 See `python -m pyftpdlib.ftpserver -h` for a complete list of options.
