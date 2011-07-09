@@ -300,6 +300,20 @@ http://code.google.com/p/adqmisc/wiki/eframe
 
 ----
 
+== Fastersync ==
+
+A tool to synchronize data between desktop PCs, laptops, USB drives, remote FTP/SFTP servers, and different online data storages.
+
+http://code.google.com/p/fastersync/
+
+== bftpd == 
+
+A small easy to configure FTP server.
+
+http://bftpd.sourceforge.net/
+
+----
+
 = Web sites using pyftpdlib =
 
 == www.bitsontherun.com ==
