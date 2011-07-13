@@ -51,7 +51,7 @@ _class_ pyftpdlib.ftpserver.*DummyAuthorizer*<font size="3">*`()`*</font>
 
  * *add_anonymous*<font size="3">*`(`*</font>_homedir_<font size="3">*`[`*</font>, `**`_kwargs_<font size="3">*`])`*</font><br>Add an anonymous user to the virtual users table.  `AuthorizerError` exception raised on error conditions such as insufficient permissions, missing home directory, or duplicate anonymous users.  The keyword arguments in `kwargs` are the same expected by `add_user()` method: `perm`, `msg_login` and `msg_quit`.  The optional _perm_ keyword argument is a string defaulting to `"elr"` referencing "read-only" anonymous user's permission.  Using a "write" value results in a `RuntimeWarning`.
 
- * *override_perm*<font size="3">*`(`*</font>_directory_, _perm_<font size="3">*`[`*</font>, _recursive=False_<font size="3">*`])`*</font><br>Override permissions for a given directory. 
+ * *override_perm*<font size="3">*`(`*</font>_username_, _directory_, _perm_<font size="3">*`[`*</font>, _recursive=False_<font size="3">*`])`*</font><br>Override user permissions for a given directory. 
 
  * *validate_authentication*<font size="3">*`(`*</font>_username_, _password_<font size="3">*`)`*</font><br>Return `True` if the supplied `username` and `password` match the stored credentials.
 
