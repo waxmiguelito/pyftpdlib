@@ -36,7 +36,7 @@ The base specification of the current File Transfer Protocol.
 || LIST || YES || 0.1.0 || List files. || Accept also bad arguments like "-ls", "-la", ... ||
 || MKD || YES || 0.1.0 || Create directory. || ||
 || MODE || YES || 0.1.0 || Set data transfer mode. || "STREAM" mode is supported, "Block" and "Compressed" aren't. ||
-|| NLST || YES || 0.1.0 || List files in a compact form. || ||
+|| NLST || YES || 0.1.0 || List files in a compact form. || Globbing of wildcards is not supported (for example, *.txt will not work) ||
 || NOOP || YES || 0.1.0 || NOOP (no operation), just do nothing. || ||
 || PASS || YES || 0.1.0 || Set user password. || ||
 || PASV || YES || 0.1.0 || Set server in passive connection mode. || ||
