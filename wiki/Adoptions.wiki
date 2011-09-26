@@ -276,6 +276,14 @@ http://code.irondojo.com/
 
 ----
 
+== ftpmaster ==
+
+A very simple FTP-based content management system (CMS) including an LDAP authorizer.
+
+https://github.com/MarkLIC/ftpmaster
+
+----
+
 == ShareFTP ==
 
 A program functionally equivalent to Shareme project.
