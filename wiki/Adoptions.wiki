@@ -196,6 +196,14 @@ http://www.peerscape.org/
 
 ----
 
+== feitp-server ==
+
+An extra layer on top of pyftpdlib introducing multi processing capabilities and overall higher performances.
+
+http://code.google.com/p/feitp-server/
+
+-----
+
 == Symbian Python FTP server ==
 
 http://pyftpdlib.googlecode.com/svn-history/wiki/images/symbianftp.png
