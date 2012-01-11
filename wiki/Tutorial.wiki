@@ -14,6 +14,8 @@ If you have written a customized configuration you think could be useful to the 
 
 = 2.0 - API reference =
 
+== 2.1 - Logging ==
+
 _function_ pyftpdlib.ftpserver.*log*<font size="3">*`(`*</font>_msg_<font size="3">*`)`*</font>
   Log messages intended for the end user.
 ----
@@ -23,6 +25,9 @@ _function_ pyftpdlib.ftpserver.*logline*<font size="3">*`(`*</font>_msg_<font si
 _function_ pyftpdlib.ftpserver.*logerror*<font size="3">*`(`*</font>_msg_<font size="3">*`)`*</font>
   Log traceback outputs occurring in case of errors.
 ----
+
+== 2.2 - Users ==
+
 _class_ pyftpdlib.ftpserver.*DummyAuthorizer*<font size="3">*`()`*</font>
 
   Basic "dummy" authorizer class, suitable for subclassing to create your own custom authorizers. An "authorizer" is a class handling authentications and permissions of the FTP server.  It is used inside `FTPHandler` class for verifying user's password, getting users home directory, checking user permissions when a filesystem read/write event occurs and changing user before accessing the filesystem. `DummyAuthorizer` is the base authorizer, providing a platform independent interface for managing "virtual" FTP users.  Typically the first thing you have to do is create an instance of this class and start adding ftp users:
@@ -61,6 +66,9 @@ _class_ pyftpdlib.ftpserver.*DummyAuthorizer*<font size="3">*`()`*</font>
 
  * *remove_user*<font size="3">*`(`*</font>_username_<font size="3">*`)`*</font><br>Remove a user from the virtual user table.
 ----
+
+== 2.3 - Control connection ==
+
 class pyftpdlib.ftpserver.*FTPHandler*<font size="3">*`(`*</font>_conn, server_<font size="3">*`)`*</font>
 
   This class implements the FTP server Protocol Interpreter (see [http://www.faqs.org/rfcs/rfc959.html RFC-959]), handling commands received from the client on the control channel by calling the command's corresponding method (e.g. for received command "MKD pathname", `ftp_MKD()` method is called with `pathname` as the argument).  All relevant session information are stored in instance variables.  `conn` is the underlying socket object instance of the newly established connection, `server` is the `FTPServer` class instance.  Basic usage simply requires creating an instance of `FTPHandler` class and specify which authorizer instance it will going to use:
@@ -107,6 +115,8 @@ class pyftpdlib.ftpserver.*FTPHandler*<font size="3">*`(`*</font>_conn, server_<
  * *on_incomplete_file_received*<font size="3">*`(`*</font>_file_<font size="3">*`)`*</font><br>Called every time a file has not been entirely received (e.g. transfer aborted by client). `file` is the absolute name of that file. _*New in version 0.6.0*_
 
 ----
+== 2.4 - Data connection ==
+
 _class_ pyftpdlib.ftpserver.*DTPHandler*<font size="3">*`(`*</font>_sock_obj, cmd_channel_<font size="3">*`)`*</font>
 
   This class handles the server-data-transfer-process (server-DTP, see [http://www.faqs.org/rfcs/rfc959.html RFC-959]) managing all transfer operations regarding the data channel.  `sock_obj` is the underlying socket object instance of the newly established connection, `cmd_channel` is the `FTPHandler` class instance.
@@ -125,6 +135,8 @@ _class_ pyftpdlib.ftpserver.*ThrottledDTPHandler*<font size="3">*`(`*</font>_soc
 
  * *write_limit*<br>The maximum number of bytes to write (send) in one second (defaults to 0 == no limit).
 ----
+== 2.4 - Server (acceptor) ==
+
 _class_ pyftpdlib.ftpserver.*FTPServer*<font size="3">*`(`*</font>_address, handler_<font size="3">*`)`*</font>
 
   This class is an `asyncore.dispatcher` subclass.  It creates a FTP socket listening on `address` (a tuple containing the ip:port pair), dispatching the requests to a "handler" (typically `FTPHandler` class object).  It is typically used for starting asyncore polling loop:
@@ -145,6 +157,8 @@ _class_ pyftpdlib.ftpserver.*FTPServer*<font size="3">*`(`*</font>_address, hand
 
  * *close_all(*<font size="3">*`[`*</font>, _ignore_all=False_<font size="3">*`]])`*</font><br>Stop serving disconnecting also the currently connected clients. The `map` parameter is a dictionary whose items are the channels to close. If `map` is omitted, the default `asyncore.socket_map` is used. Having `ignore_all` parameter set to `False` results in raising exception in case of unexpected errors.
 ----
+== 2.6 - File system ==
+
 _class_ pyftpdlib.ftpserver.*AbstractedFS(*_root_, _cmd_channel_*)*
 
   A class used to interact with the file system, providing a cross-platform interface compatible with both Windows and UNIX style filesystems where all paths use "/" separator. <br>`AbstractedFS` distinguishes between "real" filesystem paths and "virtual" ftp paths emulating a UNIX chroot jail where the user can not escape its home directory (example: real "/home/user" path will be seen as "/" by the client). <br>It also provides some utility methods and wraps around all `os.*` calls involving operations against the filesystem like creating files or removing directories. The contructor accepts two arguments: `root` which is the user "real" home directory (e.g. '/home/user') and `cmd_channel` which is the `FTPHandler` class instance.
