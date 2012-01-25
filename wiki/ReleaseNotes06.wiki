@@ -1,5 +1,5 @@
 #summary pyftpdlib 0.6.x series release notes.
-#labels Featured
+#labels Deprecated
 
 = Version: 0.6.0 - Date: 2011-01-24 =
 
