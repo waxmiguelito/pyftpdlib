@@ -159,6 +159,17 @@ For further information you might want to take a look at [http://www.proftpd.org
 
 = Implementation =
 
+== sendfile() ==
+
+Starting from version 0.7.0 if [http://code.google.com/p/pysendfile/ pysendfile] module is installed the data channel will use sendfile(2) system call by default instead of plain old socket.send() method. This applies to all uploads (RETR - from server to client). This shouldn't make any difference if you send regular files. If that's not the case (e.g. you overriden AbstractedFS.open() method so that it returns a file-like object) the data channel won't be able to transmit any data. Also, use of sendfile() might introduce some unexpected issues with "non regular filesystems" such as NFS, SMBFS/Samba, CIFS and network mounts in general, see: http://www.proftpd.org/docs/howto/Sendfile.html. If you bump into one this problems the fix consists in disabling sendfile() usage via FTPHandler.use_sendfile option:
+
+{{{
+from pyftpdlib import ftpserver
+handler = ftpserver.FTPHandler
+handler.use_senfile = False
+...
+}}}
+
 == Globbing / STAT command implementation ==
 
 Globbing is a common Unix shell mechanism for expanding wildcard patterns to match multiple filenames. When an argument is provided to the *STAT* command, ftpd should return directory listing over the command channel.
@@ -208,19 +219,25 @@ Yes, starting from version 0.6.0, see: http://code.google.com/p/billiejoex/wiki/
 
 == What about SITE commands? ==
 
-No SITE commands aside from *SITE HELP* are implemented by default.
-The user willing to add support for a specific SITE command (e.g. *SITE CHMOD*) has to define a new `ftp_SITE_%CMD%` method in the `FTPHandler` subclass and add a new entry in `proto_cmds` dictionary. Example:
+The only supported SITE command is *SITE CHMOD* (change file mode).
+The user willing to add support for other specific SITE commands has to define a new `ftp_SITE_%CMD%` method in the `FTPHandler` subclass and add a new entry in `proto_cmds` dictionary. Example:
 
 {{{
 from pyftpdlib import ftpserver
 
-class CustomizedFTPHandler(ftpserver.FTPHandler):
+proto_cmds = ftpserver.proto_cmds.copy()
+proto_cmds.update(
+    {'SITE RMTREE': dict(perm='R', auth=True, arg=True,
+                         help='Syntax: SITE <SP> RMTREE <SP> path (remove directory tree).')
+    }
+)
 
-    def ftp_SITE_CHMOD(self, line):
-        """Change file permissions."""
+class CustomizedFTPHandler(ftpserver.FTPHandler):
+    proto_cmds = proto_cmds
+
+    def ftp_SITE_RMTREE(self, line):
+        """Recursively remove a directory tree."""
         # implementation here
         # ...
 
-properties = (None, True, None, False, 'Syntax: SITE CHMOD <SP> path (change file permission).')
-CustomizedFTPHandler.proto_cmds['SITE CHMOD'] = ftpserver._CommandProperty(*properties)
 }}}

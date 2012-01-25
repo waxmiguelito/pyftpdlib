@@ -18,7 +18,17 @@
  * _(?)_ Split classes into different files.
  * _(?)_ Support for *ADAT*, *MIC*, *CONF* and *ENC* commands ([http://www.ietf.org/rfc/rfc2228.txt RFC-2228]).
 
-== 0.6.0 _(current release)_ ==
+== 0.7.0 _(current release)_ ==
+
+ * Use of sendfile(2) for uploads (from server to client).
+ * Faster scheduler.
+ * SITE CHMOD.
+ * CallEvery class.
+ * on_login_failed() callback.
+ * Fix some FTPS outstanding bugs.
+ * Benchmark script.
+
+== 0.6.0 _(released)_ ==
 
  * Command line parameters.
  * Add SSL/TLS support at library level (pyftpdlib.contrib package).

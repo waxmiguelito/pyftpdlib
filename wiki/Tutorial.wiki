@@ -51,6 +51,7 @@ _class_ pyftpdlib.ftpserver.*DummyAuthorizer*<font size="3">*`()`*</font>
       * *"f"* = rename file or directory (RNFR, RNTO commands)
       * *"m"* = create directory (MKD command)
       * *"w"* = store a file to the server (STOR, STOU commands)
+      * *"M"* = change mode/permission (SITE CHMOD command)  _*New in 0.7.0*_
 
  Optional `msg_login` and `msg_quit` arguments can be specified to provide customized response strings when user log-in and quit.  The `perm` argument of the `add_user()` method refers to user's permissions. Every letter is used to indicate that the access rights the current FTP user has over the following specific actions are granted.
 
@@ -100,9 +101,13 @@ class pyftpdlib.ftpserver.*FTPHandler*<font size="3">*`(`*</font>_conn, server_<
 
  * *tcp_no_delay*<br>Controls the use of the TCP_NODELAY socket option which disables the Nagle algorithm resulting in significantly better performances (default `True` on all platforms where it is supported). _*New in version 0.6.0*_
 
+ * *use_sendfile*<br>when True uses sendfile() system call to send a file resulting in faster uploads (from server to client). Works on UNIX only and requires pysendfile module to be installed separately: http://code.google.com/p/pysendfile/ _*New in version 0.7.0*_
+
   <br>Follows a list of callback methods that can be overridden in a subclass. For blocking operations read the FAQ on how to [http://code.google.com/p/pyftpdlib/wiki/FAQ#How_can_I_run_long-running_tasks_without_blocking_the_server? run time consuming tasks]
 
  * *on_login*<font size="3">*`(`*</font>_username_<font size="3">*`)`*</font><br>Called on user login. _*New in version 0.6.0*_
+
+ * *on_login_failed*<font size="3">*`(`*</font>_username_, _password_<font size="3">*`)`*</font><br>Called on failed user login. _*New in version 0.7.0*_
 
  * *on_logout*<font size="3">*`(`*</font>_username_<font size="3">*`)`*</font><br>Called when user logs out due to QUIT or USER issued twice. This is not called if client just disconnects without issuing QUIT first. <br /> _*New in version 0.6.0*_
 
@@ -151,7 +156,7 @@ _class_ pyftpdlib.ftpserver.*FTPServer*<font size="3">*`(`*</font>_address, hand
 
  * *max_cons_per_ip*<br>Number of maximum connections accepted for the same IP address (default `0` == _no limit_).
 
- * *serve_forever(*<font size="3">*`[`*</font>_timeout=1_<font size="3">*`[`*</font>, _use_poll=False_<font size="3">*`[`*</font>, _count=None_<font size="3">*`]])`*</font><br>A wrap around asyncore.loop(); starts the asyncore polling loop including running the scheduler. The arguments are the same expected by original [http://docs.python.org/library/asyncore.html#asyncore.loop asyncore.loop()] function.
+ * *serve_forever(*<font size="3">*`[`*</font>_timeout=1_<font size="3">*`[`*</font>, _use_poll=False_<font size="3">*`[`*</font>, _count=None_<font size="3">*`]])`*</font><br>A wrap around asyncore.loop(); starts the asyncore polling loop including running the scheduler. The arguments are the same expected by original [http://docs.python.org/library/asyncore.html#asyncore.loop asyncore.loop()] function.  _*Changed in version 0.7.0*: turned into a classmethod_
 
  * *close*<font size="3">*`()`*</font><br>Stop serving without disconnecting currently connected clients.
 
@@ -165,9 +170,9 @@ _class_ pyftpdlib.ftpserver.*AbstractedFS(*_root_, _cmd_channel_*)*
 
  _*Changed in version 0.6.0*: `root` and `cmd_channel` arguments were added._
 
- * *root*<br>User's home directory ("real").
+ * *root*<br>User's home directory ("real").  _*Changed in version 0.7.0*: support setattr()_
 
- * *cwd*<br>User's current working directory ("virtual").
+ * *cwd*<br>User's current working directory ("virtual").  _*Changed in version 0.7.0*: support setattr()_
 
  * *ftpnorm*<font size="3">*`(`*</font>_ftppath_<font size="3">*`)`*</font><br>Normalize a "virtual" ftp pathname depending on the current working directory (e.g. having "/foo" as current working directory "x" becomes "/foo/x").
 

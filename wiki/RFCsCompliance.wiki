@@ -192,3 +192,10 @@ Provides a description on how to implement TLS as a security mechanism to secure
 || CCC || NO || --- || Clear Command Channel. || ||
 || PBSZ || YES || --- || Protection Buffer Size. || Implemented as as a no-op as recommended. ||
 || PROT || YES || --- || Data Channel Protection Level. || Support only "P" and "C" protection levels. ||
+
+= Unofficial commands =
+
+These are commands not officialy included in any RFC but many FTP servers implement them.
+
+|| *Command* || *Implemented* || *Milestone* || *Description* || *Notes* ||
+|| SITE CHMOD command || YES || 0.7.0 || Change file mode. || ||
