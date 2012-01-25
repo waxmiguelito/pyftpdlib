@@ -1,6 +1,6 @@
 #summary pyftpdlib 0.7.x series release notes.
 
-= Version: 0.7.0 - Date: XXXX-XX-XX =
+= Version: 0.7.0 - Date: 2012-01-25 =
 
 == Enhancements ==
 
