@@ -181,7 +181,15 @@ _class_ pyftpdlib.ftpserver.*AbstractedFS(*_root_, _cmd_channel_*)*
  * *fs2ftp*<font size="3">*`(`*</font>_fspath_<font size="3">*`)`*</font><br>Translate a "real" filesystem pathname into equivalent absolute "virtual" ftp pathname depending on the user's root directory (e.g. having "/home/user" as root directory "/home/user/x" becomes "/x".
 
  * *validpath*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>Check whether the path belongs to user's home directory. Expected argument is a "real" filesystem path. If path is a symbolic link it is resolved to check its real destination. Pathnames escaping from user's root directory are considered not valid (return `False`).
- 
+
+ * *open*<font size="3">*`(`*</font>_filename, mode_<font size="3">*`)`*</font><br>Wrapper around [http://docs.python.org/library/functions.html#open open()] builtin.
+
+ * *mkdir*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*chdir*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*listdir*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*rmdir*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*remove*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*rename*<font size="3">*`(`*</font>_src, dst_<font size="3">*`)`*</font><br>*chmod*<font size="3">*`(`*</font>_path, mode_<font size="3">*`)`*</font><br>*stat*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*lstat*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>Wrappers around corresponding [http://docs.python.org/library/os.html os] module functions.
+
+ * *isfile*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*islink*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*isdir*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*getsize*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*getmtime*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*realpath*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>*lexists*<font size="3">*`(`*</font>_path_<font size="3">*`)`*</font><br>Wrappers around corresponding [http://docs.python.org/library/os.path.html os.path] module functions.
+
+ * *mkstemp*<font size="3">*`(`*</font>suffix='', prefix='', dir=None, mode='wb'<font size="3">*`)`*</font><br>Wrapper around [http://docs.python.org/library/tempfile.html#tempfile.mkstemp tempfile.mkstemp].
+
 ----
 
 = 2.1 - Contrib package =
