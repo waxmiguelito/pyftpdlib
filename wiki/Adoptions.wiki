@@ -214,6 +214,14 @@ http://code.google.com/p/sypftp/
 
 ----
 
+== ftp-cloudfs ==
+
+An FTP server acting as a proxy to Rackspace Cloud Files or to OpenStack Swift. It allow you to connect via any FTP client to do upload/download or create containers.
+
+https://github.com/chmouel/ftp-cloudfs
+
+----
+
 == Sierramobilepos ==
 
 The goal of this project is to extend Openbravo POS to use Windows Mobile Professional or Standard devices. It will import the data from Ob POS (originally in Postgres, later MySql). This data will reside in a database using sqlite3. Later a program will allow to sync by FTP or using a USB cable connected to the WinMob device.
