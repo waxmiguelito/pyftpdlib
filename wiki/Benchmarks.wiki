@@ -1,0 +1,130 @@
+#summary Benchmarks
+#labels Deprecated
+
+_All the benchmarks were conducted on a Linux Ubuntu 12.04  Intel core duo - 3.1 Ghz box._<br>_Results where pyftpdlib wins are marked in <font color='green'>green</font>, else in <font color='red'>red</font>._
+
+
+= pyftpdlib 0.7.0 vs. pyftpdlib 1.0.0 =
+
+|| *benchmark type* || *0.7.0* || *1.0.0* || *speedup* ||
+|| STOR (client -> server)                ||              528.63 MB/sec || 585.90 MB/sec || <font color='green'>+0.1x</font> ||
+|| RETR (server -> client)                ||             1702.07 MB/sec || 1652.72 MB/sec || <font color='red'>-0,02x</font> ||
+|| 300 concurrent clients (connect, login)  ||              1.70 secs || 0.19 secs || <font color='green'>+8x</font> ||
+|| STOR (1 file with 300 idle clients)      ||             60.77 MB/sec || 585.59 MB/sec || <font color='green'>+8.6x</font> ||
+|| RETR (1 file with 300 idle clients)        ||           63.46 MB/sec || 1497.58 MB/sec || <font color='green'>+22.5x</font> ||
+|| 300 concurrent clients (RETR 10M file)       ||          4.68 secs || 3.41 secs || <font color='green'>+0.3x</font> ||
+|| 300 concurrent clients (STOR 10M file)         ||       10.13 secs || 8.78 secs || <font color='green'>+0.1x</font> ||
+|| 300 concurrent clients (QUIT)                    ||      0.02 secs || 0.02 secs || 0x ||
+
+= pyftpdlib vs. proftpd 1.3.4 =
+
+|| *benchmark type* || *pyftpdlib* || *proftpd* || *speedup* ||
+|| STOR (client -> server)                      ||        585.90 MB/sec || 600.49 MB/sec || <font color='red'>-0,02x</font> ||
+|| RETR (server -> client)                      ||       1652.72 MB/sec || 1524.05 MB/sec || <font color='green'>+0.08</font> ||
+|| 300 concurrent clients (connect, login)      ||          0.19 secs || 9.98 secs || <font color='green'>+51x</font> ||
+|| STOR (1 file with 300 idle clients)          ||        585.59 MB/sec || 518.55 MB/sec || <font color='green'>+0.1x</font> ||
+|| RETR (1 file with 300 idle clients)          ||       1497.58 MB/sec || 1478.19 MB/sec || <font color='black'>0x</font> ||
+|| 300 concurrent clients (RETR 10M file)       ||          3.41 secs || 3.60 secs || <font color='green'>+0.05x</font> ||
+|| 300 concurrent clients (STOR 10M file)       ||          8.60 secs || 11.56 secs || <font color='green'>+0.3x</font> ||
+|| 300 concurrent clients (QUIT)                ||          0.03 secs || 0.39 secs || <font color='green'>+12x</font> ||
+
+= pyftpdlib vs. vsftpd 2.3.5 =
+
+|| *benchmark type* || *pyftpdlib* || *proftpd* || *speedup* ||
+|| STOR (client -> server)                      ||        585.90 MB/sec || 611.73 MB/sec || <font color='red'>-0,04x</font> ||
+|| RETR (server -> client)                      ||       1652.72 MB/sec || 1512.92 MB/sec || <font color='green'>+0.09</font> ||
+|| 300 concurrent clients (connect, login)      ||          0.19 secs || 20.39 secs || <font color='green'>+106x</font> ||
+|| STOR (1 file with 300 idle clients)          ||        585.59 MB/sec || 610.23 MB/sec || <font color='red'>-0.04x</font> ||
+|| RETR (1 file with 300 idle clients)          ||       1497.58 MB/sec || 1493.01 MB/sec || <font color='black'>0x</font> ||
+|| 300 concurrent clients (RETR 10M file)       ||          3.41 secs || 3.67 secs || <font color='green'>+0.07x</font> ||
+|| 300 concurrent clients (STOR 10M file)       ||          8.60 secs || N/A ||  ||
+|| 300 concurrent clients (QUIT)                ||          0.03 secs || 0.01 secs || <font color='red'>-2x</font> ||
+
+= Memory usage = 
+
+_Values refer to [http://en.wikipedia.org/wiki/Resident_Set_Size RSS] memory consumption, expressed in megabytes (the less the better)._
+
+|| *benchmark type* || *pyftpdlib* || *proftpd 1.3.4* || *vsftpd 2.3.5* ||
+|| Starting with                                  || <font color="red">11.9M</font>  || 4.3M  || 1.3M ||
+|| STOR (1 client)                        || <font color="red">11.9M</font>  || 8.5M || 2.8M ||
+|| RETR (1 client)                        || <font color="red">12.0M</font>  || 8.5M  || 2.8M ||
+|| 300 concurrent clients (connect, login)        || <font color="green">14.0M</font>  || 1277.5M  || 447.7M ||
+|| STOR (1 file with 300 idle clients)            || <font color="green">14.0M</font>  || 1281.9M  || 449.2M ||
+|| RETR (1 file with 300 idle clients)            || <font color="green">14.1M</font>  || 1281.9M  || 449.2M ||
+|| 300 concurrent clients (RETR 10.0M file)       || <font color="green">16.0M</font>  || 1277.6M  || 447.7M ||
+|| 300 concurrent clients (STOR 10.0M file)       || <font color="green">17.7M</font>  || 1277.8M  || N/A ||
+
+= Interpreting the results =
+
+pyftpdlib and [http://www.proftpd.org/ proftpd] / [https://security.appspot.com/vsftpd.html vsftpd] looks pretty much equally fast. The huge difference is noticeable in scalability though, because of the concurrency model adopted.
+Both proftpd and vsftpd spawn a new process for every connected client, where pyftpdlib doesn't (see [http://www.kegel.com/c10k.html the C10k problem]).
+The outcome is well noticeable on connect/login benchmarks and memory benchmarks.
+
+The huge differences between [http://pyftpdlib.googlecode.com/files/pyftpdlib-0.7.0.tar.gz 0.7.0] and [http://pyftpdlib.googlecode.com/files/pyftpdlib-1.0.0.tar.gz 1.0.0] versions of pyftpdlib are due to fix of issue 203. On Linux we now use _[http://linux.die.net/man/4/epoll epoll()]_ which scales considerably better than _[http://linux.die.net/man/2/select select()]_.
+The fact that we're downloading a file with 300 idle clients doesn't make any difference for _epoll()_. We might as well had 5000 idle clients and the result would have been the same.
+On Windows, where we still use select(), 1.0.0 still wins hands down as the asyncore loop was reimplemented from scratch in order to support fd un/registration and modification.
+
+All the benchmarks were conducted on a Linux Ubuntu 12.04  Intel core duo - 3.1 Ghz box.
+
+The following setup has been used before running every benchmark:
+
+=== proftpd ===
+
+{{{
+# /etc/proftpd/proftpd.conf
+
+MaxInstances        2000
+}}}
+
+...followed by:
+
+{{{
+$ sudo service proftpd restart
+}}}
+
+=== vsftpd ===
+
+{{{
+# /etc/vsftpd.conf
+
+local_enable=YES
+write_enable=YES
+max_clients=2000
+max_per_ip=2000
+}}}
+
+...followed by:
+
+{{{
+$ sudo service vsftpd restart
+}}}
+
+=== pyftpdlib ===
+
+The following patch was applied first:
+
+{{{
+Index: pyftpdlib/ftpserver.py
+===================================================================
+--- pyftpdlib/ftpserver.py	(revisione 1049)
++++ pyftpdlib/ftpserver.py	(copia locale)
+@@ -4039,6 +4039,10 @@
+                     raise
+         del _scheduler._tasks[:]
+
++import resource
++soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
++resource.setrlimit(resource.RLIMIT_NOFILE, (hard, hard))
++FTPServer.max_cons = 0
+}}}
+
+...followed by:
+{{{
+$ sudo python demo/unix_daemon.py
+}}}
+
+The [http://pyftpdlib.googlecode.com/svn/trunk/test/bench.py benchmark script] was run as:
+
+{{{
+python test/bench.py -u USERNAME -p PASSWORD -b all -n 300
+}}}
