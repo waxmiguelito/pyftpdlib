@@ -1,5 +1,5 @@
 #summary Frequently Asked Questions
-#labels Featured,SortOrder-2
+#labels Featured,SortOrder-3
 
 = Table of contents =
 

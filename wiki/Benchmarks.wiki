@@ -1,5 +1,31 @@
 #summary Benchmarks
-#labels Deprecated
+#labels SortOrder-2,Featured
+
+<wiki:comment>
+Reminder as to how I calculated these numbers:
+
+old = 1524.05
+new = 1652.72
+
+...aka:
+
+1524.05 : 100 = 1652.72 : x
+
+calculus:
+
+100 * 1652.72 / 1524.05 = 108,4426..  (aka 108%, aka 8% speedup)
+
+...to get the 'x' notation:
+
+(108,442636396 - 100) / 100 = +0.08x
+
+A python program:
+
+a = 1524.05
+b = 1652.72
+perc = 100.0 * b / a
+print '+%.2f' % ((perc - 100) / 100)
+</wiki:comment>
 
 _All the benchmarks were conducted on a Linux Ubuntu 12.04  Intel core duo - 3.1 Ghz box._<br>_Results where pyftpdlib wins are marked in <font color='green'>green</font>, else in <font color='red'>red</font>._
 
@@ -8,7 +34,7 @@ _All the benchmarks were conducted on a Linux Ubuntu 12.04  Intel core duo - 3.1
 
 || *benchmark type* || *0.7.0* || *1.0.0* || *speedup* ||
 || STOR (client -> server)                ||              528.63 MB/sec || 585.90 MB/sec || <font color='green'>+0.1x</font> ||
-|| RETR (server -> client)                ||             1702.07 MB/sec || 1652.72 MB/sec || <font color='red'>-0,02x</font> ||
+|| RETR (server -> client)                ||             1702.07 MB/sec || 1652.72 MB/sec || <font color='red'>-0.02x</font> ||
 || 300 concurrent clients (connect, login)  ||              1.70 secs || 0.19 secs || <font color='green'>+8x</font> ||
 || STOR (1 file with 300 idle clients)      ||             60.77 MB/sec || 585.59 MB/sec || <font color='green'>+8.6x</font> ||
 || RETR (1 file with 300 idle clients)        ||           63.46 MB/sec || 1497.58 MB/sec || <font color='green'>+22.5x</font> ||
@@ -19,7 +45,7 @@ _All the benchmarks were conducted on a Linux Ubuntu 12.04  Intel core duo - 3.1
 = pyftpdlib vs. proftpd 1.3.4 =
 
 || *benchmark type* || *pyftpdlib* || *proftpd* || *speedup* ||
-|| STOR (client -> server)                      ||        585.90 MB/sec || 600.49 MB/sec || <font color='red'>-0,02x</font> ||
+|| STOR (client -> server)                      ||        585.90 MB/sec || 600.49 MB/sec || <font color='red'>-0.02x</font> ||
 || RETR (server -> client)                      ||       1652.72 MB/sec || 1524.05 MB/sec || <font color='green'>+0.08</font> ||
 || 300 concurrent clients (connect, login)      ||          0.19 secs || 9.98 secs || <font color='green'>+51x</font> ||
 || STOR (1 file with 300 idle clients)          ||        585.59 MB/sec || 518.55 MB/sec || <font color='green'>+0.1x</font> ||
@@ -31,7 +57,7 @@ _All the benchmarks were conducted on a Linux Ubuntu 12.04  Intel core duo - 3.1
 = pyftpdlib vs. vsftpd 2.3.5 =
 
 || *benchmark type* || *pyftpdlib* || *proftpd* || *speedup* ||
-|| STOR (client -> server)                      ||        585.90 MB/sec || 611.73 MB/sec || <font color='red'>-0,04x</font> ||
+|| STOR (client -> server)                      ||        585.90 MB/sec || 611.73 MB/sec || <font color='red'>-0.04x</font> ||
 || RETR (server -> client)                      ||       1652.72 MB/sec || 1512.92 MB/sec || <font color='green'>+0.09</font> ||
 || 300 concurrent clients (connect, login)      ||          0.19 secs || 20.39 secs || <font color='green'>+106x</font> ||
 || STOR (1 file with 300 idle clients)          ||        585.59 MB/sec || 610.23 MB/sec || <font color='red'>-0.04x</font> ||
@@ -40,19 +66,40 @@ _All the benchmarks were conducted on a Linux Ubuntu 12.04  Intel core duo - 3.1
 || 300 concurrent clients (STOR 10M file)       ||          8.60 secs || N/A ||  ||
 || 300 concurrent clients (QUIT)                ||          0.03 secs || 0.01 secs || <font color='red'>-2x</font> ||
 
+= pyftpdlib vs. Twisted 12.3 = 
+
+By using _sendfile()_ (Twisted *does not* support sendfile()):
+
+|| *benchmark type* || *pyftpdlib* || *twisted* || *speedup* ||
+|| STOR (client -> server)                      ||        585.90 MB/sec || 496.44 MB/sec || <font color='green'>+0.01x</font> ||
+|| RETR (server -> client)                      ||       1652.72 MB/sec || 283.24 MB/sec || <font color='green'>+4.8x</font> ||
+|| 300 concurrent clients (connect, login)      ||          0.19 secs || 0.19 secs || <font>+0x</font> ||
+|| STOR (1 file with 300 idle clients)          ||        585.59 MB/sec || 506.55 MB/sec || <font color='green'>+0.16x</font> ||
+|| RETR (1 file with 300 idle clients)          ||       1497.58 MB/sec || 280.63 MB/sec || <font color='green'>+4.3x</font> ||
+|| 300 concurrent clients (RETR 10M file)       ||          3.41 secs || 11.40 secs || <font color='green'>+2.3x</font> ||
+|| 300 concurrent clients (STOR 10M file)       ||          8.60 secs || 9.22 secs || <font color='green'>+0.07x</font> ||
+|| 300 concurrent clients (QUIT)                ||          0.03 secs || 0.09 secs || <font color='green'>+2x</font> ||
+
+By using plain _send()_:
+
+|| *benchmark type* || *pyftpdlib* || *twisted* || *speedup* ||
+|| RETR (server -> client)                      ||       894.29 MB/sec || 283.24 MB/sec || <font color='green'>+2.1x</font> ||
+|| RETR (1 file with 300 idle clients)          ||       900.98 MB/sec || 280.63 MB/sec || <font color='green'>2.1x</font> ||
+
+
 = Memory usage = 
 
 _Values refer to [http://en.wikipedia.org/wiki/Resident_Set_Size RSS] memory consumption, expressed in megabytes (the less the better)._
 
-|| *benchmark type* || *pyftpdlib* || *proftpd 1.3.4* || *vsftpd 2.3.5* ||
-|| Starting with                                  || <font color="red">11.9M</font>  || 4.3M  || 1.3M ||
-|| STOR (1 client)                        || <font color="red">11.9M</font>  || 8.5M || 2.8M ||
-|| RETR (1 client)                        || <font color="red">12.0M</font>  || 8.5M  || 2.8M ||
-|| 300 concurrent clients (connect, login)        || <font color="green">14.0M</font>  || 1277.5M  || 447.7M ||
-|| STOR (1 file with 300 idle clients)            || <font color="green">14.0M</font>  || 1281.9M  || 449.2M ||
-|| RETR (1 file with 300 idle clients)            || <font color="green">14.1M</font>  || 1281.9M  || 449.2M ||
-|| 300 concurrent clients (RETR 10.0M file)       || <font color="green">16.0M</font>  || 1277.6M  || 447.7M ||
-|| 300 concurrent clients (STOR 10.0M file)       || <font color="green">17.7M</font>  || 1277.8M  || N/A ||
+|| *benchmark type* || *pyftpdlib* || *proftpd 1.3.4* || *vsftpd 2.3.5* || *twisted 12.3* || 
+|| Starting with                                  || <font color="red">11.9M</font>  || 4.3M  || 1.3M || 13.4M ||
+|| STOR (1 client)                        || <font color="red">11.9M</font>  || 8.5M || 2.8M || 13.5M ||
+|| RETR (1 client)                        || <font color="red">12.0M</font>  || 8.5M  || 2.8M || 13.5M ||
+|| 300 concurrent clients (connect, login)        || <font color="green">14.0M</font>  || 1277.5M  || 447.7M || 13.5M ||
+|| STOR (1 file with 300 idle clients)            || <font color="green">14.0M</font>  || 1281.9M  || 449.2M || 13.5M ||
+|| RETR (1 file with 300 idle clients)            || <font color="green">14.1M</font>  || 1281.9M  || 449.2M || 13.5M ||
+|| 300 concurrent clients (RETR 10.0M file)       || <font color="green">16.0M</font>  || 1277.6M  || 447.7M || 24.5M ||
+|| 300 concurrent clients (STOR 10.0M file)       || <font color="green">17.7M</font>  || 1277.8M  || N/A || 24.7M ||
 
 = Interpreting the results =
 
@@ -62,11 +109,13 @@ The outcome is well noticeable on connect/login benchmarks and memory benchmarks
 
 The huge differences between [http://pyftpdlib.googlecode.com/files/pyftpdlib-0.7.0.tar.gz 0.7.0] and [http://pyftpdlib.googlecode.com/files/pyftpdlib-1.0.0.tar.gz 1.0.0] versions of pyftpdlib are due to fix of issue 203. On Linux we now use _[http://linux.die.net/man/4/epoll epoll()]_ which scales considerably better than _[http://linux.die.net/man/2/select select()]_.
 The fact that we're downloading a file with 300 idle clients doesn't make any difference for _epoll()_. We might as well had 5000 idle clients and the result would have been the same.
-On Windows, where we still use select(), 1.0.0 still wins hands down as the asyncore loop was reimplemented from scratch in order to support fd un/registration and modification.
+On Windows, where we still use select(), 1.0.0 still wins hands down as the asyncore loop was reimplemented from scratch in order to support fd un/registration and modification (see [http://code.google.com/p/pyftpdlib/issues/detail?id=203 issue 203]).
 
 All the benchmarks were conducted on a Linux Ubuntu 12.04  Intel core duo - 3.1 Ghz box.
 
-The following setup has been used before running every benchmark:
+= Setup =
+
+The following setup was used before running every benchmark:
 
 === proftpd ===
 
@@ -99,19 +148,45 @@ max_per_ip=2000
 $ sudo service vsftpd restart
 }}}
 
+=== twisted FTP server ===
+
+{{{
+from twisted.protocols.ftp import FTPFactory, FTPRealm
+from twisted.cred.portal import Portal
+from twisted.cred.checkers import AllowAnonymousAccess, FilePasswordDB
+from twisted.internet import reactor
+import resource
+
+soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+resource.setrlimit(resource.RLIMIT_NOFILE, (hard, hard))
+open('pass.dat', 'w').write('user:some-passwd')
+p = Portal(FTPRealm('./'),
+           [AllowAnonymousAccess(), FilePasswordDB("pass.dat")])
+f = FTPFactory(p)
+reactor.listenTCP(21, f)
+reactor.run()
+}}}
+
+...followed by:
+{{{
+$ sudo python twist_ftpd.py
+}}}
+
+
 === pyftpdlib ===
 
 The following patch was applied first:
 
 {{{
-Index: pyftpdlib/ftpserver.py
+Index: pyftpdlib/servers.py
 ===================================================================
---- pyftpdlib/ftpserver.py	(revisione 1049)
-+++ pyftpdlib/ftpserver.py	(copia locale)
-@@ -4039,6 +4039,10 @@
-                     raise
-         del _scheduler._tasks[:]
-
+--- pyftpdlib/servers.py	(revisione 1154)
++++ pyftpdlib/servers.py	(copia locale)
+@@ -494,3 +494,10 @@
+ 
+             def _map_len(self):
+                 return len(multiprocessing.active_children())
++
 +import resource
 +soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
 +resource.setrlimit(resource.RLIMIT_NOFILE, (hard, hard))
@@ -127,4 +202,10 @@ The [http://pyftpdlib.googlecode.com/svn/trunk/test/bench.py benchmark script] w
 
 {{{
 python test/bench.py -u USERNAME -p PASSWORD -b all -n 300
+}}}
+
+...and for the memory test:
+
+{{{
+python test/bench.py -u USERNAME -p PASSWORD -b all -n 300 -k FTP_SERVER_PID
 }}}

@@ -1,24 +1,31 @@
 #summary pyftpdlib development roadmap.
-#labels SortOrder-6
+#labels SortOrder-6,Deprecated
 = Releases roadmap =
 
 == Possible ideas for future versions ==
 
- * Python 3 porting ([http://code.google.com/p/pyftpdlib/issues/detail?id=76 issue 76]).
  * Multi processes support ([http://code.google.com/p/pyftpdlib/issues/detail?id=148 issue 148]).
  * Include a graphical Tk-based ftp server into demo directory.
- * Unicode support.
  * MODE Z ([http://tools.ietf.org/html/draft-preston-ftpext-deflate-04 link)]
  * Impicit SSL
  * CCC command support ([http://code.google.com/p/pyftpdlib/issues/detail?id=172 issue 172])
- * sendfile() support ([http://code.google.com/p/pyftpdlib/issues/detail?id=152 issue 152])
  * x/inetd support ([http://code.google.com/p/pyftpdlib/issues/detail?id=147 issue 147]).
+ * file based configuration
  * _(?)_ Add the possibility to run the server as a daemon at library level. 
  * _(?)_ *LANG* command support ([http://www.faqs.org/rfcs/rfc2640.html RFC 2640]).
- * _(?)_ Split classes into different files.
  * _(?)_ Support for *ADAT*, *MIC*, *CONF* and *ENC* commands ([http://www.ietf.org/rfc/rfc2228.txt RFC-2228]).
 
-== 0.7.0 _(current release)_ ==
+== 1.0.0 _(current release)_ ==
+
+ * Python 3 porting ([http://code.google.com/p/pyftpdlib/issues/detail?id=76 issue 76]).
+ * Unicode support.
+ * rewritten IO loop 
+ * ThreadedFTPServer
+ * MultiprocessFTPServer
+ * split ftpserver.py into submodules.
+ * use stdlib logging module
+
+== 0.7.0 ==
 
  * Use of sendfile(2) for uploads (from server to client).
  * Faster scheduler.
@@ -28,7 +35,7 @@
  * Fix some FTPS outstanding bugs.
  * Benchmark script.
 
-== 0.6.0 _(released)_ ==
+== 0.6.0 ==
 
  * Command line parameters.
  * Add SSL/TLS support at library level (pyftpdlib.contrib package).
@@ -45,7 +52,7 @@
  * Set transfer speed limits thanks to addition of ThrottledDTPHandler class.
  * Add unix_daemon.py daemon script.
 
-== 0.5.1 _(released)_ ==
+== 0.5.1 ==
 
  * Add a new demo script implementing FTPS (FTP over TLS/SSL) supporting *AUTH*, *PROT* and *PBSZ* commands.
  * Set bigger buffer sizes to speedup data transfers.
@@ -53,18 +60,18 @@
  * Add preliminary support for SITE command.
  * Fix various bugs.
 
-== 0.5.0 _(released)_ ==
+== 0.5.0 ==
 
  * Provide configurable idle timeouts to disconnect clients after a long time of inactivity.
  * Minimize the risk of brute force password guessing by imposing a delay before replying to invalid credentials.
  * Adds to the DummyAuthorizer the possibility to create permission overriding for directories (e.g. define a user which does not have write permission except for one sub-directory in FTP root).
 
-== 0.4.0 _(released)_ ==
+== 0.4.0 ==
 
  * Assume the id of real users when using system dependent authorizers.
  * Add IPv6 support including *EPRT* & *EPSV* commands as defined in [http://www.faqs.org/rfcs/rfc2428.html RFC 2428].
 
-== 0.3.0 _(released)_ ==
+== 0.3.0 ==
 
  * Extend the set of assignable user permissions aside from the generic "read" and "write" (e.g. create/remove/rename/list/change directory, append to existing file and so on...).
  * Implement *MLST* and *MLSD* commands defined in [http://www.ietf.org/rfc/rfc3659.txt RFC-3659].
@@ -72,7 +79,7 @@
  * Use iterators for calculating requests requiring long time to complete (*LIST* and *MLSD* commands).
  * Provide real permissions, owner, and group for files on UNIX platforms processing the *LIST* command.
 
-== 0.2.0 _(released)_ ==
+== 0.2.0 ==
 
  * Support for *FXP*, site-to-site transfers.
  * NAT/Firewall support with *PASV* (passive) mode connections.
@@ -85,11 +92,11 @@
  * Accept *HELP* command arguments.
  * Implement directory listing over the command channel for *STAT* command provided with argument.
 
-== 0.1.1 _(released)_==
+== 0.1.1 ==
 
  * Randomize *PASV* port selection.
  * Release pyftpdlib under a license the most freely possible (MIT).
 
-== 0.1.0 _(released)_ ==
+== 0.1.0 ==
 
  * Create an asynchronous FTP server library compliant with [http://www.faqs.org/rfcs/rfc959.html RFC 959].

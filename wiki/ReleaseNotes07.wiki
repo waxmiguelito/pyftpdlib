@@ -1,4 +1,5 @@
 #summary pyftpdlib 0.7.x series release notes.
+#labels Deprecated
 
 = Version: 0.7.0 - Date: 2012-01-25 =
 
