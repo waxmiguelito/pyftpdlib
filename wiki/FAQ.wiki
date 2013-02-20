@@ -21,7 +21,11 @@ Yes. pyftpdlib is a fully working FTP server implementation that can be run "as 
 For example you could run an anonymous ftp server from cmd-line by running:
 {{{
 giampaolo@ubuntu:~$ sudo python -m pyftpdlib.ftpserver
-Serving FTP on 0.0.0.0:21
+[I 13-02-20 14:16:36] >>> starting FTP server on 0.0.0.0:21 <<<
+[I 13-02-20 14:16:36] poller: <class 'pyftpdlib.ioloop.Epoll'>
+[I 13-02-20 14:16:36] masquerade (NAT) address: None
+[I 13-02-20 14:16:36] passive ports: None
+[I 13-02-20 14:16:36] use sendfile(2): True
 }}}
 This is useful in case you want a quick and dirty way to share a directory without, say, installing and configuring samba.
 Starting from version 0.6.0 options can be passed to the command line (see `python -m pyftpdlib.ftpserver --help` to see all available options). Examples:
@@ -31,13 +35,21 @@ Anonymous FTP server with write access:
 giampaolo@ubuntu:~$ sudo python -m pyftpdlib.ftpserver -w
 /usr/local/lib/python2.6/site-packages/pyftpdlib/ftpserver.py:520: RuntimeWarning: Write permissions assigned to anonymous user.
   RuntimeWarning)
-Serving FTP on 0.0.0.0:21
+[I 13-02-20 14:16:36] >>> starting FTP server on 0.0.0.0:21 <<<
+[I 13-02-20 14:16:36] poller: <class 'pyftpdlib.ioloop.Epoll'>
+[I 13-02-20 14:16:36] masquerade (NAT) address: None
+[I 13-02-20 14:16:36] passive ports: None
+[I 13-02-20 14:16:36] use sendfile(2): True
 }}}
 
 Listen on a different ip/port:
 {{{
 giampaolo@ubuntu:~$ python -m pyftpdlib.ftpserver -i 127.0.0.1 -p 8021
-Serving FTP on 127.0.0.1:8021
+[I 13-02-20 14:16:36] >>> starting FTP server on 0.0.0.0:8021 <<<
+[I 13-02-20 14:16:36] poller: <class 'pyftpdlib.ioloop.Epoll'>
+[I 13-02-20 14:16:36] masquerade (NAT) address: None
+[I 13-02-20 14:16:36] passive ports: None
+[I 13-02-20 14:16:36] use sendfile(2): True
 }}}
 
 Customizing ftpd for basic tasks like adding users or deciding where log file should be placed is mostly simply editing variables. This is basically like learning how to edit a common unix ftpd.conf file and doesn't really require Python knowledge.
@@ -72,16 +84,12 @@ If you are not new to Python you probably don't need that, otherwise follow the 
 
 == Which Python versions are compatible? ==
 
-*2.4*, *2.5*, *2.6* and *2.7*.
+From *2.4* to *3.3*.
 Python 2.3 support has been removed starting from version 0.6.0. The latest version supporting Python 2.3 is [http://code.google.com/p/pyftpdlib/downloads/detail?name=pyftpdlib-0.5.2.tar.gz pyftpdlib 0.5.2].
-
-== What about Python 3.x? ==
-
-Python 3.x is not yet covered because I still have to figure out how to deal with the str/bytes and encoding differences introduced in the new Python version =). A porting to Python 3.x is surely in plan, anyway (see [http://code.google.com/p/pyftpdlib/issues/detail?id=76 issue #76].
 
 == On which platforms can pyftpdlib be used? ==
 
-pyftpdlib should work on any platform where *_select()_* or *_poll()_* system calls are available and on any Python implementation which refers to *cPython 2.4* or superior (e.g cPython 2.6 or PythonCE 2.5).
+pyftpdlib should work on any platform where *_select()_*, *_poll()_*, *_epoll()_* or *_kqueue()_*system calls are available and on any Python implementation which refers to *cPython 2.4* or superior (e.g cPython 2.6 or PythonCE 2.5).
 The development team has mainly tested it under various *Linux*, *Windows*, *OS X* and *FreeBSD* systems.
 For FreeBSD is also available a [http://www.freshports.org/ftp/py-pyftpdlib/ pre-compiled package] maintained by Li-Wen Hsu <lwhsu@freebsd.org>.
 Other Python implementation like *[http://pythonce.sourceforge.net/ PythonCE]* are known to work with pyftpdlib and every new version is usually tested against it.
@@ -97,8 +105,8 @@ pyftpdlib is an *asynchronous* FTP server. That means that if you need to run a 
 
 Let's suppose you want to implement a long-running task every time the server receives a file. The code snippet below shows the correct way to do it by using a thread.
 
-Notice how we first set `FTPHandler.sleeping` attribute to `True`, then we set it back to `False` when the long-running task has completed.<br>
-By setting `sleeping` attribute to `False` we temporarily "sleep" the channel which won't be able to send or receive any more data and won't be closed (disconnected) as long as we don't set it back to `True`.
+With self.del_channel() we temporarily "sleep" the connection handler which will be removed from the async IO poller loop and won't be able to send or receive any more data.
+It won't be closed (disconnected) as long as we don't invoke self.add_channel().
 This is fundamental when working with threads to avoid race conditions, dead locks etc.
 
 {{{
@@ -109,11 +117,13 @@ class MyHandler(ftpserver.FTPHandler):
 
         def blocking_task():
             time.sleep(5)
-            self.sleeping = False
+            self.add_channel()
 
-        self.sleeping = True
+        self.del_channel()
         threading.Thread(target=blocking_task).start()
 }}}
+
+Another possibility is to [https://code.google.com/p/pyftpdlib/wiki/Tutorial#4.6_-_Changing_the_concurrency_model change the default concurrency model].
 
 == Why do I get socket.error "Permission denied" error on ftpd starting? ==
 
@@ -136,7 +146,7 @@ Overriding these variables is always recommended to avoid DoS attacks.
 
 When behind a NAT a ftp server needs to replace the IP local address displayed in PASV replies and instead use the public address of the NAT to allow client to connect.  By overriding `masquerade_address` attribute of `FTPHandler` class you will force pyftpdlib to do such replacement.
 However, one problem still exists.  The passive FTP connections will use ports from 1024 and up, which means that you must forward all ports 1024-65535 from the NAT to the FTP server!  And you have to allow many (possibly) dangerous ports in your firewalling rules!  To resolve this, simply override `passive_ports` attribute of `FTPHandler` class to control what ports pyftpdlib will use for its passive data transfers.  Value expected by `passive_ports` attribute is a list of integers (e.g. range(60000, 65535)) indicating which ports will be used for initializing the passive data channel.
-In case you run a FTP server with multiple private IP addresses behind a NAT firewall with multiple public IP addresses you can use `FTPHandler.masquerade_address_map` option which allows you to define multiple 1 to 1 mappings (*_New in 0.6.0_*). 
+In case you run a FTP server with multiple private IP addresses behind a NAT firewall with multiple public IP addresses you can use `FTPHandler.masquerade_address_map` option which allows you to define multiple 1 to 1 mappings (*_New in 0.6.0_*).
 
 == What is FXP? ==
 
@@ -146,7 +156,7 @@ More info can be found here: [http://www.proftpd.org/docs/howto/FXP.html http://
 
 == Does pyftpdlib support FXP? ==
 
-Yes. It is disabled by default for security reasons (see [http://gim.org.pl/rfcs/rfc2577.html RFC-2257] and [http://www.cert.org/advisories/CA-1997-27.html FTP bounce attack description]) but in case you want to enable it just set to True the `permit_foreign_addresses` attribute of `FTPHandler` class.
+Yes. It is disabled by default for security reasons (see [http://tools.ietf.org/html/rfc2577 RFC-2257] and [http://www.cert.org/advisories/CA-1997-27.html FTP bounce attack description]) but in case you want to enable it just set to True the `permit_foreign_addresses` attribute of `FTPHandler` class.
 
 == Why timestamps shown by MDTM and ls commands (LIST, MLSD, MLST) are wrong? ==
 
@@ -215,7 +225,7 @@ Example UNIX and Windows FTP servers contained in the [http://code.google.com/p/
 
 == Does pyftpdlib support FTP over TLS/SSL (FTPS)? ==
 
-Yes, starting from version 0.6.0, see: http://code.google.com/p/billiejoex/wiki/Tutorial#3.7_-_FTPS_(FTP_over_TLS/SSL)_server
+Yes, starting from version 0.6.0, see: http://code.google.com/p/pyftpdlib/wiki/Tutorial#4.8_-_FTPS_(FTP_over_TLS/SSL)_server
 
 == What about SITE commands? ==
 
