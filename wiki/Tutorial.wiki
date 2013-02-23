@@ -536,13 +536,13 @@ if __name__ == "__main__":
 
 By nature pyftpdlib is asynchronous. This means it uses a single process/thread to handle multiple client connections and file transfers. This is why it is so fast, lightweight and scalable (see [http://code.google.com/p/pyftpdlib/wiki/Benchmarks benchmarks]). The async model has one big drawback though: the code cannot contain instructions which blocks for a long period of time, otherwise the whole FTP server will hang.
 
-As such the user should avoid calls such as `time.sleep(3)`, heavy db queries, etc.  Moreover, there are cases where the async model just fails, and that is when you're dealing with a particularly slow filesystem (say a network filesystem such as samba). If the filesystem is slow (say, every `open(file, 'r').read(8192)` call will take 2 secs) there's just nothing you can do.
+As such the user should avoid calls such as `time.sleep(3)`, heavy db queries, etc.  Moreover, there are cases where the async model is not appropriate, and that is when you're dealing with a particularly slow filesystem (say a network filesystem such as samba). If the filesystem is slow (say, a `open(file, 'r').read(8192)` takes 2 secs to complete) then you are stuck.
 
 Starting from version 1.0.0 pyftpdlib supports 2 new classes which changes the default concurrency model by introducing multiple threads or processes.
-In technical terms this means that every time a client connects a separate thread/process will be spawned and internally it will run its own IO loop.
+In technical terms this means that every time a client connects a separate thread/process is spawned and internally it will run its own IO loop.
 In practical terms this means that you can block as long as you want.
 
-Changing the concurrency module is easy: you just need to import a different `FTPServer` class:
+Changing the concurrency module is easy: you just need to import a substitute for `FTPServer` class:
 
 Thread-based example:
 
