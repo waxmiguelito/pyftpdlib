@@ -89,17 +89,17 @@ By using plain _send()_:
 
 = Memory usage = 
 
-_Values refer to [http://en.wikipedia.org/wiki/Resident_Set_Size RSS] memory consumption, expressed in megabytes (the less the better)._
+_Values on UNIX are calculated as (rss - shared)._
 
 || *benchmark type* || *pyftpdlib* || *proftpd 1.3.4* || *vsftpd 2.3.5* || *twisted 12.3* || 
-|| Starting with                                  || <font color="red">11.9M</font>  || 4.3M  || 1.3M || 13.4M ||
-|| STOR (1 client)                        || <font color="red">11.9M</font>  || 8.5M || 2.8M || 13.5M ||
-|| RETR (1 client)                        || <font color="red">12.0M</font>  || 8.5M  || 2.8M || 13.5M ||
-|| 300 concurrent clients (connect, login)        || <font color="green">14.0M</font>  || 1277.5M  || 447.7M || 13.5M ||
-|| STOR (1 file with 300 idle clients)            || <font color="green">14.0M</font>  || 1281.9M  || 449.2M || 13.5M ||
-|| RETR (1 file with 300 idle clients)            || <font color="green">14.1M</font>  || 1281.9M  || 449.2M || 13.5M ||
-|| 300 concurrent clients (RETR 10.0M file)       || <font color="green">16.0M</font>  || 1277.6M  || 447.7M || 24.5M ||
-|| 300 concurrent clients (STOR 10.0M file)       || <font color="green">17.7M</font>  || 1277.8M  || 447.7M || 24.7M ||
+|| Starting with                                  || <font color="red">6.7M</font>  || 1.4M  || 352.0K || 13.4M ||
+|| STOR (1 client)                        || <font color="red">6.7M</font>  || 8.5M || 816.0K || 13.5M ||
+|| RETR (1 client)                        || <font color="red">6.8M</font>  || 8.5M  || 816.0K || 13.5M ||
+|| 300 concurrent clients (connect, login)        || <font color="green">8.8M</font>  || 568.6M  || 140.9M || 13.5M ||
+|| STOR (1 file with 300 idle clients)            || <font color="green">8.8M</font>  || 570.6M  || 141.4M || 13.5M ||
+|| RETR (1 file with 300 idle clients)            || <font color="green">8.8M</font>  || 570.6M  || 141.4M || 13.5M ||
+|| 300 concurrent clients (RETR 10.0M file)       || <font color="green">10.8M</font>  || 568.6M  || 140.9M || 24.5M ||
+|| 300 concurrent clients (STOR 10.0M file)       || <font color="green">12.6</font>  || 568.7M  || 140.9M || 24.7M ||
 
 = Interpreting the results =
 
