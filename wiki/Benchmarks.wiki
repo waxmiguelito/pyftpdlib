@@ -56,15 +56,15 @@ _All the benchmarks were conducted on a Linux Ubuntu 12.04  Intel core duo - 3.1
 
 = pyftpdlib vs. vsftpd 2.3.5 =
 
-|| *benchmark type* || *pyftpdlib* || *proftpd* || *speedup* ||
+|| *benchmark type* || *pyftpdlib* || *vsftpd* || *speedup* ||
 || STOR (client -> server)                      ||        585.90 MB/sec || 611.73 MB/sec || <font color='red'>-0.04x</font> ||
 || RETR (server -> client)                      ||       1652.72 MB/sec || 1512.92 MB/sec || <font color='green'>+0.09</font> ||
 || 300 concurrent clients (connect, login)      ||          0.19 secs || 20.39 secs || <font color='green'>+106x</font> ||
 || STOR (1 file with 300 idle clients)          ||        585.59 MB/sec || 610.23 MB/sec || <font color='red'>-0.04x</font> ||
 || RETR (1 file with 300 idle clients)          ||       1497.58 MB/sec || 1493.01 MB/sec || <font color='black'>0x</font> ||
 || 300 concurrent clients (RETR 10M file)       ||          3.41 secs || 3.67 secs || <font color='green'>+0.07x</font> ||
-|| 300 concurrent clients (STOR 10M file)       ||          8.60 secs || N/A ||  ||
-|| 300 concurrent clients (QUIT)                ||          0.03 secs || 0.01 secs || <font color='red'>-2x</font> ||
+|| 300 concurrent clients (STOR 10M file)       ||          8.60 secs || 9.82 secs || <font color='green'>+0.07x</font> ||
+|| 300 concurrent clients (QUIT)                ||          0.03 secs || 0.01 secs || <font color='red'>+0.14x</font> ||
 
 = pyftpdlib vs. Twisted 12.3 = 
 
@@ -84,7 +84,7 @@ By using plain _send()_:
 
 || *benchmark type* || *pyftpdlib* || *twisted* || *speedup* ||
 || RETR (server -> client)                      ||       894.29 MB/sec || 283.24 MB/sec || <font color='green'>+2.1x</font> ||
-|| RETR (1 file with 300 idle clients)          ||       900.98 MB/sec || 280.63 MB/sec || <font color='green'>2.1x</font> ||
+|| RETR (1 file with 300 idle clients)          ||       900.98 MB/sec || 280.63 MB/sec || <font color='green'>+2.1x</font> ||
 
 
 = Memory usage = 
@@ -99,7 +99,7 @@ _Values refer to [http://en.wikipedia.org/wiki/Resident_Set_Size RSS] memory con
 || STOR (1 file with 300 idle clients)            || <font color="green">14.0M</font>  || 1281.9M  || 449.2M || 13.5M ||
 || RETR (1 file with 300 idle clients)            || <font color="green">14.1M</font>  || 1281.9M  || 449.2M || 13.5M ||
 || 300 concurrent clients (RETR 10.0M file)       || <font color="green">16.0M</font>  || 1277.6M  || 447.7M || 24.5M ||
-|| 300 concurrent clients (STOR 10.0M file)       || <font color="green">17.7M</font>  || 1277.8M  || N/A || 24.7M ||
+|| 300 concurrent clients (STOR 10.0M file)       || <font color="green">17.7M</font>  || 1277.8M  || 447.7M || 24.7M ||
 
 = Interpreting the results =
 
