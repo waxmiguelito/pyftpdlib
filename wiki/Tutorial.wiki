@@ -713,3 +713,32 @@ def main():
 if __name__ == "__main__":
     main()
 }}}
+
+== 4.10 - Command line usage ==
+
+Starting from version 0.6.0 pyftpdlib can be run as a simple stand-alone server via Python's -m option, which is particularly useful when you want to quickly share a directory. Some examples.
+
+Anonymous FTPd sharing current directory:
+
+{{{
+giampaolo@ubuntu:~/svn/pyftpdlib$ python -m pyftpdlib
+[I 13-04-09 17:55:18] >>> starting FTP server on 0.0.0.0:2121, pid=6412 <<<
+[I 13-04-09 17:55:18] poller: <class 'pyftpdlib.ioloop.Epoll'>
+[I 13-04-09 17:55:18] masquerade (NAT) address: None
+[I 13-04-09 17:55:18] passive ports: None
+[I 13-04-09 17:55:18] use sendfile(2): True
+}}}
+
+Anonymous FTPd with write permission:
+
+{{{
+python -m pyftpdlib -w
+}}}
+
+Set a different address/port and home directory:
+
+{{{
+python -m pyftpdlib -i localhost -p 8021 -d /home/someone
+}}}
+
+See `python -m pyftpdlib -h` for a complete list of options.
