@@ -20,7 +20,7 @@ Python is an interpreted, interactive, object-oriented, easy-to-learn programmin
 Yes. pyftpdlib is a fully working FTP server implementation that can be run "as is".
 For example you could run an anonymous ftp server from cmd-line by running:
 {{{
-giampaolo@ubuntu:~$ sudo python -m pyftpdlib.ftpserver
+giampaolo@ubuntu:~$ sudo python -m pyftpdlib
 [I 13-02-20 14:16:36] >>> starting FTP server on 0.0.0.0:21 <<<
 [I 13-02-20 14:16:36] poller: <class 'pyftpdlib.ioloop.Epoll'>
 [I 13-02-20 14:16:36] masquerade (NAT) address: None
@@ -28,11 +28,11 @@ giampaolo@ubuntu:~$ sudo python -m pyftpdlib.ftpserver
 [I 13-02-20 14:16:36] use sendfile(2): True
 }}}
 This is useful in case you want a quick and dirty way to share a directory without, say, installing and configuring samba.
-Starting from version 0.6.0 options can be passed to the command line (see `python -m pyftpdlib.ftpserver --help` to see all available options). Examples:
+Starting from version 0.6.0 options can be passed to the command line (see `python -m pyftpdlib --help` to see all available options). Examples:
 
 Anonymous FTP server with write access:
 {{{
-giampaolo@ubuntu:~$ sudo python -m pyftpdlib.ftpserver -w
+giampaolo@ubuntu:~$ sudo python -m pyftpdlib -w
 /usr/local/lib/python2.6/site-packages/pyftpdlib/ftpserver.py:520: RuntimeWarning: Write permissions assigned to anonymous user.
   RuntimeWarning)
 [I 13-02-20 14:16:36] >>> starting FTP server on 0.0.0.0:21 <<<
@@ -44,7 +44,7 @@ giampaolo@ubuntu:~$ sudo python -m pyftpdlib.ftpserver -w
 
 Listen on a different ip/port:
 {{{
-giampaolo@ubuntu:~$ python -m pyftpdlib.ftpserver -i 127.0.0.1 -p 8021
+giampaolo@ubuntu:~$ python -m pyftpdlib -i 127.0.0.1 -p 8021
 [I 13-02-20 14:16:36] >>> starting FTP server on 0.0.0.0:8021 <<<
 [I 13-02-20 14:16:36] poller: <class 'pyftpdlib.ioloop.Epoll'>
 [I 13-02-20 14:16:36] masquerade (NAT) address: None
