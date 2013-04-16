@@ -462,7 +462,7 @@ from pyftpdlib.authorizers import DummyAuthorizer
 
 class DummyMD5Authorizer(DummyAuthorizer):
 
-    def validate_authentication(self, username, password):
+    def validate_authentication(self, username, password, handler):
         hash = md5(password).hexdigest()
         return self.user_table[username]['pwd'] == hash
 
