@@ -146,7 +146,7 @@ class pyftpdlib.handlers.*FTPHandler*<font size="3">*`(`*</font>_conn, server_<f
 
 _class_ pyftpdlib.handlers.*DTPHandler*<font size="3">*`(`*</font>_sock_obj, cmd_channel_<font size="3">*`)`*</font>
 
-  This class handles the server-data-transfer-process (server-DTP, see [http://www.faqs.org/rfcs/rfc959.html RFC-959]) managing all transfer operations regarding the data channel.  `sock_obj` is the underlying socket object instance of the newly established connection, `cmd_channel` is the `FTPHandler` class instance.
+  This class handles the server-data-transfer-process (server-DTP, see [http://www.faqs.org/rfcs/rfc959.html RFC-959]) managing all transfer operations regarding the data channel.  `sock_obj` is the underlying socket object instance of the newly established connection, `cmd_channel` is the `FTPHandler` class instance.<br><br>_*Changed in version 1.0.0*: added `ioloop` argument._
 
  * *timeout*<br>The timeout which roughly is the maximum time we permit data transfers to stall for with no progress. If the timeout triggers, the remote client will be kicked off.
 
@@ -164,9 +164,9 @@ _class_ pyftpdlib.handlers.*ThrottledDTPHandler*<font size="3">*`(`*</font>_sock
 ----
 == 2.5 - Server (acceptor) ==
 
-_class_ pyftpdlib.servers.*FTPServer*<font size="3">*`(`*</font>_address, handler_<font size="3">*`)`*</font>
+_class_ pyftpdlib.servers.*FTPServer*<font size="3">*`(`*</font>address_or_socket, handler, ioloop=None, backlog=5<font size="3">*`)`*</font>
 
-  Creates a socket listening on 'address' (an `(host, port)` tuple), dispatching the requests to 'handler' (typically `FTPHandler` class). Also, starts the asynchronous IO loop.
+  Creates a socket listening on 'address' (an `(host, port)` tuple) or a pre-existing socket object, dispatching the requests to 'handler' (typically `FTPHandler` class). Also, starts the asynchronous IO loop. `backlog` is the maximum number of queued connections  passed to [http://docs.python.org/library/socket.html#socket.socket.listen socket.listen()]. If a connection request arrives when the queue is full the client may raise ECONNRESET.<br><br>_*Changed in version 1.0.0*: added `ioloop` argument.<br>*Changed in version 1.2.0*: `address` can also be a pre-existing socket object.<br>*Changed in version 1.2.0*: Added `backlog` argument._
 
   {{{
 >>> from pyftpdlib.servers import FTPServer
@@ -183,7 +183,7 @@ _class_ pyftpdlib.servers.*FTPServer*<font size="3">*`(`*</font>_address, handle
 
  * *close*<font size="3">*`()`*</font><br>Stop serving without disconnecting currently connected clients.
 
- * *close_all<font size="3">*`()`*</font>*<br>Stop serving disconnecting also the currently connected clients.<br>_*Changed in version 1.0.0*: 'map' and 'ignore_all' parameters were removed._
+ * *close_all<font size="3">*`()`*</font>*<br>Stop serving disconnecting also the currently connected clients.<br>_*Changed in version 1.0.0*: 'map' and 'ignore_all' parameters were removed.
 ----
 == 2.6 - File system ==
 
