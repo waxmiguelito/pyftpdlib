@@ -179,7 +179,7 @@ _class_ pyftpdlib.servers.*FTPServer*<font size="3">*`(`*</font>address_or_socke
 
  * *max_cons_per_ip*<br>Number of maximum connections accepted for the same IP address (default `0` == _no limit_).
 
- * *serve_forever*<font size="3">*`(`*</font>_timeout=None, blocking=False, log_start_stop=True_<font size="3">*`)`*</font><br>Starts the asynchronous IO loop.<br>_*Changed in version 1.0.0*: no longer a classmethod; 'use_poll' and 'count' parameters were removed._
+ * *serve_forever*<font size="3">*`(`*</font>_timeout=None, blocking=False, handle_exit=True_<font size="3">*`)`*</font><br>Starts the asynchronous IO loop.<br>_*Changed in version 1.0.0*: no longer a classmethod; 'use_poll' and 'count' parameters were removed. 'blocking' and 'handle_exit' parameters were added_
 
  * *close*<font size="3">*`()`*</font><br>Stop serving without disconnecting currently connected clients.
 
@@ -284,16 +284,15 @@ class pyftpdlib.filesystems.*UnixFilesystem(*_root_, _cmd_channel_*)*
 
 == 3.4 - Extended servers ==
 
-_class_ pyftpdlib.servers.*ThreadedFTPServer*<font size="3">*`(`*</font>_address, handler_<font size="3">*`)`*</font>
+_class_ pyftpdlib.servers.*ThreadedFTPServer*<font size="3">*`(`*</font>address_or_socket, handler, ioloop=None, backlog=5<font size="3">*`)`*</font>
   A modified version of base FTPServer class which spawns a thread every time a new connection is established. Differently from base `FTPServer` class, the handler will be free to block without hanging the whole IO loop.
 
- _*New in version 1.0.0*_
+ _*New in version 1.0.0*<br>*Changed in 1.2.0:* added `ioloop` parameter; `address` can also be a pre-existing socket._
 
-
-_class_ pyftpdlib.servers.*MultiprocessFTPServer*<font size="3">*`(`*</font>_address, handler_<font size="3">*`)`*</font>
+_class_ pyftpdlib.servers.*MultiprocessFTPServer*<font size="3">*`(`*</font>address_or_socket, handler, ioloop=None, backlog=5<font size="3">*`)`*</font>
   A modified version of base FTPServer class which spawns a process every time a new connection is established. Differently from base `FTPServer` class, the handler will be free to block without hanging the whole IO loop.
 
- _*New in version 1.0.0*_<br> _*Availability*: POSIX + Python >= 2.6_
+ _*New in version 1.0.0*<br>*Changed in 1.2.0:* added `ioloop` parameter; `address` can also be a pre-existing socket.<br>*Availability*: POSIX + Python >= 2.6_
 
 
 ----
