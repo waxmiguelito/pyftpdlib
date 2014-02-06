@@ -1,0 +1,4 @@
+#labels Deprecated
+pyftpdlib tarballs are now hosted on [https://pypi.python.org/pypi?:action=display&name=pyftpdlib#downloads pypi].
+
+Old pyftpdlib versions can be found [https://code.google.com/p/psutil/downloads/list?can=1&q=&sort=-filename&colspec=Filename%20Summary%20Uploaded%20Size%20DownloadCount here].
