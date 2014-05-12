@@ -21,7 +21,7 @@ Yes. pyftpdlib is a fully working FTP server implementation that can be run "as 
 For example you could run an anonymous ftp server from cmd-line by running:
 {{{
 giampaolo@ubuntu:~$ sudo python -m pyftpdlib
-[I 13-02-20 14:16:36] >>> starting FTP server on 0.0.0.0:21 <<<
+[I 13-02-20 14:16:36] >>> starting FTP server on 0.0.0.0:8021 <<<
 [I 13-02-20 14:16:36] poller: <class 'pyftpdlib.ioloop.Epoll'>
 [I 13-02-20 14:16:36] masquerade (NAT) address: None
 [I 13-02-20 14:16:36] passive ports: None
@@ -35,7 +35,7 @@ Anonymous FTP server with write access:
 giampaolo@ubuntu:~$ sudo python -m pyftpdlib -w
 /usr/local/lib/python2.6/site-packages/pyftpdlib/ftpserver.py:520: RuntimeWarning: Write permissions assigned to anonymous user.
   RuntimeWarning)
-[I 13-02-20 14:16:36] >>> starting FTP server on 0.0.0.0:21 <<<
+[I 13-02-20 14:16:36] >>> starting FTP server on 0.0.0.0:8021 <<<
 [I 13-02-20 14:16:36] poller: <class 'pyftpdlib.ioloop.Epoll'>
 [I 13-02-20 14:16:36] masquerade (NAT) address: None
 [I 13-02-20 14:16:36] passive ports: None
